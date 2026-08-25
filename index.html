@@ -1,12 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleiton na BR</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cleiton na BR</title>
+  <meta name="description" content="Cleiton na BR - rádio, vídeos, conteúdos e projetos.">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+    }
+
+    .topo {
+      padding: 60px 20px 30px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+    }
+
+    .subtitulo {
+      color: #ccc;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .player {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 25px;
+      background: #1d1d1d;
+      border-radius: 14px;
+    }
+
+    .player h2 {
+      margin-top: 0;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .botoes {
+      margin-top: 30px;
+    }
+
+    .botao {
+      display: inline-block;
+      margin: 8px;
+      padding: 14px 22px;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .em-breve {
+      opacity: .6;
+      cursor: default;
+    }
+
+    .rodape {
+      margin-top: 60px;
+      padding: 25px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
+
+  <section class="topo">
     <h1>Cleiton na BR</h1>
-    <p>Nosso site está nascendo.</p>
+    <div class="subtitulo">
+      Música, estrada, informação e companhia.
+    </div>
+  </section>
+
+  <section class="player">
+    <h2>WebRádio Cleiton na BR</h2>
+    <p>Ouça nossa programação ao vivo.</p>
+
+    <audio controls preload="none">
+      <source
+        src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3"
+        type="audio/mpeg">
+      Seu navegador não suporta reprodução de áudio.
+    </audio>
+
+    <div class="botoes">
+      <a class="botao em-breve" href="#">Aplicativo em breve</a>
+      <a class="botao" href="#">WhatsApp</a>
+      <a class="botao" href="#">YouTube</a>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    © 2026 Cleiton na BR
+  </footer>
+
 </body>
 </html>
