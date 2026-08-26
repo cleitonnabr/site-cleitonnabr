@@ -3,43 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cleiton na BR</title>
-  <meta name="description" content="Cleiton na BR - rádio, vídeos, conteúdos e projetos.">
+
+  <meta
+    name="description"
+    content="Cleiton na BR - música, estrada, informação, rádio, vídeos e companhia.">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: #f5f5f5;
+      color: #222;
       text-align: center;
     }
 
     .topo {
-      padding: 60px 20px 30px;
+      padding: 35px 20px 30px;
+      background: #ffd900;
+      border-bottom: 6px solid #111;
+    }
+
+    .logo {
+      width: 180px;
+      max-width: 55vw;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
     }
 
     h1 {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       font-size: 42px;
+      color: #111;
     }
 
     .subtitulo {
-      color: #ccc;
+      color: #333;
       font-size: 18px;
-      margin-bottom: 35px;
+      font-weight: bold;
     }
 
-    .player {
+    .conteudo {
+      padding: 35px 20px;
+    }
+
+    .player,
+    .youtube {
       max-width: 700px;
-      margin: 0 auto;
-      padding: 25px;
-      background: #1d1d1d;
+      margin: 0 auto 30px;
+      padding: 28px;
+      background: #fff;
       border-radius: 14px;
+      border-top: 5px solid #ffd900;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     }
 
-    .player h2 {
+    .player h2,
+    .youtube h2 {
       margin-top: 0;
+      color: #111;
+    }
+
+    .player p,
+    .youtube p {
+      color: #555;
     }
 
     audio {
@@ -48,7 +81,7 @@
     }
 
     .botoes {
-      margin-top: 30px;
+      margin-top: 25px;
     }
 
     .botao {
@@ -56,66 +89,175 @@
       margin: 8px;
       padding: 14px 22px;
       border-radius: 8px;
-      background: #fff;
-      color: #111;
+      background: #111;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .botao:hover {
+      background: #d71920;
     }
 
     .em-breve {
-      opacity: .6;
-      cursor: default;
+      display: inline-block;
+      margin: 8px;
+      padding: 14px 22px;
+      border-radius: 8px;
+      background: #ddd;
+      color: #666;
+      font-weight: bold;
+    }
+
+    .agenda {
+      margin-top: 20px;
+      padding: 18px;
+      background: #fff7bf;
+      border-radius: 10px;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    .youtube .botao {
+      background: #d71920;
+    }
+
+    .youtube .botao:hover {
+      background: #111;
     }
 
     .rodape {
-      margin-top: 60px;
-      padding: 25px;
-      color: #888;
+      margin-top: 25px;
+      padding: 30px 20px;
+      background: #111;
+      color: #aaa;
       font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 34px;
+      }
+
+      .topo {
+        padding-top: 25px;
+      }
+
+      .player,
+      .youtube {
+        padding: 20px;
+      }
+
+      .botao,
+      .em-breve {
+        display: block;
+        max-width: 280px;
+        margin: 10px auto;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <section class="topo">
+  <header class="topo">
+
+    <img
+      class="logo"
+      src="CLEITON%20NA%20BR%20LOGO%20PNG.png"
+      alt="Logomarca Cleiton na BR">
+
     <h1>Cleiton na BR</h1>
+
     <div class="subtitulo">
       Música, estrada, informação e companhia.
     </div>
-  </section>
 
-  <section class="player">
-    <h2>WebRádio Cleiton na BR</h2>
-    <p>Ouça nossa programação ao vivo.</p>
+  </header>
 
-    <audio controls preload="none">
-      <source
-        src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3"
-        type="audio/mpeg">
-      Seu navegador não suporta reprodução de áudio.
-    </audio>
 
-    <div class="botoes">
-      <a class="botao em-breve" href="#">Aplicativo em breve</a>
+  <main class="conteudo">
 
-      <a
-        class="botao"
-        href="https://wa.me/5577981235466"
-        target="_blank"
-        rel="noopener noreferrer">
-        WhatsApp
-      </a>
+    <section class="player">
 
-      <a
-        class="botao"
-        href="https://www.youtube.com/@cleitonnaBR"
-        target="_blank"
-        rel="noopener noreferrer">
-        YouTube
-      </a>
-    </div>
-  </section>
+      <h2>WebRádio Cleiton na BR</h2>
+
+      <p>Ouça nossa programação ao vivo.</p>
+
+      <audio controls preload="none">
+
+        <source
+          src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3"
+          type="audio/mpeg">
+
+        Seu navegador não suporta reprodução de áudio.
+
+      </audio>
+
+
+      <div class="botoes">
+
+        <span class="em-breve">
+          Aplicativo em breve
+        </span>
+
+        <a
+          class="botao"
+          href="https://wa.me/5577981235466"
+          target="_blank"
+          rel="noopener noreferrer">
+          WhatsApp
+        </a>
+
+        <a
+          class="botao"
+          href="https://www.youtube.com/@cleitonnaBR"
+          target="_blank"
+          rel="noopener noreferrer">
+          YouTube
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="youtube">
+
+      <h2>Vídeos no YouTube</h2>
+
+      <p>
+        Acompanhe os novos vídeos do Cleiton na BR.
+      </p>
+
+      <div class="agenda">
+
+        <strong>Terça a sexta:</strong>
+        novos vídeos às 17h
+        <br>
+
+        <strong>Sábados e domingos:</strong>
+        novos vídeos às 7h
+
+      </div>
+
+      <div class="botoes">
+
+        <a
+          class="botao"
+          href="https://www.youtube.com/@cleitonnaBR"
+          target="_blank"
+          rel="noopener noreferrer">
+          Ir para o canal
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
 
   <footer class="rodape">
     © 2026 Cleiton na BR
