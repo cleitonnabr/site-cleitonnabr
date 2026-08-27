@@ -1,1 +1,20 @@
-
+{
+  "name": "Cleiton na BR",
+  "short_name": "Cleiton na BR",
+  "description": "Música, estrada, informação e companhia.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#ffd900",
+  "lang": "pt-BR",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/CLEITON%20NA%20BR%20LOGO%20PNG.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
