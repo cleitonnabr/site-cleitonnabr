@@ -83,6 +83,14 @@
       margin-top: 15px;
     }
 
+    .status-radio {
+      margin-top: 12px;
+      min-height: 20px;
+      color: #555;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
     .botoes {
       margin-top: 25px;
     }
@@ -188,7 +196,10 @@
 
       <p>Ouça nossa programação ao vivo.</p>
 
-      <audio controls preload="none">
+      <audio
+        id="radioPlayer"
+        controls
+        preload="none">
 
         <source
           src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3"
@@ -197,6 +208,11 @@
         Seu navegador não suporta reprodução de áudio.
 
       </audio>
+
+      <div
+        id="statusRadio"
+        class="status-radio">
+      </div>
 
 
       <div class="botoes">
@@ -268,12 +284,119 @@
 
 
   <script>
+    const radio = document.getElementById("radioPlayer");
+    const statusRadio = document.getElementById("statusRadio");
+
+    const streamUrl =
+      "https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3";
+
+    let usuarioQuerOuvir = false;
+    let reconectando = false;
+    let timerReconexao = null;
+
+    radio.addEventListener("play", () => {
+      usuarioQuerOuvir = true;
+      statusRadio.textContent = "No ar";
+    });
+
+    radio.addEventListener("pause", () => {
+      if (!reconectando) {
+        usuarioQuerOuvir = false;
+        statusRadio.textContent = "";
+      }
+    });
+
+    radio.addEventListener("playing", () => {
+      reconectando = false;
+      statusRadio.textContent = "No ar";
+    });
+
+    radio.addEventListener("waiting", () => {
+      if (usuarioQuerOuvir) {
+        statusRadio.textContent = "Reconectando...";
+      }
+    });
+
+    radio.addEventListener("stalled", () => {
+      if (usuarioQuerOuvir) {
+        agendarReconexao(1500);
+      }
+    });
+
+    radio.addEventListener("error", () => {
+      if (usuarioQuerOuvir) {
+        agendarReconexao(1500);
+      }
+    });
+
+    window.addEventListener("offline", () => {
+      if (usuarioQuerOuvir) {
+        statusRadio.textContent = "Sem conexão...";
+      }
+    });
+
+    window.addEventListener("online", () => {
+      if (usuarioQuerOuvir) {
+        reconectarRadio();
+      }
+    });
+
+    function agendarReconexao(tempo) {
+      clearTimeout(timerReconexao);
+
+      timerReconexao = setTimeout(() => {
+        if (usuarioQuerOuvir && navigator.onLine) {
+          reconectarRadio();
+        }
+      }, tempo);
+    }
+
+    function reconectarRadio() {
+      if (!usuarioQuerOuvir || reconectando) {
+        return;
+      }
+
+      reconectando = true;
+      statusRadio.textContent = "Reconectando...";
+
+      clearTimeout(timerReconexao);
+
+      const novaUrl =
+        streamUrl +
+        "?reconnect=" +
+        Date.now();
+
+      radio.src = novaUrl;
+      radio.load();
+
+      const tentativa = radio.play();
+
+      if (tentativa !== undefined) {
+        tentativa
+          .then(() => {
+            reconectando = false;
+            statusRadio.textContent = "No ar";
+          })
+          .catch(() => {
+            reconectando = false;
+
+            if (usuarioQuerOuvir) {
+              statusRadio.textContent = "Toque no Play para continuar";
+            }
+          });
+      }
+    }
+
+
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/service-worker.js")
           .catch((erro) => {
-            console.error("Erro ao registrar Service Worker:", erro);
+            console.error(
+              "Erro ao registrar Service Worker:",
+              erro
+            );
           });
       });
     }
