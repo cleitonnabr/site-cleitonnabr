@@ -262,7 +262,7 @@
       min-width: 0;
     }
 
-    /* NO AR + ONDAS NA MESMA LINHA */
+    /* NO AR + ONDAS */
 
     .linha-no-ar {
       display: flex;
@@ -300,8 +300,6 @@
       font-size: 17px;
       line-height: 1.45;
     }
-
-    /* ONDAS */
 
     .ondas {
       height: 28px;
@@ -599,14 +597,12 @@
 
     .redes-texto h2 {
       margin: 0 0 5px;
-
       font-size: 22px;
       color: #171717;
     }
 
     .redes-texto p {
       margin: 0;
-
       color: #666;
       font-size: 14px;
       line-height: 1.4;
@@ -687,85 +683,93 @@
     @media (max-width: 760px) {
 
       .hero {
-        min-height: 150px;
-        padding: 12px;
+        min-height: 140px;
+        padding: 10px;
         background-position: center center;
       }
 
       .logo-principal {
-        width: 145px;
-        max-width: 48vw;
+        width: 135px;
+        max-width: 46vw;
       }
 
       .conteudo {
         width: calc(100% - 22px);
-        margin: 18px auto 22px;
+        margin: 15px auto 18px;
       }
 
+      /* INSTALAÇÃO */
+
       .instalacao-card {
-        margin-bottom: 20px;
-        padding: 14px;
+        margin-bottom: 16px;
+        padding: 11px 13px;
 
         flex-direction: column;
         align-items: stretch;
-        gap: 10px;
+        gap: 7px;
       }
 
       .instalacao-texto strong {
-        font-size: 16px;
+        font-size: 15px;
+        margin-bottom: 2px;
       }
 
       .instalacao-texto span {
-        font-size: 12px;
+        font-size: 11px;
       }
 
       .botao-instalar {
         width: 100%;
-        padding: 12px;
+        padding: 9px;
+        font-size: 12px;
       }
+
+      /* ESPAÇO ENTRE RÁDIO E YOUTUBE */
 
       .linha-principal {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
       }
+
+      /* RÁDIO */
 
       .radio-card {
         min-height: auto;
-        padding: 16px;
+        padding: 13px;
 
-        gap: 15px;
+        gap: 12px;
 
         align-items: center;
       }
 
       .logo-radio {
-        width: 105px;
-        height: 105px;
+        width: 92px;
+        height: 92px;
       }
 
       .linha-no-ar {
-        gap: 10px;
-        margin-bottom: 7px;
+        gap: 9px;
+        margin-bottom: 5px;
       }
 
       .no-ar {
-        font-size: 18px;
-        gap: 7px;
+        font-size: 16px;
+        gap: 6px;
       }
 
       .bolinha {
-        width: 9px;
-        height: 9px;
+        width: 8px;
+        height: 8px;
       }
 
       .radio-texto {
-        font-size: 13px;
-        margin-bottom: 9px;
+        font-size: 12px;
+        margin-bottom: 6px;
       }
 
       .ondas {
-        height: 20px;
-        gap: 3px;
+        height: 18px;
+        gap: 2px;
       }
 
       .onda {
@@ -773,145 +777,194 @@
       }
 
       .play-btn {
-        width: 47px;
-        height: 47px;
-        font-size: 21px;
+        width: 42px;
+        height: 42px;
+        font-size: 19px;
       }
 
       .controles {
-        gap: 10px;
+        gap: 8px;
       }
 
       .volume-area {
         max-width: none;
+        gap: 6px;
       }
 
       .volume-icon {
-        width: 22px;
-        height: 22px;
+        width: 19px;
+        height: 19px;
       }
 
       .status-radio {
-        margin-top: 6px;
-        font-size: 11px;
+        margin-top: 4px;
+        min-height: 13px;
+        font-size: 10px;
       }
 
+      /* YOUTUBE MAIS COMPACTO */
+
       .youtube-card {
-        padding: 16px;
+        padding: 11px 13px 12px;
+        border-top-width: 4px;
       }
 
       .titulo-servico {
-        margin-bottom: 4px;
+        gap: 8px;
+        margin-bottom: 1px;
       }
 
       .titulo-servico h2 {
-        font-size: 21px;
+        font-size: 18px;
       }
 
       .youtube-icon {
-        width: 33px;
-        height: 33px;
+        width: 27px;
+        height: 27px;
       }
 
       .youtube-card p {
-        margin: 5px 0 9px;
-        font-size: 13px;
+        margin: 3px 0 6px;
+        font-size: 11px;
+        line-height: 1.25;
       }
 
       .agenda {
-        margin-bottom: 10px;
-        padding: 10px;
+        margin-bottom: 7px;
+        padding: 7px 9px;
 
-        font-size: 13px;
-        line-height: 1.55;
+        border-radius: 8px;
+
+        font-size: 11px;
+        line-height: 1.4;
       }
 
       .botao-youtube {
-        padding: 11px;
-        font-size: 14px;
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 11px;
       }
 
-      .whatsapp-card {
-        margin-top: 20px;
-        padding: 15px;
+      /* WHATSAPP MAIS COMPACTO */
 
-        grid-template-columns: 50px 1fr;
-        gap: 12px;
+      .whatsapp-card {
+        margin-top: 16px;
+        padding: 10px 12px;
+
+        grid-template-columns: 36px 1fr auto;
+        gap: 9px;
       }
 
       .whatsapp-icon {
-        width: 50px;
-        height: 50px;
+        width: 36px;
+        height: 36px;
       }
 
       .whatsapp-texto h2 {
-        font-size: 18px;
-        margin-bottom: 4px;
+        font-size: 14px;
+        margin-bottom: 2px;
       }
 
       .whatsapp-texto p {
-        font-size: 12px;
+        font-size: 10px;
+        line-height: 1.25;
       }
 
       .botao-whatsapp {
-        grid-column: 1 / -1;
+        grid-column: auto;
 
-        width: 100%;
+        width: auto;
         min-width: 0;
 
-        padding: 12px;
+        padding: 9px 10px;
 
-        font-size: 14px;
+        border-radius: 8px;
+
+        font-size: 0;
       }
 
-      .redes-card {
-        margin-top: 20px;
-        padding: 17px;
+      .icone-whatsapp-botao {
+        width: 21px;
+        height: 21px;
+      }
 
-        display: block;
+      /* REDES MAIS COMPACTAS */
+
+      .redes-card {
+        margin-top: 16px;
+        padding: 11px 12px;
+
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 10px;
+
+        border-top-width: 3px;
       }
 
       .redes-texto {
-        text-align: center;
-        margin-bottom: 14px;
+        text-align: left;
+        margin: 0;
       }
 
       .redes-texto h2 {
-        font-size: 19px;
+        font-size: 14px;
+        margin-bottom: 2px;
       }
 
       .redes-texto p {
-        font-size: 12px;
+        font-size: 10px;
       }
 
       .redes-botoes {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        display: flex;
+        gap: 6px;
       }
 
       .botao-rede {
         min-width: 0;
-        padding: 12px 8px;
-        font-size: 12px;
+
+        width: 38px;
+        height: 38px;
+
+        padding: 0;
+        border-radius: 9px;
+
+        font-size: 0;
       }
 
+      .icone-rede {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* RODAPÉ */
+
       .rodape {
-        margin-top: 22px;
-        padding: 18px 10px;
+        margin-top: 18px;
+        padding: 13px 10px;
+        font-size: 11px;
       }
 
     }
 
     @media (max-width: 400px) {
 
+      .hero {
+        min-height: 130px;
+      }
+
+      .logo-principal {
+        width: 125px;
+      }
+
       .radio-card {
-        gap: 11px;
+        gap: 10px;
       }
 
       .logo-radio {
-        width: 88px;
-        height: 88px;
+        width: 82px;
+        height: 82px;
       }
 
       .radio-texto {
@@ -919,7 +972,7 @@
       }
 
       .no-ar {
-        font-size: 16px;
+        font-size: 15px;
       }
 
       .ondas {
@@ -927,12 +980,16 @@
       }
 
       .play-btn {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
       }
 
-      .redes-botoes {
-        grid-template-columns: 1fr;
+      .whatsapp-texto p {
+        display: none;
+      }
+
+      .redes-texto p {
+        display: none;
       }
 
     }
@@ -996,8 +1053,6 @@
           alt="WebRádio Cleiton na BR">
 
         <div class="radio-info">
-
-          <!-- NO AR + ONDAS -->
 
           <div class="linha-no-ar">
 
@@ -1208,7 +1263,8 @@
         class="botao-whatsapp"
         href="https://wa.me/5577981235466"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        aria-label="Chamar no WhatsApp">
 
         <svg
           class="icone-whatsapp-botao"
@@ -1257,7 +1313,8 @@
           class="botao-rede instagram"
           href="https://www.instagram.com/cleitonnabr/"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+          aria-label="Instagram Cleiton na BR">
 
           <svg
             class="icone-rede"
@@ -1297,7 +1354,8 @@
           class="botao-rede facebook"
           href="https://www.facebook.com/cleitonnabr/"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+          aria-label="Facebook Cleiton na BR">
 
           <svg
             class="icone-rede"
