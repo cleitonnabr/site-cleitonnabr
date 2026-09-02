@@ -2197,6 +2197,8 @@
        4. "CARREGANDO ÁUDIO" POSSUI TEMPO LIMITE.
        5. FALHA CONFIRMADA RECRIA COMPLETAMENTE O PLAYER.
        6. APENAS UMA ROTINA DE RECONEXÃO PODE EXISTIR.
+       7. NÃO DISPUTA FOCO DE ÁUDIO COM OUTRO APP.
+       8. PAUSE/STOP DA TELA BLOQUEADA SÃO RESPEITADOS.
     ===================================================== */
 
 
@@ -2259,6 +2261,17 @@
 
     let tentativaReconexao =
       0;
+
+    /*
+      QUANDO OUTRO APP / O PRÓPRIO ANDROID TOMA O FOCO DE ÁUDIO
+      ENQUANTO A PÁGINA ESTÁ EM SEGUNDO PLANO, NÃO DEVEMOS
+      DISPUTAR O ÁUDIO RELIGANDO A RÁDIO À FORÇA.
+
+      A INTENÇÃO DO OUVINTE CONTINUA PRESERVADA, MAS A
+      RECONEXÃO FICA SUSPENSA ATÉ A PÁGINA VOLTAR À TELA.
+    */
+    let pausaExternaSegundoPlano =
+      false;
 
 
     const LIMITE_CARREGAMENTO =
@@ -2495,6 +2508,9 @@
           aguardandoGesto =
             false;
 
+          pausaExternaSegundoPlano =
+            false;
+
           tentativaReconexao =
             0;
 
@@ -2550,10 +2566,15 @@
 
 
       /*
-        SE O AUDIO PAUSAR SEM O OUVINTE TER PEDIDO,
-        ISSO É UMA FALHA TÉCNICA.
+        PAUSA PODE TER DUAS ORIGENS DIFERENTES:
 
-        NÃO VOLTAMOS PARA "TOQUE NO PLAY".
+        1. FALHA TÉCNICA COM A PÁGINA VISÍVEL -> RECONECTA.
+        2. ANDROID / OUTRO APP TOMOU O FOCO DE ÁUDIO ENQUANTO
+           A PÁGINA ESTAVA EM SEGUNDO PLANO -> NÃO DISPUTA
+           O ÁUDIO E NÃO RELIGA A RÁDIO À FORÇA.
+
+        ISSO É IMPORTANTE, POR EXEMPLO, QUANDO O WHATSAPP
+        PRECISA USAR O MICROFONE PARA GRAVAR UM ÁUDIO.
       */
 
       player.addEventListener(
@@ -2574,6 +2595,28 @@
           ) {
 
             mostrarParado();
+            return;
+
+          }
+
+          if (
+            document.hidden
+          ) {
+
+            pausaExternaSegundoPlano =
+              true;
+
+            reconectando =
+              false;
+
+            limparTimerReconexao();
+            limparTimerCarregamento();
+            limparTimerSaude();
+
+            mostrarTentando(
+              "Áudio pausado pelo sistema"
+            );
+
             return;
 
           }
@@ -2890,7 +2933,11 @@
 
       if (
         !usuarioQuerOuvir ||
-        aguardandoGesto
+        aguardandoGesto ||
+        (
+          pausaExternaSegundoPlano &&
+          document.hidden
+        )
       ) {
 
         return;
@@ -2911,7 +2958,11 @@
 
             if (
               !usuarioQuerOuvir ||
-              aguardandoGesto
+              aguardandoGesto ||
+              (
+                pausaExternaSegundoPlano &&
+                document.hidden
+              )
             ) {
 
               return;
@@ -2947,7 +2998,11 @@
       if (
         !usuarioQuerOuvir ||
         reconectando ||
-        aguardandoGesto
+        aguardandoGesto ||
+        (
+          pausaExternaSegundoPlano &&
+          document.hidden
+        )
       ) {
 
         return;
@@ -3102,6 +3157,9 @@
       reconectando =
         false;
 
+      pausaExternaSegundoPlano =
+        false;
+
       tentativaReconexao =
         0;
 
@@ -3216,6 +3274,85 @@
 
       }
     );
+
+
+    /* =====================================================
+       CONTROLES DE MÍDIA DO CELULAR / TELA BLOQUEADA
+
+       SEM ESTES HANDLERS, O ANDROID PODE PAUSAR O <audio>,
+       MAS O SITE INTERPRETA A PAUSA COMO FALHA E RECONECTA.
+
+       PAUSE / STOP DO SISTEMA PASSAM A SER UMA DECISÃO REAL
+       DO OUVINTE, EXATAMENTE COMO O BOTÃO STOP DO SITE.
+    ===================================================== */
+
+    if (
+      "mediaSession" in navigator
+    ) {
+
+      try {
+
+        navigator.mediaSession.setActionHandler(
+          "pause",
+          () => {
+            pararRadio();
+          }
+        );
+
+        navigator.mediaSession.setActionHandler(
+          "stop",
+          () => {
+            pararRadio();
+          }
+        );
+
+        navigator.mediaSession.setActionHandler(
+          "play",
+          () => {
+
+            pausaExternaSegundoPlano =
+              false;
+
+            if (
+              usuarioQuerOuvir &&
+              aguardandoGesto
+            ) {
+
+              retomarComGesto();
+              return;
+
+            }
+
+            if (
+              !usuarioQuerOuvir
+            ) {
+
+              iniciarRadio();
+              return;
+
+            }
+
+            radio.play()
+              .catch(
+                tratarFalhaDePlay
+              );
+
+          }
+        );
+
+      }
+
+      catch (erro) {
+
+        /*
+          ALGUNS NAVEGADORES POSSUEM MEDIA SESSION, MAS NÃO
+          IMPLEMENTAM TODAS AS AÇÕES. O PLAYER NORMAL SEGUE
+          FUNCIONANDO MESMO NESSE CASO.
+        */
+
+      }
+
+    }
 
 
     /* VOLUME */
@@ -3464,6 +3601,14 @@
             "visible" &&
           usuarioQuerOuvir
         ) {
+
+          /*
+            SE OUTRO APP HAVIA TOMADO O FOCO DE ÁUDIO,
+            AGORA A PÁGINA VOLTOU AO PRIMEIRO PLANO E PODE
+            RETOMAR A RECUPERAÇÃO NORMAL DO STREAM.
+          */
+          pausaExternaSegundoPlano =
+            false;
 
           verificarSaudeEmBreve(
             900
