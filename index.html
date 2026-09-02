@@ -820,6 +820,161 @@
 
 
     /* =========================
+       E-BOOK / BOTÃO DA CONFIANÇA
+    ========================== */
+
+    .ebook-card {
+      margin-top: 30px;
+      padding: 28px;
+      background:
+        linear-gradient(
+          135deg,
+          #111111,
+          #242424
+        );
+      color: #fff;
+      border-top: 5px solid #ffd000;
+    }
+
+    .ebook-badge {
+      display: inline-block;
+      margin-bottom: 13px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #ffd000;
+      color: #111;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .ebook-card h2 {
+      margin: 0 0 12px;
+      color: #ffd000;
+      font-size: 27px;
+      line-height: 1.15;
+    }
+
+    .ebook-card p {
+      margin: 0 0 12px;
+      color: #e7e7e7;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .ebook-destaque {
+      margin: 18px 0;
+      padding: 17px;
+      border-radius: 12px;
+      background: rgba(255,208,0,0.10);
+      border: 1px solid rgba(255,208,0,0.42);
+    }
+
+    .ebook-destaque strong {
+      color: #ffd000;
+    }
+
+    .ebook-confianca {
+      margin-top: 17px !important;
+      color: #fff !important;
+      font-size: 18px !important;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .botao-ebook {
+      width: 100%;
+      margin-top: 7px;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 11px;
+      background: #ffd000;
+      color: #111;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .botao-ebook:hover {
+      background: #ffe04b;
+    }
+
+    .contribuicao-area {
+      display: none;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid #555;
+    }
+
+    .contribuicao-area.visivel {
+      display: block;
+    }
+
+    .contribuicao-area h3 {
+      margin: 0 0 10px;
+      color: #ffd000;
+      font-size: 22px;
+    }
+
+    .pix-box {
+      margin-top: 16px;
+      padding: 17px;
+      background: #fff;
+      color: #171717;
+      border-radius: 12px;
+    }
+
+    .pix-label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .pix-chave {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 17px;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .pix-dados {
+      margin: 0 0 14px !important;
+      color: #555 !important;
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+    }
+
+    .botao-copiar-pix {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9px;
+      background: #111;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .botao-copiar-pix:hover {
+      background: #292929;
+    }
+
+    .status-pix {
+      min-height: 18px;
+      margin: 9px 0 0 !important;
+      color: #555 !important;
+      font-size: 12px !important;
+      text-align: center;
+    }
+
+
+    /* =========================
        REDES
     ========================== */
 
@@ -1193,9 +1348,7 @@
       }
 
 
-      /* ======================
-         WHATSAPP ACESSÍVEL
-      ======================= */
+      /* WHATSAPP */
 
       .whatsapp-card {
 
@@ -1277,6 +1430,65 @@
 
         height: 27px;
 
+      }
+
+
+      /* E-BOOK */
+
+      .ebook-card {
+        margin-top: 16px;
+        padding: 18px 14px;
+        border-top-width: 4px;
+      }
+
+      .ebook-badge {
+        margin-bottom: 9px;
+        padding: 6px 9px;
+        font-size: 10px;
+      }
+
+      .ebook-card h2 {
+        margin-bottom: 9px;
+        font-size: 20px;
+      }
+
+      .ebook-card p {
+        margin-bottom: 9px;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .ebook-destaque {
+        margin: 13px 0;
+        padding: 12px;
+      }
+
+      .ebook-confianca {
+        margin-top: 12px !important;
+        font-size: 15px !important;
+      }
+
+      .botao-ebook {
+        padding: 13px 10px;
+        font-size: 14px;
+      }
+
+      .contribuicao-area {
+        margin-top: 17px;
+        padding-top: 17px;
+      }
+
+      .contribuicao-area h3 {
+        font-size: 18px;
+      }
+
+      .pix-box {
+        margin-top: 12px;
+        padding: 13px;
+      }
+
+      .pix-chave {
+        font-size: 14px;
       }
 
 
@@ -1596,11 +1808,6 @@
         </div>
 
 
-        <!--
-          STREAM ORIGINAL.
-          O PRIMEIRO PLAY CONTINUA USANDO ESTA CONEXÃO DIRETAMENTE.
-        -->
-
         <audio
           id="radioPlayer"
           preload="auto"
@@ -1647,18 +1854,12 @@
 
         <div class="agenda">
 
-          <strong>
-            Terça a sexta:
-          </strong>
-
+          <strong>Terça a sexta:</strong>
           novos vídeos às 17h
 
           <br>
 
-          <strong>
-            Sábados e domingos:
-          </strong>
-
+          <strong>Sábados e domingos:</strong>
           novos vídeos às 7h da manhã
 
         </div>
@@ -1678,14 +1879,9 @@
     </div>
 
 
-    <!-- =========================
-         WHATSAPP
-    ========================== -->
+    <!-- WHATSAPP -->
 
     <section class="card whatsapp-card">
-
-
-      <!-- LOGO DO WHATSAPP -->
 
       <svg
         class="whatsapp-icon"
@@ -1705,10 +1901,6 @@
         <path
           d="M32.1 49.3C29.1 49.3 26.2 48.5 23.7 47L22.9 46.6L16.2 48.3L18 41.8L17.5 41C15.8 38.4 14.9 35.3 14.9 32.1C14.9 22.5 22.6 14.8 32.1 14.8C36.7 14.8 41 16.6 44.3 19.8C47.5 23.1 49.3 27.4 49.3 32C49.3 41.5 41.6 49.3 32.1 49.3Z"
           fill="#25D366"/>
-
-        <path
-          d="M41.5 36.4C41 36.1 38.5 34.9 38 34.7C37.5 34.5 37.2 34.4 36.8 34.9C36.5 35.4 35.5 36.6 35.2 36.9C34.9 37.2 34.6 37.3 34.1 37C31.2 35.6 29.3 34.5 27.4 31.2C26.9 30.3 27.9 30.4 28.8 28.4C29 28 28.9 27.6 28.7 27.3C28.6 27 27.5 24.5 27.1 23.5C26.7 22.5 26.2 22.6 25.9 22.6H24.9C24.5 22.6 23.9 22.7 23.4 23.3C22.9 23.8 21.4 25.2 21.4 28C21.4 30.8 23.4 33.5 23.7 33.9C24 34.3 27.7 40 33.5 42.5C37.1 44.1 38.5 44.2 40.3 43.9C41.4 43.7 43.3 42.7 43.7 41.5C44.1 40.3 44.1 39.3 44 39.1C43.8 38.9 43.5 38.7 43 38.5L41.5 36.4Z"
-          fill="#ffffff"/>
 
       </svg>
 
@@ -1738,20 +1930,6 @@
         rel="noopener noreferrer"
         aria-label="Chamar Cleiton na BR no WhatsApp">
 
-
-        <!-- LOGO NO BOTÃO -->
-
-        <svg
-          class="icone-whatsapp-botao"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg">
-
-          <path
-            fill="#ffffff"
-            d="M16 3C8.8 3 3 8.6 3 15.6C3 18 3.7 20.3 5 22.3L3.2 29L10.1 27.2C12 28.3 13.9 28.8 16 28.8C23.2 28.8 29 23.2 29 16.1C29 9 23.2 3 16 3ZM16 26.4C14.1 26.4 12.3 25.9 10.7 25L10.2 24.7L6.1 25.8L7.2 21.8L6.9 21.3C5.9 19.7 5.4 17.7 5.4 15.7C5.4 10 10.1 5.4 16 5.4C21.9 5.4 26.6 10.1 26.6 16C26.6 21.7 21.9 26.4 16 26.4ZM21.8 18.4C21.5 18.2 19.9 17.5 19.6 17.4C19.3 17.3 19.1 17.2 18.9 17.5C18.7 17.8 18.1 18.5 17.9 18.7C17.7 18.9 17.5 18.9 17.2 18.8C15.4 17.9 14.2 17.2 13 15.2C12.7 14.7 13.3 14.7 13.9 13.4C14 13.1 14 12.9 13.9 12.7C13.8 12.5 13.2 10.9 12.9 10.3C12.6 9.7 12.3 9.8 12.1 9.8H11.5C11.3 9.8 10.9 9.9 10.6 10.2C10.3 10.5 9.4 11.4 9.4 13.1C9.4 14.8 10.7 16.5 10.9 16.8C11.1 17.1 13.4 20.6 17 22.2C19.2 23.2 20.1 23.2 21.2 23C21.9 22.9 23.1 22.2 23.3 21.5C23.6 20.8 23.6 20.2 23.5 20C23.4 19.9 23.2 19.8 22.9 19.6L21.8 18.4Z"/>
-
-        </svg>
-
         WHATSAPP
 
       </a>
@@ -1759,9 +1937,114 @@
     </section>
 
 
-    <!-- =========================
-         REDES SOCIAIS
-    ========================== -->
+    <!-- E-BOOK / BOTÃO DA CONFIANÇA -->
+
+    <section class="card ebook-card">
+
+      <span class="ebook-badge">
+        BOTÃO DA CONFIANÇA
+      </span>
+
+      <h2>
+        AQUI, A CONFIANÇA VEM PRIMEIRO.
+      </h2>
+
+      <p>
+        Preparei o <strong>Guia Prático Rumo Seguro — Direção Defensiva na Rodovia — Parte 2</strong>
+        para compartilhar conhecimento que pode ajudar você a dirigir com mais atenção,
+        segurança e responsabilidade nas estradas.
+      </p>
+
+      <div class="ebook-destaque">
+
+        <p>
+          <strong>Você não precisa pagar antes para receber.</strong>
+        </p>
+
+        <p>
+          Primeiro, baixe. Leia. Veja o valor que esse conteúdo tem para você.
+        </p>
+
+        <p>
+          Depois, se quiser apoiar este trabalho, você pode fazer uma contribuição
+          sugerida de <strong>R$ 5,00</strong> — ou do valor que achar justo.
+        </p>
+
+      </div>
+
+      <p class="ebook-confianca">
+        Eu confio em você primeiro.
+      </p>
+
+      <button
+        id="botaoEbook"
+        class="botao-ebook"
+        type="button">
+
+        QUERO RECEBER O E-BOOK
+
+      </button>
+
+
+      <div
+        id="contribuicaoArea"
+        class="contribuicao-area">
+
+        <h3>
+          AGORA É COM VOCÊ.
+        </h3>
+
+        <p>
+          O e-book já é seu. Se o conteúdo foi útil e você quiser ajudar
+          a manter este trabalho, pode contribuir pelo PIX.
+        </p>
+
+        <p>
+          <strong>Contribuição sugerida: R$ 5,00</strong>
+          — ou o valor que você achar justo.
+        </p>
+
+        <div class="pix-box">
+
+          <span class="pix-label">
+            CHAVE PIX — E-MAIL
+          </span>
+
+          <span
+            id="chavePix"
+            class="pix-chave">
+
+            cleitonrochanabr@gmail.com
+
+          </span>
+
+          <p class="pix-dados">
+            <strong>Recebedor:</strong> Cleiton de Oliveira Rocha<br>
+            <strong>Banco:</strong> Caixa Econômica Federal
+          </p>
+
+          <button
+            id="botaoCopiarPix"
+            class="botao-copiar-pix"
+            type="button">
+
+            COPIAR CHAVE PIX
+
+          </button>
+
+          <p
+            id="statusPix"
+            class="status-pix">
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- REDES SOCIAIS -->
 
     <section class="card redes-card">
 
@@ -1780,68 +2063,22 @@
 
       <div class="redes-botoes">
 
-
-        <!-- INSTAGRAM -->
-
         <a
           class="botao-rede instagram"
           href="https://www.instagram.com/cleitonnabr/"
           target="_blank"
           rel="noopener noreferrer">
 
-          <svg
-            class="icone-rede"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-
-            <rect
-              x="3"
-              y="3"
-              width="18"
-              height="18"
-              rx="5"
-              stroke="#ffffff"
-              stroke-width="2"/>
-
-            <circle
-              cx="12"
-              cy="12"
-              r="4"
-              stroke="#ffffff"
-              stroke-width="2"/>
-
-            <circle
-              cx="17.5"
-              cy="6.5"
-              r="1"
-              fill="#ffffff"/>
-
-          </svg>
-
           INSTAGRAM
 
         </a>
 
-
-        <!-- FACEBOOK -->
 
         <a
           class="botao-rede facebook"
           href="https://www.facebook.com/cleitonnabr/"
           target="_blank"
           rel="noopener noreferrer">
-
-          <svg
-            class="icone-rede"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-
-            <path
-              d="M14 8H17V4.5C16.5 4.4 15 4.2 13.5 4.2C10.5 4.2 8.5 6 8.5 9.4V12H5V16H8.5V24H13V16H16.5L17 12H13V9.8C13 8.6 13.3 8 14 8Z"
-              fill="#ffffff"/>
-
-          </svg>
 
           FACEBOOK
 
@@ -1917,14 +2154,6 @@
 
     /* =====================================================
        PLAYER
-
-       OBJETIVOS:
-       1. PRIMEIRO PLAY CONTINUA SIMPLES E RÁPIDO.
-       2. INTENÇÃO DO OUVINTE É SEPARADA DO ESTADO TÉCNICO.
-       3. QUEDA INESPERADA NÃO VOLTA PARA "TOQUE NO PLAY".
-       4. "CARREGANDO ÁUDIO" POSSUI TEMPO LIMITE.
-       5. FALHA CONFIRMADA RECRIA COMPLETAMENTE O PLAYER.
-       6. APENAS UMA ROTINA DE RECONEXÃO PODE EXISTIR.
     ===================================================== */
 
 
@@ -1956,16 +2185,6 @@
     const streamUrl =
       "https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3";
 
-
-    /*
-      ESTADO MAIS IMPORTANTE:
-
-      true  = o ouvinte apertou Play e ainda quer ouvir.
-      false = o próprio ouvinte mandou parar.
-
-      UMA FALHA DE INTERNET OU DO PLAYER NUNCA MUDA
-      usuarioQuerOuvir PARA false.
-    */
 
     let usuarioQuerOuvir =
       false;
@@ -1999,9 +2218,7 @@
 
     function limparTimerReconexao() {
 
-      if (
-        timerReconexao
-      ) {
+      if (timerReconexao) {
 
         clearTimeout(
           timerReconexao
@@ -2017,9 +2234,7 @@
 
     function limparTimerCarregamento() {
 
-      if (
-        timerCarregamento
-      ) {
+      if (timerCarregamento) {
 
         clearTimeout(
           timerCarregamento
@@ -2035,9 +2250,7 @@
 
     function limparTimerSaude() {
 
-      if (
-        timerSaude
-      ) {
+      if (timerSaude) {
 
         clearTimeout(
           timerSaude
@@ -2145,15 +2358,6 @@
     }
 
 
-    /*
-      O TEMPO LIMITE É A PROTEÇÃO CONTRA
-      "CARREGANDO ÁUDIO..." PARA SEMPRE.
-
-      waiting CONTINUA SENDO TRATADO COMO BUFFERING NORMAL.
-      SÓ DEPOIS DE 6,5 SEGUNDOS SEM RECUPERAÇÃO
-      ELE SE TORNA UMA FALHA CONFIRMADA.
-    */
-
     function armarLimiteCarregamento() {
 
       limparTimerCarregamento();
@@ -2189,20 +2393,10 @@
     }
 
 
-    /*
-      TODOS OS EVENTOS DO AUDIO PASSAM POR ESTA FUNÇÃO.
-
-      ISSO É NECESSÁRIO PORQUE, QUANDO UMA SESSÃO FICA
-      TRAVADA, O ELEMENTO <audio> ANTIGO É REALMENTE
-      DESCARTADO E SUBSTITUÍDO POR OUTRO.
-    */
-
     function vincularEventosPlayer(
       player
     ) {
 
-
-      /* COMEÇOU A TOCAR */
 
       player.addEventListener(
         "playing",
@@ -2241,12 +2435,6 @@
       );
 
 
-      /*
-        BUFFERING NORMAL.
-
-        NÃO DERRUBAMOS O AUDIO IMEDIATAMENTE.
-      */
-
       player.addEventListener(
         "waiting",
         (evento) => {
@@ -2276,13 +2464,6 @@
         }
       );
 
-
-      /*
-        SE O AUDIO PAUSAR SEM O OUVINTE TER PEDIDO,
-        ISSO É UMA FALHA TÉCNICA.
-
-        NÃO VOLTAMOS PARA "TOQUE NO PLAY".
-      */
 
       player.addEventListener(
         "pause",
@@ -2327,8 +2508,6 @@
       );
 
 
-      /* STREAM TERMINOU INESPERADAMENTE */
-
       player.addEventListener(
         "ended",
         (evento) => {
@@ -2359,8 +2538,6 @@
         }
       );
 
-
-      /* ERRO REAL */
 
       player.addEventListener(
         "error",
@@ -2393,13 +2570,6 @@
       );
 
 
-      /*
-        STALLED PODE SER TEMPORÁRIO.
-
-        DAMOS UMA PEQUENA CHANCE PARA O STREAM
-        VOLTAR SOZINHO.
-      */
-
       player.addEventListener(
         "stalled",
         (evento) => {
@@ -2431,29 +2601,10 @@
     }
 
 
-    /*
-      ATIVA OS EVENTOS NO PLAYER ORIGINAL.
-
-      IMPORTANTE:
-      NESTE MOMENTO NÃO EXISTE load(),
-      TROCA DE URL OU CACHEBUSTER.
-    */
-
     vincularEventosPlayer(
       radio
     );
 
-
-    /*
-      RECRIA COMPLETAMENTE A SESSÃO DE AUDIO.
-
-      SÓ É USADO DEPOIS QUE UMA FALHA FOI
-      CONFIRMADA.
-
-      ISSO SIMULA AUTOMATICAMENTE O EFEITO QUE
-      OBSERVAMOS QUANDO FECHAR E ABRIR A PÁGINA
-      FAZ A RÁDIO VOLTAR.
-    */
 
     function recriarPlayer() {
 
@@ -2485,14 +2636,6 @@
       );
 
 
-      /*
-        PRIMEIRO TROCAMOS A REFERÊNCIA.
-        DEPOIS DESCARTAMOS O ANTIGO.
-
-        ASSIM EVENTOS ATRASADOS DO PLAYER VELHO
-        SÃO IGNORADOS.
-      */
-
       radio =
         playerNovo;
 
@@ -2515,12 +2658,6 @@
       }
 
       catch (erro) {
-
-        /*
-          NÃO HÁ AÇÃO NECESSÁRIA.
-          O PLAYER ANTIGO JÁ SAIU DO DOM.
-        */
-
       }
 
 
@@ -2551,15 +2688,6 @@
       }
 
 
-      /*
-        ALGUNS NAVEGADORES, ESPECIALMENTE EM
-        CELULARES, PODEM EXIGIR UM NOVO TOQUE
-        DEPOIS DE LONGA SUSPENSÃO.
-
-        NESSE CASO NÃO MENTIMOS PARA A INTERFACE
-        DIZENDO QUE O OUVINTE PAROU.
-      */
-
       if (
         erro &&
         erro.name ===
@@ -2579,14 +2707,6 @@
       tentativaReconexao +=
         1;
 
-
-      /*
-        PEQUENO BACKOFF:
-        1,2s -> 1,9s -> 2,6s -> 3,3s -> máximo 4s.
-
-        EVITA UM LOOP AGRESSIVO SEM DEIXAR A
-        RECONEXÃO DEMORAR DEMAIS.
-      */
 
       const espera =
         Math.min(
@@ -2710,13 +2830,6 @@
       );
 
 
-      /*
-        AQUI SIM EXISTE FALHA CONFIRMADA.
-
-        DESCARTAMOS A SESSÃO QUE PODE TER FICADO
-        PRESA E CRIAMOS UMA CONEXÃO NOVA.
-      */
-
       const player =
         recriarPlayer();
 
@@ -2727,11 +2840,6 @@
       try {
 
         await player.play();
-
-        /*
-          O EVENTO "playing" FARÁ A CONFIRMAÇÃO
-          FINAL E LIMPARÁ OS TIMERS.
-        */
 
       }
 
@@ -2753,20 +2861,6 @@
 
     }
 
-
-    /*
-      PRIMEIRO PLAY.
-
-      ESTE É O PONTO QUE NÃO QUERÍAMOS ESTRAGAR.
-
-      NÃO HÁ:
-      - cachebuster
-      - load()
-      - recriação
-      - troca de src
-
-      APENAS radio.play().
-    */
 
     async function iniciarRadio() {
 
@@ -2812,13 +2906,6 @@
     }
 
 
-    /*
-      PARADA DELIBERADA PELO OUVINTE.
-
-      ESTE É O ÚNICO MOMENTO EM QUE
-      usuarioQuerOuvir VOLTA PARA false.
-    */
-
     function pararRadio() {
 
       usuarioQuerOuvir =
@@ -2846,11 +2933,6 @@
       }
 
       catch (erro) {
-
-        /*
-          NADA A FAZER.
-        */
-
       }
 
 
@@ -2859,29 +2941,26 @@
     }
 
 
-    /*
-      NOVO TOQUE APÓS O NAVEGADOR TER EXIGIDO
-      INTERAÇÃO HUMANA PARA LIBERAR O AUDIO.
-
-      NÃO É UMA NOVA INTENÇÃO DE ESCUTA:
-      usuarioQuerOuvir JÁ CONTINUA true.
-    */
-
     async function retomarComGesto() {
 
       aguardandoGesto =
         false;
 
       mostrarTentando(
-        "Conectando..."
+        "Reconectando..."
       );
+
+
+      const player =
+        recriarPlayer();
+
 
       armarLimiteCarregamento();
 
 
       try {
 
-        await radio.play();
+        await player.play();
 
       }
 
@@ -2896,49 +2975,27 @@
     }
 
 
-    /* CLIQUE NO BOTÃO */
-
     playBtn.addEventListener(
       "click",
       () => {
-
-
-        /*
-          CASO ESPECIAL:
-          O NAVEGADOR PEDIU UM NOVO TOQUE
-          PARA LIBERAR O AUDIO.
-        */
-
-        if (
-          usuarioQuerOuvir &&
-          aguardandoGesto
-        ) {
-
-          retomarComGesto();
-
-          return;
-
-        }
-
-
-        /*
-          A INTENÇÃO DO OUVINTE É QUE MANDA.
-
-          SE ELE JÁ QUER OUVIR, O BOTÃO SERVE
-          PARA PARAR, MESMO QUE A REDE ESTEJA
-          MOMENTANEAMENTE RECONECTANDO.
-        */
 
         if (
           usuarioQuerOuvir
         ) {
 
-          pararRadio();
+          if (
+            aguardandoGesto
+          ) {
 
+            retomarComGesto();
+            return;
+
+          }
+
+          pararRadio();
           return;
 
         }
-
 
         iniciarRadio();
 
@@ -2946,148 +3003,16 @@
     );
 
 
-    /* VOLUME */
-
     volume.addEventListener(
       "input",
       () => {
 
-        if (
-          radio
-        ) {
-
-          radio.volume =
-            Number(volume.value);
-
-        }
+        radio.volume =
+          Number(volume.value);
 
       }
     );
 
-
-    /*
-      VERIFICAÇÃO DE SAÚDE.
-
-      USADA QUANDO:
-      - VOLTAMOS DO SEGUNDO PLANO;
-      - A TELA É REABERTA;
-      - HÁ MUDANÇA DE REDE.
-
-      NÃO INTERROMPE UM STREAM QUE ESTEJA
-      EFETIVAMENTE AVANÇANDO.
-    */
-
-    function verificarSaudeEmBreve(
-      espera = 1600
-    ) {
-
-      if (
-        !usuarioQuerOuvir ||
-        aguardandoGesto ||
-        document.hidden
-      ) {
-
-        return;
-
-      }
-
-
-      limparTimerSaude();
-
-
-      const playerObservado =
-        radio;
-
-      const tempoInicial =
-        playerObservado.currentTime;
-
-
-      /*
-        SE JÁ ESTÁ PAUSADO QUANDO NÃO DEVERIA,
-        NÃO PRECISAMOS ESPERAR.
-      */
-
-      if (
-        playerObservado.paused ||
-        playerObservado.ended
-      ) {
-
-        agendarReconexao(
-          250
-        );
-
-        return;
-
-      }
-
-
-      timerSaude =
-        setTimeout(
-          () => {
-
-            timerSaude =
-              null;
-
-
-            if (
-              !usuarioQuerOuvir ||
-              aguardandoGesto ||
-              document.hidden ||
-              playerObservado !== radio
-            ) {
-
-              return;
-
-            }
-
-
-            if (
-              radio.paused ||
-              radio.ended
-            ) {
-
-              reconectarRadio();
-              return;
-
-            }
-
-
-            const tempoAtual =
-              radio.currentTime;
-
-
-            /*
-              EM STREAMS ONDE currentTime É FINITO,
-              ELE DEVE ESTAR AVANÇANDO.
-
-              SE NÃO ANDOU NADA, A CONEXÃO PODE TER
-              FICADO "VIVA" NO NAVEGADOR MAS MORTA
-              NA PRÁTICA.
-            */
-
-            if (
-              Number.isFinite(
-                tempoInicial
-              ) &&
-              Number.isFinite(
-                tempoAtual
-              ) &&
-              tempoAtual <=
-                tempoInicial + 0.15
-            ) {
-
-              reconectarRadio();
-
-            }
-
-          },
-          espera
-        );
-
-    }
-
-
-    /* INTERNET CAIU */
 
     window.addEventListener(
       "offline",
@@ -3110,22 +3035,22 @@
     );
 
 
-    /* INTERNET VOLTOU */
-
     window.addEventListener(
       "online",
       () => {
 
         if (
-          usuarioQuerOuvir
+          usuarioQuerOuvir &&
+          !aguardandoGesto
         ) {
 
-          mostrarTentando(
-            "Reconectando..."
-          );
+          reconectando =
+            false;
+
+          limparTimerReconexao();
 
           agendarReconexao(
-            250
+            150
           );
 
         }
@@ -3134,67 +3059,32 @@
     );
 
 
-    /*
-      TROCA DE WI-FI / DADOS MÓVEIS.
-
-      A API NÃO EXISTE EM TODOS OS NAVEGADORES,
-      POR ISSO ELA É APENAS UMA CAMADA EXTRA.
-
-      NÃO FORÇAMOS A TROCA SE O AUDIO CONTINUAR
-      SAUDÁVEL.
-    */
-
-    const conexaoRede =
-      navigator.connection ||
-      navigator.mozConnection ||
-      navigator.webkitConnection;
-
-
-    if (
-      conexaoRede &&
-      typeof conexaoRede.addEventListener ===
-        "function"
-    ) {
-
-      conexaoRede.addEventListener(
-        "change",
-        () => {
-
-          if (
-            usuarioQuerOuvir
-          ) {
-
-            verificarSaudeEmBreve(
-              1000
-            );
-
-          }
-
-        }
-      );
-
-    }
-
-
-    /*
-      VOLTA DO SEGUNDO PLANO / PWA / TELA BLOQUEADA.
-
-      SE O ANDROID SUSPENDEU O AUDIO, A INTENÇÃO
-      DE ESCUTA CONTINUA E O PLAYER TENTA RECUPERAR.
-    */
-
     document.addEventListener(
       "visibilitychange",
       () => {
 
         if (
           document.visibilityState ===
-            "visible" &&
-          usuarioQuerOuvir
+          "visible" &&
+          usuarioQuerOuvir &&
+          !aguardandoGesto
         ) {
 
-          verificarSaudeEmBreve(
-            900
+          setTimeout(
+            () => {
+
+              if (
+                usuarioQuerOuvir &&
+                !estaTocando() &&
+                !reconectando
+              ) {
+
+                reconectarRadio();
+
+              }
+
+            },
+            600
           );
 
         }
@@ -3208,11 +3098,25 @@
       () => {
 
         if (
-          usuarioQuerOuvir
+          usuarioQuerOuvir &&
+          !aguardandoGesto
         ) {
 
-          verificarSaudeEmBreve(
-            900
+          setTimeout(
+            () => {
+
+              if (
+                usuarioQuerOuvir &&
+                !estaTocando() &&
+                !reconectando
+              ) {
+
+                reconectarRadio();
+
+              }
+
+            },
+            500
           );
 
         }
@@ -3221,11 +3125,160 @@
     );
 
 
+    /* =========================
+       E-BOOK
+    ========================== */
 
-    /* =====================================================
-       INSTALAÇÃO
-    ===================================================== */
+    const botaoEbook =
+      document.getElementById(
+        "botaoEbook"
+      );
 
+    const contribuicaoArea =
+      document.getElementById(
+        "contribuicaoArea"
+      );
+
+    const botaoCopiarPix =
+      document.getElementById(
+        "botaoCopiarPix"
+      );
+
+    const chavePix =
+      document.getElementById(
+        "chavePix"
+      );
+
+    const statusPix =
+      document.getElementById(
+        "statusPix"
+      );
+
+
+    botaoEbook.addEventListener(
+      "click",
+      () => {
+
+        contribuicaoArea.classList.add(
+          "visivel"
+        );
+
+
+        const link =
+          document.createElement(
+            "a"
+          );
+
+        link.href =
+          "downloads/rumo-seguro-ebook-parte2.pdf";
+
+        link.download =
+          "rumo-seguro-ebook-parte2.pdf";
+
+        document.body.appendChild(
+          link
+        );
+
+        link.click();
+
+        link.remove();
+
+
+        setTimeout(
+          () => {
+
+            contribuicaoArea.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest"
+            });
+
+          },
+          350
+        );
+
+      }
+    );
+
+
+    async function copiarPix() {
+
+      const texto =
+        chavePix.textContent.trim();
+
+
+      try {
+
+        await navigator.clipboard.writeText(
+          texto
+        );
+
+      }
+
+      catch (erro) {
+
+        const area =
+          document.createElement(
+            "textarea"
+          );
+
+        area.value =
+          texto;
+
+        area.setAttribute(
+          "readonly",
+          ""
+        );
+
+        area.style.position =
+          "fixed";
+
+        area.style.opacity =
+          "0";
+
+        document.body.appendChild(
+          area
+        );
+
+        area.select();
+
+        document.execCommand(
+          "copy"
+        );
+
+        area.remove();
+
+      }
+
+
+      botaoCopiarPix.textContent =
+        "✓ CHAVE PIX COPIADA!";
+
+      statusPix.textContent =
+        "Agora é só abrir o aplicativo do seu banco e colar a chave.";
+
+
+      setTimeout(
+        () => {
+
+          botaoCopiarPix.textContent =
+            "COPIAR CHAVE PIX";
+
+        },
+        4500
+      );
+
+    }
+
+
+    botaoCopiarPix.addEventListener(
+      "click",
+      copiarPix
+    );
+
+
+    /* =========================
+       INSTALAÇÃO PWA
+    ========================== */
 
     const instalacaoCard =
       document.getElementById(
@@ -3269,19 +3322,12 @@
 
 
     const ehIOS =
-
       /iPad|iPhone|iPod/.test(
         userAgent
-      )
-
-      ||
-
+      ) ||
       (
         navigator.platform ===
-          "MacIntel"
-
-        &&
-
+          "MacIntel" &&
         navigator.maxTouchPoints >
           1
       );
@@ -3294,19 +3340,12 @@
 
 
     const estaInstalado =
-
       window.matchMedia(
         "(display-mode: standalone)"
-      ).matches
-
-      ||
-
+      ).matches ||
       window.navigator.standalone ===
         true;
 
-
-
-    /* IPHONE */
 
     if (
       ehIOS &&
@@ -3326,6 +3365,7 @@
         "visivel"
       );
 
+
       botaoInstalar.addEventListener(
         "click",
         () => {
@@ -3339,8 +3379,6 @@
 
     }
 
-
-    /* ANDROID / COMPUTADOR */
 
     window.addEventListener(
       "beforeinstallprompt",
@@ -3420,8 +3458,7 @@
 
           try {
 
-            await eventoInstalacao
-              .userChoice;
+            await eventoInstalacao.userChoice;
 
           }
 
@@ -3438,12 +3475,9 @@
           eventoInstalacao =
             null;
 
-
-          instalacaoCard
-            .classList
-            .remove(
-              "visivel"
-            );
+          instalacaoCard.classList.remove(
+            "visivel"
+          );
 
         }
       );
@@ -3451,17 +3485,13 @@
     }
 
 
-    /* MODAL IPHONE */
-
     fecharModal.addEventListener(
       "click",
       () => {
 
-        modalInstalacao
-          .classList
-          .remove(
-            "visivel"
-          );
+        modalInstalacao.classList.remove(
+          "visivel"
+        );
 
       }
     );
@@ -3476,11 +3506,9 @@
           modalInstalacao
         ) {
 
-          modalInstalacao
-            .classList
-            .remove(
-              "visivel"
-            );
+          modalInstalacao.classList.remove(
+            "visivel"
+          );
 
         }
 
@@ -3495,44 +3523,40 @@
         eventoInstalacao =
           null;
 
-        instalacaoCard
-          .classList
-          .remove(
-            "visivel"
-          );
+        instalacaoCard.classList.remove(
+          "visivel"
+        );
 
       }
     );
 
 
-
-    /* =====================================================
+    /* =========================
        SERVICE WORKER
-    ===================================================== */
+    ========================== */
 
     if (
-      "serviceWorker" in navigator
+      "serviceWorker" in
+      navigator
     ) {
 
       window.addEventListener(
         "load",
         () => {
 
-          navigator
-            .serviceWorker
-            .register(
-              "/service-worker.js"
-            )
-            .catch(
-              (erro) => {
+          navigator.serviceWorker.register(
+            "/service-worker.js"
+          )
+          .catch(
+            (erro) => {
 
-                console.error(
-                  "Erro ao registrar Service Worker:",
-                  erro
-                );
+              console.error(
+                "Erro ao registrar Service Worker:",
+                erro
+              );
 
-              }
-            );
+            }
+          );
 
         }
       );
