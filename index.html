@@ -900,7 +900,31 @@
     .ebook-explicacao {
       max-width: 760px;
       margin: 10px auto 16px !important;
-      font-size: 16px;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .ebook-contribua-chamada {
+      display: block;
+      max-width: 700px;
+      margin: 18px auto 8px;
+      padding: 15px 18px;
+      border-radius: 12px;
+      background: #ffd000;
+      color: #111;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .ebook-valor {
+      display: block;
+      margin-top: 7px;
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 900;
     }
 
     .ebook-destaque {
@@ -1446,7 +1470,9 @@
       .ebook-titulo-produto { font-size: 18px; line-height: 1.25; margin-bottom: 12px; }
       .ebook-card p { font-size: 13px; line-height: 1.45; }
       .ebook-nao-paga { margin-top: 16px; padding: 14px 10px; font-size: 17px; }
-      .ebook-explicacao { font-size: 13px !important; }
+      .ebook-explicacao { font-size: 15px !important; line-height: 1.5; }
+      .ebook-contribua-chamada { margin: 15px auto 8px; padding: 13px 10px; font-size: 16px; }
+      .ebook-valor { margin-top: 6px; font-size: 24px; }
       .ebook-destaque { padding: 11px; margin: 11px auto !important; }
       .ebook-confio { margin: 18px auto 12px; font-size: 20px; }
       .botao-ebook { padding: 14px 12px; font-size: 14px; }
@@ -1965,9 +1991,13 @@
 
       <p class="ebook-explicacao">
         Primeiro, baixe. Leia. Veja o valor que esse conteúdo tem para você.
-        Depois, se quiser apoiar este trabalho, você pode contribuir com
-        <strong>R$ 5,00</strong> — ou com o valor que achar justo.
       </p>
+
+      <div class="ebook-contribua-chamada">
+        SE O CONTEÚDO FOR ÚTIL PARA VOCÊ, VOCÊ PODE CONTRIBUIR COM
+        <span class="ebook-valor">R$ 5,00</span>
+        OU COM O VALOR QUE ACHAR JUSTO.
+      </div>
 
       <div class="ebook-confio">
         <span>EU CONFIO EM VOCÊ PRIMEIRO.</span>
@@ -1987,7 +2017,11 @@
           O e-book já é seu. Se o material foi útil e você quiser apoiar este trabalho,
           sua contribuição ajuda o Cleiton na BR a continuar produzindo conteúdo.
         </p>
-        <p><strong>Sugestão: R$ 5,00 — ou o valor que achar justo.</strong></p>
+        <div class="ebook-contribua-chamada">
+          VOCÊ PODE CONTRIBUIR COM
+          <span class="ebook-valor">R$ 5,00</span>
+          OU COM O VALOR QUE ACHAR JUSTO.
+        </div>
         <div class="pix-label">CHAVE PIX (E-MAIL)</div>
         <div class="pix-chave">cleitonrochanabr@gmail.com</div>
         <p>Cleiton de Oliveira Rocha — Caixa Econômica Federal</p>
