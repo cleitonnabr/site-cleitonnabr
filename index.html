@@ -1596,7 +1596,10 @@
         </div>
 
 
-        <!-- STREAM JÁ DEFINIDO DIRETAMENTE NO AUDIO -->
+        <!--
+          STREAM ORIGINAL.
+          O PRIMEIRO PLAY CONTINUA USANDO ESTA CONEXÃO DIRETAMENTE.
+        -->
 
         <audio
           id="radioPlayer"
@@ -1914,11 +1917,18 @@
 
     /* =====================================================
        PLAYER
-       PRIORIDADE: ENTRAR O MAIS RÁPIDO POSSÍVEL
+
+       OBJETIVOS:
+       1. PRIMEIRO PLAY CONTINUA SIMPLES E RÁPIDO.
+       2. INTENÇÃO DO OUVINTE É SEPARADA DO ESTADO TÉCNICO.
+       3. QUEDA INESPERADA NÃO VOLTA PARA "TOQUE NO PLAY".
+       4. "CARREGANDO ÁUDIO" POSSUI TEMPO LIMITE.
+       5. FALHA CONFIRMADA RECRIA COMPLETAMENTE O PLAYER.
+       6. APENAS UMA ROTINA DE RECONEXÃO PODE EXISTIR.
     ===================================================== */
 
 
-    const radio =
+    let radio =
       document.getElementById(
         "radioPlayer"
       );
@@ -1947,18 +1957,98 @@
       "https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3";
 
 
+    /*
+      ESTADO MAIS IMPORTANTE:
+
+      true  = o ouvinte apertou Play e ainda quer ouvir.
+      false = o próprio ouvinte mandou parar.
+
+      UMA FALHA DE INTERNET OU DO PLAYER NUNCA MUDA
+      usuarioQuerOuvir PARA false.
+    */
+
     let usuarioQuerOuvir =
       false;
 
     let reconectando =
       false;
 
+    let aguardandoGesto =
+      false;
+
     let timerReconexao =
       null;
+
+    let timerCarregamento =
+      null;
+
+    let timerSaude =
+      null;
+
+    let tentativaReconexao =
+      0;
+
+
+    const LIMITE_CARREGAMENTO =
+      6500;
 
 
     radio.volume =
       Number(volume.value);
+
+
+    function limparTimerReconexao() {
+
+      if (
+        timerReconexao
+      ) {
+
+        clearTimeout(
+          timerReconexao
+        );
+
+        timerReconexao =
+          null;
+
+      }
+
+    }
+
+
+    function limparTimerCarregamento() {
+
+      if (
+        timerCarregamento
+      ) {
+
+        clearTimeout(
+          timerCarregamento
+        );
+
+        timerCarregamento =
+          null;
+
+      }
+
+    }
+
+
+    function limparTimerSaude() {
+
+      if (
+        timerSaude
+      ) {
+
+        clearTimeout(
+          timerSaude
+        );
+
+        timerSaude =
+          null;
+
+      }
+
+    }
 
 
     function mostrarTocando() {
@@ -1968,7 +2058,7 @@
 
       playBtn.setAttribute(
         "aria-label",
-        "Pausar WebRádio"
+        "Parar WebRádio"
       );
 
       ondas.classList.add(
@@ -1977,6 +2067,28 @@
 
       statusRadio.textContent =
         "WebRádio Cleiton na BR";
+
+    }
+
+
+    function mostrarTentando(
+      mensagem
+    ) {
+
+      playBtn.textContent =
+        "❚❚";
+
+      playBtn.setAttribute(
+        "aria-label",
+        "Parar WebRádio"
+      );
+
+      ondas.classList.remove(
+        "ativa"
+      );
+
+      statusRadio.textContent =
+        mensagem;
 
     }
 
@@ -1995,82 +2107,840 @@
         "ativa"
       );
 
+      statusRadio.textContent =
+        "Toque no Play para ouvir";
+
     }
 
 
-    /* CLIQUE NO PLAY */
+    function mostrarAguardandoGesto() {
 
-    playBtn.addEventListener(
-      "click",
-      async () => {
+      playBtn.textContent =
+        "▶";
 
-        if (
-          !radio.paused
-        ) {
+      playBtn.setAttribute(
+        "aria-label",
+        "Reconectar WebRádio"
+      );
 
-          usuarioQuerOuvir =
-            false;
+      ondas.classList.remove(
+        "ativa"
+      );
 
-          clearTimeout(
-            timerReconexao
-          );
+      statusRadio.textContent =
+        "Toque no Play para reconectar";
+
+    }
+
+
+    function estaTocando() {
+
+      return (
+        radio &&
+        !radio.paused &&
+        !radio.ended &&
+        radio.readyState >= 2
+      );
+
+    }
+
+
+    /*
+      O TEMPO LIMITE É A PROTEÇÃO CONTRA
+      "CARREGANDO ÁUDIO..." PARA SEMPRE.
+
+      waiting CONTINUA SENDO TRATADO COMO BUFFERING NORMAL.
+      SÓ DEPOIS DE 6,5 SEGUNDOS SEM RECUPERAÇÃO
+      ELE SE TORNA UMA FALHA CONFIRMADA.
+    */
+
+    function armarLimiteCarregamento() {
+
+      limparTimerCarregamento();
+
+      timerCarregamento =
+        setTimeout(
+          () => {
+
+            timerCarregamento =
+              null;
+
+            if (
+              !usuarioQuerOuvir ||
+              aguardandoGesto
+            ) {
+
+              return;
+
+            }
+
+            if (
+              !estaTocando()
+            ) {
+
+              reconectarRadio();
+
+            }
+
+          },
+          LIMITE_CARREGAMENTO
+        );
+
+    }
+
+
+    /*
+      TODOS OS EVENTOS DO AUDIO PASSAM POR ESTA FUNÇÃO.
+
+      ISSO É NECESSÁRIO PORQUE, QUANDO UMA SESSÃO FICA
+      TRAVADA, O ELEMENTO <audio> ANTIGO É REALMENTE
+      DESCARTADO E SUBSTITUÍDO POR OUTRO.
+    */
+
+    function vincularEventosPlayer(
+      player
+    ) {
+
+
+      /* COMEÇOU A TOCAR */
+
+      player.addEventListener(
+        "playing",
+        (evento) => {
+
+          if (
+            evento.currentTarget !==
+            radio
+          ) {
+
+            return;
+
+          }
 
           reconectando =
             false;
 
-          radio.pause();
+          aguardandoGesto =
+            false;
 
-          mostrarParado();
+          tentativaReconexao =
+            0;
 
-          statusRadio.textContent =
-            "Toque no Play para ouvir";
+          limparTimerReconexao();
+          limparTimerCarregamento();
+
+          if (
+            usuarioQuerOuvir
+          ) {
+
+            mostrarTocando();
+
+          }
+
+        }
+      );
+
+
+      /*
+        BUFFERING NORMAL.
+
+        NÃO DERRUBAMOS O AUDIO IMEDIATAMENTE.
+      */
+
+      player.addEventListener(
+        "waiting",
+        (evento) => {
+
+          if (
+            evento.currentTarget !==
+            radio
+          ) {
+
+            return;
+
+          }
+
+          if (
+            usuarioQuerOuvir &&
+            !aguardandoGesto
+          ) {
+
+            mostrarTentando(
+              "Carregando áudio..."
+            );
+
+            armarLimiteCarregamento();
+
+          }
+
+        }
+      );
+
+
+      /*
+        SE O AUDIO PAUSAR SEM O OUVINTE TER PEDIDO,
+        ISSO É UMA FALHA TÉCNICA.
+
+        NÃO VOLTAMOS PARA "TOQUE NO PLAY".
+      */
+
+      player.addEventListener(
+        "pause",
+        (evento) => {
+
+          if (
+            evento.currentTarget !==
+            radio
+          ) {
+
+            return;
+
+          }
+
+          if (
+            !usuarioQuerOuvir
+          ) {
+
+            mostrarParado();
+            return;
+
+          }
+
+          if (
+            reconectando ||
+            aguardandoGesto
+          ) {
+
+            return;
+
+          }
+
+          mostrarTentando(
+            "Reconectando..."
+          );
+
+          agendarReconexao(
+            500
+          );
+
+        }
+      );
+
+
+      /* STREAM TERMINOU INESPERADAMENTE */
+
+      player.addEventListener(
+        "ended",
+        (evento) => {
+
+          if (
+            evento.currentTarget !==
+            radio
+          ) {
+
+            return;
+
+          }
+
+          if (
+            usuarioQuerOuvir
+          ) {
+
+            mostrarTentando(
+              "Reconectando..."
+            );
+
+            agendarReconexao(
+              300
+            );
+
+          }
+
+        }
+      );
+
+
+      /* ERRO REAL */
+
+      player.addEventListener(
+        "error",
+        (evento) => {
+
+          if (
+            evento.currentTarget !==
+            radio
+          ) {
+
+            return;
+
+          }
+
+          if (
+            usuarioQuerOuvir
+          ) {
+
+            mostrarTentando(
+              "Reconectando..."
+            );
+
+            agendarReconexao(
+              500
+            );
+
+          }
+
+        }
+      );
+
+
+      /*
+        STALLED PODE SER TEMPORÁRIO.
+
+        DAMOS UMA PEQUENA CHANCE PARA O STREAM
+        VOLTAR SOZINHO.
+      */
+
+      player.addEventListener(
+        "stalled",
+        (evento) => {
+
+          if (
+            evento.currentTarget !==
+            radio
+          ) {
+
+            return;
+
+          }
+
+          if (
+            usuarioQuerOuvir
+          ) {
+
+            mostrarTentando(
+              "Carregando áudio..."
+            );
+
+            armarLimiteCarregamento();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /*
+      ATIVA OS EVENTOS NO PLAYER ORIGINAL.
+
+      IMPORTANTE:
+      NESTE MOMENTO NÃO EXISTE load(),
+      TROCA DE URL OU CACHEBUSTER.
+    */
+
+    vincularEventosPlayer(
+      radio
+    );
+
+
+    /*
+      RECRIA COMPLETAMENTE A SESSÃO DE AUDIO.
+
+      SÓ É USADO DEPOIS QUE UMA FALHA FOI
+      CONFIRMADA.
+
+      ISSO SIMULA AUTOMATICAMENTE O EFEITO QUE
+      OBSERVAMOS QUANDO FECHAR E ABRIR A PÁGINA
+      FAZ A RÁDIO VOLTAR.
+    */
+
+    function recriarPlayer() {
+
+      const playerAntigo =
+        radio;
+
+      const playerNovo =
+        document.createElement(
+          "audio"
+        );
+
+      playerNovo.id =
+        "radioPlayer";
+
+      playerNovo.preload =
+        "auto";
+
+      playerNovo.volume =
+        Number(volume.value);
+
+      playerNovo.src =
+        streamUrl +
+        "?r=" +
+        Date.now();
+
+
+      playerAntigo.replaceWith(
+        playerNovo
+      );
+
+
+      /*
+        PRIMEIRO TROCAMOS A REFERÊNCIA.
+        DEPOIS DESCARTAMOS O ANTIGO.
+
+        ASSIM EVENTOS ATRASADOS DO PLAYER VELHO
+        SÃO IGNORADOS.
+      */
+
+      radio =
+        playerNovo;
+
+
+      vincularEventosPlayer(
+        radio
+      );
+
+
+      try {
+
+        playerAntigo.pause();
+
+        playerAntigo.removeAttribute(
+          "src"
+        );
+
+        playerAntigo.load();
+
+      }
+
+      catch (erro) {
+
+        /*
+          NÃO HÁ AÇÃO NECESSÁRIA.
+          O PLAYER ANTIGO JÁ SAIU DO DOM.
+        */
+
+      }
+
+
+      radio.load();
+
+
+      return radio;
+
+    }
+
+
+    function tratarFalhaDePlay(
+      erro
+    ) {
+
+      reconectando =
+        false;
+
+      limparTimerCarregamento();
+
+
+      if (
+        !usuarioQuerOuvir
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+        ALGUNS NAVEGADORES, ESPECIALMENTE EM
+        CELULARES, PODEM EXIGIR UM NOVO TOQUE
+        DEPOIS DE LONGA SUSPENSÃO.
+
+        NESSE CASO NÃO MENTIMOS PARA A INTERFACE
+        DIZENDO QUE O OUVINTE PAROU.
+      */
+
+      if (
+        erro &&
+        erro.name ===
+          "NotAllowedError"
+      ) {
+
+        aguardandoGesto =
+          true;
+
+        mostrarAguardandoGesto();
+
+        return;
+
+      }
+
+
+      tentativaReconexao +=
+        1;
+
+
+      /*
+        PEQUENO BACKOFF:
+        1,2s -> 1,9s -> 2,6s -> 3,3s -> máximo 4s.
+
+        EVITA UM LOOP AGRESSIVO SEM DEIXAR A
+        RECONEXÃO DEMORAR DEMAIS.
+      */
+
+      const espera =
+        Math.min(
+          1200 +
+          (
+            tentativaReconexao -
+            1
+          ) *
+          700,
+          4000
+        );
+
+
+      mostrarTentando(
+        "Tentando reconectar..."
+      );
+
+
+      agendarReconexao(
+        espera
+      );
+
+    }
+
+
+    function agendarReconexao(
+      tempo
+    ) {
+
+      if (
+        !usuarioQuerOuvir ||
+        aguardandoGesto
+      ) {
+
+        return;
+
+      }
+
+
+      limparTimerReconexao();
+
+
+      timerReconexao =
+        setTimeout(
+          () => {
+
+            timerReconexao =
+              null;
+
+
+            if (
+              !usuarioQuerOuvir ||
+              aguardandoGesto
+            ) {
+
+              return;
+
+            }
+
+
+            if (
+              navigator.onLine ===
+              false
+            ) {
+
+              mostrarTentando(
+                "Sem conexão..."
+              );
+
+              return;
+
+            }
+
+
+            reconectarRadio();
+
+          },
+          tempo
+        );
+
+    }
+
+
+    async function reconectarRadio() {
+
+      if (
+        !usuarioQuerOuvir ||
+        reconectando ||
+        aguardandoGesto
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        navigator.onLine ===
+        false
+      ) {
+
+        mostrarTentando(
+          "Sem conexão..."
+        );
+
+        return;
+
+      }
+
+
+      reconectando =
+        true;
+
+
+      limparTimerReconexao();
+      limparTimerCarregamento();
+
+
+      mostrarTentando(
+        "Reconectando..."
+      );
+
+
+      /*
+        AQUI SIM EXISTE FALHA CONFIRMADA.
+
+        DESCARTAMOS A SESSÃO QUE PODE TER FICADO
+        PRESA E CRIAMOS UMA CONEXÃO NOVA.
+      */
+
+      const player =
+        recriarPlayer();
+
+
+      armarLimiteCarregamento();
+
+
+      try {
+
+        await player.play();
+
+        /*
+          O EVENTO "playing" FARÁ A CONFIRMAÇÃO
+          FINAL E LIMPARÁ OS TIMERS.
+        */
+
+      }
+
+      catch (erro) {
+
+        if (
+          player !== radio
+        ) {
+
+          return;
+
+        }
+
+        tratarFalhaDePlay(
+          erro
+        );
+
+      }
+
+    }
+
+
+    /*
+      PRIMEIRO PLAY.
+
+      ESTE É O PONTO QUE NÃO QUERÍAMOS ESTRAGAR.
+
+      NÃO HÁ:
+      - cachebuster
+      - load()
+      - recriação
+      - troca de src
+
+      APENAS radio.play().
+    */
+
+    async function iniciarRadio() {
+
+      usuarioQuerOuvir =
+        true;
+
+      aguardandoGesto =
+        false;
+
+      reconectando =
+        false;
+
+      tentativaReconexao =
+        0;
+
+
+      limparTimerReconexao();
+      limparTimerCarregamento();
+
+
+      mostrarTentando(
+        "Conectando..."
+      );
+
+
+      armarLimiteCarregamento();
+
+
+      try {
+
+        await radio.play();
+
+      }
+
+      catch (erro) {
+
+        tratarFalhaDePlay(
+          erro
+        );
+
+      }
+
+    }
+
+
+    /*
+      PARADA DELIBERADA PELO OUVINTE.
+
+      ESTE É O ÚNICO MOMENTO EM QUE
+      usuarioQuerOuvir VOLTA PARA false.
+    */
+
+    function pararRadio() {
+
+      usuarioQuerOuvir =
+        false;
+
+      aguardandoGesto =
+        false;
+
+      reconectando =
+        false;
+
+      tentativaReconexao =
+        0;
+
+
+      limparTimerReconexao();
+      limparTimerCarregamento();
+      limparTimerSaude();
+
+
+      try {
+
+        radio.pause();
+
+      }
+
+      catch (erro) {
+
+        /*
+          NADA A FAZER.
+        */
+
+      }
+
+
+      mostrarParado();
+
+    }
+
+
+    /*
+      NOVO TOQUE APÓS O NAVEGADOR TER EXIGIDO
+      INTERAÇÃO HUMANA PARA LIBERAR O AUDIO.
+
+      NÃO É UMA NOVA INTENÇÃO DE ESCUTA:
+      usuarioQuerOuvir JÁ CONTINUA true.
+    */
+
+    async function retomarComGesto() {
+
+      aguardandoGesto =
+        false;
+
+      mostrarTentando(
+        "Conectando..."
+      );
+
+      armarLimiteCarregamento();
+
+
+      try {
+
+        await radio.play();
+
+      }
+
+      catch (erro) {
+
+        tratarFalhaDePlay(
+          erro
+        );
+
+      }
+
+    }
+
+
+    /* CLIQUE NO BOTÃO */
+
+    playBtn.addEventListener(
+      "click",
+      () => {
+
+
+        /*
+          CASO ESPECIAL:
+          O NAVEGADOR PEDIU UM NOVO TOQUE
+          PARA LIBERAR O AUDIO.
+        */
+
+        if (
+          usuarioQuerOuvir &&
+          aguardandoGesto
+        ) {
+
+          retomarComGesto();
 
           return;
 
         }
 
 
-        usuarioQuerOuvir =
-          true;
-
-        reconectando =
-          false;
-
-        clearTimeout(
-          timerReconexao
-        );
-
-
-        statusRadio.textContent =
-          "Conectando...";
-
-
         /*
-          IMPORTANTE:
-          não trocamos o endereço,
-          não damos load(),
-          não colocamos código extra.
+          A INTENÇÃO DO OUVINTE É QUE MANDA.
 
-          Apenas damos PLAY na conexão
-          que o navegador já conhece.
+          SE ELE JÁ QUER OUVIR, O BOTÃO SERVE
+          PARA PARAR, MESMO QUE A REDE ESTEJA
+          MOMENTANEAMENTE RECONECTANDO.
         */
 
-        try {
+        if (
+          usuarioQuerOuvir
+        ) {
 
-          await radio.play();
+          pararRadio();
 
-        }
-
-        catch (erro) {
-
-          statusRadio.textContent =
-            "Tentando conectar...";
-
-          agendarReconexao(
-            1800
-          );
+          return;
 
         }
+
+
+        iniciarRadio();
 
       }
     );
@@ -2082,118 +2952,139 @@
       "input",
       () => {
 
-        radio.volume =
-          Number(volume.value);
+        if (
+          radio
+        ) {
+
+          radio.volume =
+            Number(volume.value);
+
+        }
 
       }
     );
 
 
-    /* COMEÇOU A TOCAR */
+    /*
+      VERIFICAÇÃO DE SAÚDE.
 
-    radio.addEventListener(
-      "playing",
-      () => {
+      USADA QUANDO:
+      - VOLTAMOS DO SEGUNDO PLANO;
+      - A TELA É REABERTA;
+      - HÁ MUDANÇA DE REDE.
 
-        reconectando =
-          false;
+      NÃO INTERROMPE UM STREAM QUE ESTEJA
+      EFETIVAMENTE AVANÇANDO.
+    */
 
-        clearTimeout(
-          timerReconexao
+    function verificarSaudeEmBreve(
+      espera = 1600
+    ) {
+
+      if (
+        !usuarioQuerOuvir ||
+        aguardandoGesto ||
+        document.hidden
+      ) {
+
+        return;
+
+      }
+
+
+      limparTimerSaude();
+
+
+      const playerObservado =
+        radio;
+
+      const tempoInicial =
+        playerObservado.currentTime;
+
+
+      /*
+        SE JÁ ESTÁ PAUSADO QUANDO NÃO DEVERIA,
+        NÃO PRECISAMOS ESPERAR.
+      */
+
+      if (
+        playerObservado.paused ||
+        playerObservado.ended
+      ) {
+
+        agendarReconexao(
+          250
         );
 
-        mostrarTocando();
+        return;
 
       }
-    );
 
 
-    /*
-      BUFFERING NORMAL NÃO É ERRO.
+      timerSaude =
+        setTimeout(
+          () => {
 
-      Não vamos derrubar a conexão
-      só porque apareceu "waiting".
-    */
-
-    radio.addEventListener(
-      "waiting",
-      () => {
-
-        if (
-          usuarioQuerOuvir &&
-          radio.paused === false
-        ) {
-
-          statusRadio.textContent =
-            "Carregando áudio...";
-
-        }
-
-      }
-    );
+            timerSaude =
+              null;
 
 
-    /* PAUSA */
+            if (
+              !usuarioQuerOuvir ||
+              aguardandoGesto ||
+              document.hidden ||
+              playerObservado !== radio
+            ) {
 
-    radio.addEventListener(
-      "pause",
-      () => {
+              return;
 
-        if (
-          !usuarioQuerOuvir
-        ) {
-
-          mostrarParado();
-
-        }
-
-      }
-    );
+            }
 
 
-    /* ERRO REAL */
+            if (
+              radio.paused ||
+              radio.ended
+            ) {
 
-    radio.addEventListener(
-      "error",
-      () => {
+              reconectarRadio();
+              return;
 
-        if (
-          usuarioQuerOuvir
-        ) {
-
-          agendarReconexao(
-            2000
-          );
-
-        }
-
-      }
-    );
+            }
 
 
-    /*
-      STALLED ÀS VEZES É TEMPORÁRIO.
+            const tempoAtual =
+              radio.currentTime;
 
-      ESPERAMOS UM POUCO ANTES
-      DE RECRIAR A CONEXÃO.
-    */
 
-    radio.addEventListener(
-      "stalled",
-      () => {
+            /*
+              EM STREAMS ONDE currentTime É FINITO,
+              ELE DEVE ESTAR AVANÇANDO.
 
-        if (
-          usuarioQuerOuvir
-        ) {
+              SE NÃO ANDOU NADA, A CONEXÃO PODE TER
+              FICADO "VIVA" NO NAVEGADOR MAS MORTA
+              NA PRÁTICA.
+            */
 
-          agendarReconexao(
-            3000
-          );
+            if (
+              Number.isFinite(
+                tempoInicial
+              ) &&
+              Number.isFinite(
+                tempoAtual
+              ) &&
+              tempoAtual <=
+                tempoInicial + 0.15
+            ) {
 
-        }
+              reconectarRadio();
 
-      }
-    );
+            }
+
+          },
+          espera
+        );
+
+    }
 
 
     /* INTERNET CAIU */
@@ -2206,8 +3097,12 @@
           usuarioQuerOuvir
         ) {
 
-          statusRadio.textContent =
-            "Sem conexão...";
+          limparTimerReconexao();
+          limparTimerCarregamento();
+
+          mostrarTentando(
+            "Sem conexão..."
+          );
 
         }
 
@@ -2225,7 +3120,13 @@
           usuarioQuerOuvir
         ) {
 
-          reconectarRadio();
+          mostrarTentando(
+            "Reconectando..."
+          );
+
+          agendarReconexao(
+            250
+          );
 
         }
 
@@ -2233,110 +3134,91 @@
     );
 
 
-    function agendarReconexao(
-      tempo
+    /*
+      TROCA DE WI-FI / DADOS MÓVEIS.
+
+      A API NÃO EXISTE EM TODOS OS NAVEGADORES,
+      POR ISSO ELA É APENAS UMA CAMADA EXTRA.
+
+      NÃO FORÇAMOS A TROCA SE O AUDIO CONTINUAR
+      SAUDÁVEL.
+    */
+
+    const conexaoRede =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+
+
+    if (
+      conexaoRede &&
+      typeof conexaoRede.addEventListener ===
+        "function"
     ) {
 
-      clearTimeout(
-        timerReconexao
+      conexaoRede.addEventListener(
+        "change",
+        () => {
+
+          if (
+            usuarioQuerOuvir
+          ) {
+
+            verificarSaudeEmBreve(
+              1000
+            );
+
+          }
+
+        }
       );
-
-      timerReconexao =
-        setTimeout(
-          () => {
-
-            if (
-              usuarioQuerOuvir &&
-              navigator.onLine
-            ) {
-
-              reconectarRadio();
-
-            }
-
-          },
-          tempo
-        );
 
     }
 
 
-    function reconectarRadio() {
+    /*
+      VOLTA DO SEGUNDO PLANO / PWA / TELA BLOQUEADA.
 
-      if (
-        !usuarioQuerOuvir ||
-        reconectando
-      ) {
+      SE O ANDROID SUSPENDEU O AUDIO, A INTENÇÃO
+      DE ESCUTA CONTINUA E O PLAYER TENTA RECUPERAR.
+    */
 
-        return;
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+
+        if (
+          document.visibilityState ===
+            "visible" &&
+          usuarioQuerOuvir
+        ) {
+
+          verificarSaudeEmBreve(
+            900
+          );
+
+        }
 
       }
+    );
 
 
-      reconectando =
-        true;
+    window.addEventListener(
+      "pageshow",
+      () => {
 
+        if (
+          usuarioQuerOuvir
+        ) {
 
-      clearTimeout(
-        timerReconexao
-      );
+          verificarSaudeEmBreve(
+            900
+          );
 
+        }
 
-      statusRadio.textContent =
-        "Reconectando...";
-
-
-      ondas.classList.remove(
-        "ativa"
-      );
-
-
-      /*
-        SÓ AQUI, NUMA FALHA REAL,
-        recriamos o stream.
-      */
-
-      radio.src =
-        streamUrl +
-        "?r=" +
-        Date.now();
-
-
-      radio.load();
-
-
-      radio.play()
-
-        .then(
-          () => {
-
-            reconectando =
-              false;
-
-          }
-        )
-
-        .catch(
-          () => {
-
-            reconectando =
-              false;
-
-            if (
-              usuarioQuerOuvir
-            ) {
-
-              statusRadio.textContent =
-                "Toque novamente no Play";
-
-              mostrarParado();
-
-            }
-
-          }
-        );
-
-    }
+      }
+    );
 
 
 
@@ -2458,7 +3340,6 @@
     }
 
 
-
     /* ANDROID / COMPUTADOR */
 
     window.addEventListener(
@@ -2568,7 +3449,6 @@
       );
 
     }
-
 
 
     /* MODAL IPHONE */
