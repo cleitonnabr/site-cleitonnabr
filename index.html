@@ -3778,10 +3778,49 @@
         true;
 
 
+    /*
+      ANDROID
+
+      NO ANDROID, O BOTÃO PRINCIPAL PASSA A BAIXAR O
+      APLICATIVO NATIVO OFICIAL DA CLEITON NA BR.
+
+      O PWA CONTINUA DISPONÍVEL PARA IPHONE E COMPUTADOR,
+      MAS NÃO DISPUTA O BOTÃO DE INSTALAÇÃO NO ANDROID.
+    */
+
+    if (
+      ehAndroid
+    ) {
+
+      tituloInstalacao.textContent =
+        "Aplicativo oficial Cleiton na BR para Android";
+
+      textoInstalacao.textContent =
+        "Ouça a WebRádio em segundo plano, com a tela apagada e também no Android Auto.";
+
+      botaoInstalar.textContent =
+        "BAIXAR APP ANDROID";
+
+      instalacaoCard.classList.add(
+        "visivel"
+      );
+
+      botaoInstalar.addEventListener(
+        "click",
+        () => {
+
+          window.location.href =
+            "/downloads/cleiton-na-br.apk";
+
+        }
+      );
+
+    }
+
 
     /* IPHONE */
 
-    if (
+    else if (
       ehIOS &&
       !estaInstalado
     ) {
@@ -3813,43 +3852,33 @@
     }
 
 
-    /* ANDROID / COMPUTADOR */
+    /*
+      COMPUTADOR
 
-    window.addEventListener(
-      "beforeinstallprompt",
-      (evento) => {
+      MANTÉM A INSTALAÇÃO DO SITE COMO PWA NOS NAVEGADORES
+      QUE OFERECEREM O EVENTO beforeinstallprompt.
+    */
 
-        evento.preventDefault();
+    else {
 
-        eventoInstalacao =
-          evento;
+      window.addEventListener(
+        "beforeinstallprompt",
+        (evento) => {
 
+          evento.preventDefault();
 
-        if (
-          estaInstalado
-        ) {
-
-          return;
-
-        }
+          eventoInstalacao =
+            evento;
 
 
-        if (
-          ehAndroid
-        ) {
+          if (
+            estaInstalado
+          ) {
 
-          tituloInstalacao.textContent =
-            "Tenha o Cleiton na BR no seu celular";
+            return;
 
-          textoInstalacao.textContent =
-            "Instale para acessar diretamente pela sua tela inicial.";
+          }
 
-          botaoInstalar.textContent =
-            "INSTALAR CLEITON NA BR";
-
-        }
-
-        else {
 
           tituloInstalacao.textContent =
             "Tenha o Cleiton na BR no seu computador";
@@ -3860,20 +3889,14 @@
           botaoInstalar.textContent =
             "INSTALAR NO COMPUTADOR";
 
+
+          instalacaoCard.classList.add(
+            "visivel"
+          );
+
         }
+      );
 
-
-        instalacaoCard.classList.add(
-          "visivel"
-        );
-
-      }
-    );
-
-
-    if (
-      !ehIOS
-    ) {
 
       botaoInstalar.addEventListener(
         "click",
@@ -3968,11 +3991,17 @@
         eventoInstalacao =
           null;
 
-        instalacaoCard
-          .classList
-          .remove(
-            "visivel"
-          );
+        if (
+          !ehAndroid
+        ) {
+
+          instalacaoCard
+            .classList
+            .remove(
+              "visivel"
+            );
+
+        }
 
       }
     );
