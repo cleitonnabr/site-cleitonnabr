@@ -3782,38 +3782,17 @@
     /*
       ANDROID
 
-      NO ANDROID, O BOTÃO PRINCIPAL PASSA A BAIXAR O
-      APLICATIVO NATIVO OFICIAL DA CLEITON NA BR.
-
-      O PWA CONTINUA DISPONÍVEL PARA IPHONE E COMPUTADOR,
-      MAS NÃO DISPUTA O BOTÃO DE INSTALAÇÃO NO ANDROID.
+      DOWNLOAD DO APK TEMPORARIAMENTE DESABILITADO.
+      NO ANDROID, O CARD DE INSTALAÇÃO PERMANECE OCULTO
+      E NENHUM LINK PARA O APK É EXIBIDO NO SITE.
     */
 
     if (
       ehAndroid
     ) {
 
-      tituloInstalacao.textContent =
-        "BAIXE O APP DA WEBRÁDIO";
-
-      textoInstalacao.textContent =
-        "CELULAR ANDROID e ANDROID AUTO NO CARRO";
-
-      botaoInstalar.textContent =
-        "CLIQUE AQUI PARA BAIXAR";
-
-      instalacaoCard.classList.add(
+      instalacaoCard.classList.remove(
         "visivel"
-      );
-
-      botaoInstalar.addEventListener(
-        "click",
-        () => {
-
-          window.location.href =
-            "/downloads/cleiton-na-br.apk";
-
-        }
       );
 
     }
