@@ -3782,17 +3782,36 @@
     /*
       ANDROID
 
-      DOWNLOAD DO APK TEMPORARIAMENTE DESABILITADO.
-      NO ANDROID, O CARD DE INSTALAÇÃO PERMANECE OCULTO
-      E NENHUM LINK PARA O APK É EXIBIDO NO SITE.
+      ENQUANTO O DOWNLOAD DIRETO DO APK ESTÁ DESABILITADO,
+      O CARD DIRECIONA O OUVINTE PARA A CLEITON NA BR
+      NO RADIOSNET.
     */
 
     if (
       ehAndroid
     ) {
 
-      instalacaoCard.classList.remove(
+      tituloInstalacao.textContent =
+        "OUÇA TAMBÉM PELO RADIOSNET";
+
+      textoInstalacao.textContent =
+        "CLEITON NA BR NO RADIOSNET";
+
+      botaoInstalar.textContent =
+        "ABRIR NO RADIOSNET";
+
+      instalacaoCard.classList.add(
         "visivel"
+      );
+
+      botaoInstalar.addEventListener(
+        "click",
+        () => {
+
+          window.location.href =
+            "https://l.radios.com.br/r/293551";
+
+        }
       );
 
     }
