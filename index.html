@@ -1,827 +1,564 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0">
-
   <title>Cleiton na BR</title>
-
   <meta
     name="description"
     content="Cleiton na BR - música, estrada, informação, rádio, vídeos e companhia.">
-
   <link
     rel="manifest"
     href="/manifest.webmanifest">
-
   <meta
     name="theme-color"
     content="#111111">
-
   <!-- AJUDA A PREPARAR A CONEXÃO COM O SERVIDOR DA RÁDIO -->
-
   <link
     rel="dns-prefetch"
     href="//azuracast-germany.myautodj.com">
-
   <link
     rel="preconnect"
     href="https://azuracast-germany.myautodj.com"
     crossorigin>
-
   <style>
-
     * {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background: #f3f3f3;
       color: #171717;
     }
-
-
     /* =========================
        CABEÇALHO
     ========================== */
-
     .hero {
-
       min-height: 260px;
-
       padding: 25px 20px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       background:
         linear-gradient(
           rgba(0,0,0,0.18),
           rgba(0,0,0,0.36)
         ),
         url("fundo-estrada.jpg");
-
       background-size: cover;
       background-position: center;
-
       border-bottom: 5px solid #f7c900;
-
     }
-
     .logo-principal {
-
       width: 235px;
       max-width: 60vw;
-
       height: auto;
-
       display: block;
-
       filter:
         drop-shadow(0 5px 5px rgba(0,0,0,0.75))
         drop-shadow(0 0 10px rgba(255,255,255,0.16));
-
     }
-
-
     /* =========================
        CONTEÚDO
     ========================== */
-
     .conteudo {
-
       width: min(1180px, calc(100% - 32px));
-
       margin: 34px auto 38px;
-
     }
-
     .linha-principal {
-
       display: grid;
-
       grid-template-columns:
         1.25fr 0.9fr;
-
       gap: 26px;
-
       align-items: stretch;
-
     }
-
     .card {
-
       border-radius: 18px;
-
       overflow: hidden;
-
       box-shadow:
         0 7px 22px rgba(0,0,0,0.12);
-
     }
-
-
     /* =========================
        INSTALAÇÃO
     ========================== */
-
     .instalacao-card {
-
       display: none;
-
       margin-bottom: 30px;
-
       padding: 16px 20px;
-
       background: #ffffff;
-
       color: #171717;
-
       border:
         1px solid #e2e2e2;
-
       border-left:
         6px solid #ffd000;
-
       align-items: center;
       justify-content: space-between;
-
       gap: 18px;
-
     }
-
     .instalacao-card.visivel {
       display: flex;
     }
-
     .instalacao-texto {
       flex: 1;
       text-align: center;
     }
-
     .instalacao-texto strong {
-
       display: block;
-
       color: #e11922;
-
       font-size: 18px;
-
       margin-bottom: 4px;
-
     }
-
     .instalacao-texto span {
-
       color: #555555;
-
       font-size: 14px;
-
       line-height: 1.4;
-
     }
-
     .botao-instalar {
-
       border: none;
-
       border-radius: 10px;
-
       padding: 14px 20px;
-
       background: #ffd000;
-
       color: #111;
-
       font-size: 14px;
-
       font-weight: 900;
-
       cursor: pointer;
-
       white-space: nowrap;
-
     }
-
     .botao-instalar:hover {
       background: #ffe04b;
     }
-
-
     /* =========================
        MODAL IPHONE
     ========================== */
-
     .modal-instalacao {
-
       display: none;
-
       position: fixed;
-
       inset: 0;
-
       z-index: 9999;
-
       padding: 20px;
-
       background:
         rgba(0,0,0,0.72);
-
       align-items: center;
       justify-content: center;
-
     }
-
     .modal-instalacao.visivel {
       display: flex;
     }
-
     .modal-conteudo {
-
       width: min(420px,100%);
-
       padding: 24px;
-
       border-radius: 18px;
-
       background: #fff;
-
       color: #171717;
-
       box-shadow:
         0 15px 45px rgba(0,0,0,0.35);
-
     }
-
     .modal-conteudo h2 {
-
       margin: 0 0 12px;
-
       font-size: 22px;
-
     }
-
     .modal-conteudo p {
-
       margin: 0 0 12px;
-
       line-height: 1.5;
-
       color: #444;
-
     }
-
     .passos-iphone {
-
       margin: 16px 0;
-
       padding: 15px;
-
       background: #fff5bf;
-
       border-radius: 12px;
-
       line-height: 1.7;
-
     }
-
     .botao-fechar {
-
       width: 100%;
-
       border: none;
-
       border-radius: 10px;
-
       padding: 13px;
-
       background: #111;
-
       color: #fff;
-
       font-weight: 900;
-
       cursor: pointer;
-
     }
-
-
     /* =========================
        WEBRÁDIO
     ========================== */
-
     .radio-card {
-
       background:
         linear-gradient(
           135deg,
           #101010,
           #1d1d1d
         );
-
       color: #fff;
-
       padding: 24px;
-
       display: flex;
-
       align-items: center;
-
       gap: 26px;
-
       min-height: 250px;
-
     }
-
     .logo-radio {
-
       width: 185px;
-
       height: 185px;
-
       object-fit: contain;
-
       flex-shrink: 0;
-
     }
-
     .radio-info {
-
       flex: 1;
-
       min-width: 0;
-
     }
-
-
     /* NO AR + ONDAS */
-
     .linha-no-ar {
-
       display: flex;
-
       align-items: center;
-
       gap: 16px;
-
       margin-bottom: 14px;
-
     }
-
     .no-ar {
-
       display: flex;
-
       align-items: center;
-
       gap: 9px;
-
       color: #ffd000;
-
       font-size: 21px;
-
       font-weight: 900;
-
       white-space: nowrap;
-
     }
-
     .bolinha {
-
       width: 12px;
-
       height: 12px;
-
       border-radius: 50%;
-
       background: #e52323;
-
       box-shadow:
         0 0 9px rgba(229,35,35,0.75);
-
     }
-
     .radio-texto {
-
       margin: 0 0 18px;
-
       color: #e6e6e6;
-
       font-size: 17px;
-
       line-height: 1.45;
-
     }
-
     .ondas {
-
       height: 28px;
-
       display: flex;
-
       align-items: center;
-
       gap: 4px;
-
       margin: 0;
-
     }
-
     .onda {
-
       width: 4px;
-
       border-radius: 3px;
-
       background: #ffd000;
-
       animation:
         onda 0.8s
         infinite
         ease-in-out
         alternate;
-
       animation-play-state: paused;
-
     }
-
     .ondas.ativa .onda {
       animation-play-state: running;
     }
-
     .onda:nth-child(1) {
       height: 8px;
     }
-
     .onda:nth-child(2) {
       height: 18px;
       animation-delay: 0.1s;
     }
-
     .onda:nth-child(3) {
       height: 28px;
       animation-delay: 0.2s;
     }
-
     .onda:nth-child(4) {
       height: 16px;
       animation-delay: 0.3s;
     }
-
     .onda:nth-child(5) {
       height: 24px;
       animation-delay: 0.4s;
     }
-
     .onda:nth-child(6) {
       height: 11px;
       animation-delay: 0.5s;
     }
-
     @keyframes onda {
-
       from {
         transform: scaleY(0.45);
         opacity: 0.55;
       }
-
       to {
         transform: scaleY(1);
         opacity: 1;
       }
-
     }
-
-
     /* =========================
        CONTROLES
     ========================== */
-
     .controles {
-
       display: flex;
-
       align-items: center;
-
       gap: 18px;
-
     }
-
     .play-btn {
-
       width: 62px;
-
       height: 62px;
-
       border: none;
-
       border-radius: 50%;
-
       background: #ffd000;
-
       color: #111;
-
       cursor: pointer;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 26px;
-
       font-weight: bold;
-
       transition:
         transform 0.15s,
         background 0.15s;
-
     }
-
     .play-btn:hover {
-
       transform: scale(1.05);
-
       background: #ffe04b;
-
     }
-
     .volume-area {
-
       flex: 1;
-
       display: flex;
-
       align-items: center;
-
       gap: 10px;
-
       max-width: 260px;
-
     }
-
     .volume-icon {
-
       width: 28px;
-
       height: 28px;
-
       flex-shrink: 0;
-
     }
-
     .volume {
-
       width: 100%;
-
       accent-color: #ffd000;
-
       cursor: pointer;
-
     }
-
     .status-radio {
-
       min-height: 18px;
-
       margin-top: 12px;
-
       color: #bdbdbd;
-
       font-size: 13px;
-
       font-weight: bold;
-
     }
-
-
     /* =========================
        YOUTUBE
     ========================== */
-
     .youtube-card {
-
       background: #fff;
-
       padding: 25px;
-
       border-top:
         5px solid #e11922;
-
     }
-
     .titulo-servico {
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       margin-bottom: 10px;
-
     }
-
     .titulo-servico h2 {
-
       margin: 0;
-
       font-size: 25px;
-
     }
-
     .youtube-icon {
-
       width: 42px;
-
       height: 42px;
-
     }
-
     .youtube-card p {
-
       color: #555;
-
       margin:
         8px 0 16px;
-
       line-height: 1.4;
-
     }
-
     .agenda {
-
       background: #fff5bf;
-
       padding: 15px;
-
       border-radius: 12px;
-
       line-height: 1.7;
-
       font-size: 15px;
-
       margin-bottom: 17px;
-
     }
-
     .botao-youtube {
-
       display: block;
-
       width: 100%;
-
       padding: 15px;
-
       border-radius: 10px;
-
       background: #e11922;
-
       color: #fff;
-
       text-align: center;
-
       text-decoration: none;
-
       font-weight: 900;
-
       transition: 0.15s;
-
     }
-
     .botao-youtube:hover {
       background: #bc1017;
     }
-
-
+    /* =========================
+       RADIOSNET
+    ========================== */
+    .radiosnet-card {
+      margin-top: 30px;
+      padding: 22px 24px;
+      background:
+        linear-gradient(
+          135deg,
+          #071c2c,
+          #0b4468
+        );
+      border:
+        1px solid #167eb7;
+      border-top:
+        5px solid #1ca5e8;
+      color: #fff;
+      display: grid;
+      grid-template-columns:
+        auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+    }
+    .radiosnet-logo {
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 18px;
+      flex-shrink: 0;
+      box-shadow:
+        0 7px 18px rgba(0,0,0,0.30);
+    }
+    .radiosnet-conteudo {
+      min-width: 0;
+    }
+    .radiosnet-selo {
+      display: inline-block;
+      margin-bottom: 7px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background:
+        rgba(255,255,255,0.12);
+      border:
+        1px solid rgba(255,255,255,0.18);
+      color: #d8f3ff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.55px;
+    }
+    .radiosnet-conteudo h2 {
+      margin:
+        0 0 6px;
+      font-size: 25px;
+      line-height: 1.15;
+      color: #fff;
+    }
+    .radiosnet-conteudo p {
+      margin:
+        0 0 14px;
+      color: #dcecf4;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    .botao-radiosnet {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 210px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      background: #ffd000;
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      transition:
+        transform 0.15s,
+        background 0.15s;
+    }
+    .botao-radiosnet:hover {
+      transform:
+        translateY(-1px);
+      background: #ffe04b;
+    }
+    .radiosnet-banner {
+      display: block;
+      width: 300px;
+      max-width: 28vw;
+      height: auto;
+      border-radius: 8px;
+      box-shadow:
+        0 6px 16px rgba(0,0,0,0.25);
+    }
     /* =========================
        WHATSAPP
     ========================== */
-
     .whatsapp-card {
-
       margin-top: 30px;
-
       background:
         linear-gradient(
           135deg,
           #131313,
           #202020
         );
-
       border:
         1px solid #1f8b42;
-
       color: #fff;
-
       padding: 20px 25px;
-
       display: grid;
-
       grid-template-columns:
         auto 1fr auto;
-
       align-items: center;
-
       gap: 22px;
-
     }
-
     .whatsapp-icon {
-
       width: 70px;
-
       height: 70px;
-
       flex-shrink: 0;
-
     }
-
     .whatsapp-texto h2 {
-
       margin:
         0 0 7px;
-
       color: #38ba5a;
-
       font-size: 25px;
-
     }
-
     .whatsapp-texto p {
-
       margin: 0;
-
       color: #dedede;
-
       line-height: 1.4;
-
     }
-
     .whatsapp-clique {
       display: none;
     }
-
     .botao-whatsapp {
-
       display: inline-flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 10px;
-
       min-width: 270px;
-
       padding: 16px 22px;
-
       border-radius: 10px;
-
       background: #25d366;
-
       color: #fff;
-
       text-decoration: none;
-
       font-weight: 900;
-
       transition: 0.15s;
-
     }
-
     .botao-whatsapp:hover {
       background: #1fb95a;
     }
-
     .icone-whatsapp-botao {
-
       width: 27px;
-
       height: 27px;
-
       flex-shrink: 0;
-
     }
-
-
     /* =========================
        E-BOOK - BOTÃO DA CONFIANÇA
     ========================== */
-
     .ebook-card {
       margin-top: 30px;
       padding: 30px 26px;
@@ -830,7 +567,6 @@
       color: #fff;
       text-align: center;
     }
-
     .ebook-selo {
       display: inline-block;
       margin-bottom: 14px;
@@ -842,7 +578,6 @@
       font-weight: 900;
       letter-spacing: .6px;
     }
-
     .ebook-card h2 {
       max-width: 820px;
       margin: 0 auto 18px;
@@ -851,7 +586,6 @@
       line-height: 1.15;
       font-weight: 900;
     }
-
     .ebook-capa {
       display: block;
       width: min(260px,72vw);
@@ -860,7 +594,6 @@
       border-radius: 8px;
       box-shadow: 0 12px 30px rgba(0,0,0,.55);
     }
-
     .ebook-titulo-produto {
       max-width: 850px;
       margin: 0 auto 15px;
@@ -870,18 +603,15 @@
       font-weight: 900;
       text-transform: uppercase;
     }
-
     .ebook-titulo-produto strong {
       color: #ffd000;
     }
-
     .ebook-card p {
       max-width: 780px;
       margin: 8px auto;
       color: #e4e4e4;
       line-height: 1.55;
     }
-
     .ebook-nao-paga {
       max-width: 820px;
       margin: 20px auto 12px;
@@ -895,14 +625,12 @@
       font-weight: 900;
       text-transform: uppercase;
     }
-
     .ebook-explicacao {
       max-width: 760px;
       margin: 10px auto 16px !important;
       font-size: 18px;
       line-height: 1.55;
     }
-
     .ebook-contribua-chamada {
       display: block;
       max-width: 700px;
@@ -917,7 +645,6 @@
       text-transform: uppercase;
       text-align: center;
     }
-
     .ebook-valor {
       display: block;
       margin-top: 7px;
@@ -925,7 +652,6 @@
       line-height: 1.1;
       font-weight: 900;
     }
-
     .ebook-destaque {
       max-width: 760px;
       margin: 16px auto !important;
@@ -935,7 +661,6 @@
       color: #222 !important;
       font-weight: 700;
     }
-
     .ebook-confio {
       max-width: 820px;
       margin: 22px auto 15px;
@@ -945,11 +670,9 @@
       font-weight: 900;
       text-transform: uppercase;
     }
-
     .ebook-confio span {
       color: #ffd000;
     }
-
     .botao-ebook {
       display: inline-flex;
       align-items: center;
@@ -965,9 +688,7 @@
       font-weight: 900;
       transition: .15s;
     }
-
     .botao-ebook:hover { background: #ffe04b; }
-
     .ebook-contribuicao {
       display: none;
       max-width: 680px;
@@ -978,13 +699,11 @@
       border: 1px solid #4a4a4a;
       color: #fff;
     }
-
     .ebook-contribuicao.visivel { display: block; }
     .ebook-contribuicao h3 { margin: 0 0 8px; color: #ffd000; font-size: 22px; }
     .ebook-contribuicao p { color: #e4e4e4; }
     .pix-label { margin-top: 16px; font-size: 12px; color: #bbb; font-weight: 700; }
     .pix-chave { margin: 6px 0 12px; font-size: 18px; font-weight: 900; overflow-wrap: anywhere; }
-
     .botao-copiar-pix {
       width: min(360px,100%);
       border: none;
@@ -995,90 +714,49 @@
       font-weight: 900;
       cursor: pointer;
     }
-
     .status-pix { min-height: 18px; margin-top: 10px !important; font-size: 13px; color: #d8d8d8 !important; }
-
-
     /* =========================
        REDES
     ========================== */
-
     .redes-card {
-
       margin-top: 30px;
-
       background: #fff;
-
       padding: 22px 25px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 25px;
-
       border-top:
         4px solid #ffd000;
-
     }
-
     .redes-texto h2 {
-
       margin:
         0 0 5px;
-
       font-size: 22px;
-
     }
-
     .redes-texto p {
-
       margin: 0;
-
       color: #666;
-
       font-size: 14px;
-
     }
-
     .redes-botoes {
-
       display: flex;
-
       gap: 12px;
-
     }
-
     .botao-rede {
-
       min-width: 150px;
-
       display: inline-flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 9px;
-
       padding: 13px 18px;
-
       border-radius: 10px;
-
       color: #fff;
-
       text-decoration: none;
-
       font-size: 14px;
-
       font-weight: 900;
-
     }
-
     .instagram {
-
       background:
         linear-gradient(
           135deg,
@@ -1086,384 +764,255 @@
           #e1306c,
           #f77737
         );
-
     }
-
     .facebook {
       background: #1877f2;
     }
-
     .icone-rede {
-
       width: 22px;
-
       height: 22px;
-
     }
-
-
     /* =========================
        RODAPÉ
     ========================== */
-
     .rodape {
-
       margin-top: 38px;
-
       padding: 26px 15px;
-
       background: #111;
-
       color: #aaa;
-
       text-align: center;
-
       font-size: 14px;
-
     }
-
-
     /* =========================
        CELULAR
     ========================== */
-
     @media (max-width: 760px) {
-
       .hero {
-
         min-height: 140px;
-
         padding: 10px;
-
         background-position:
           center center;
-
       }
-
       .logo-principal {
-
         width: 135px;
-
         max-width: 46vw;
-
       }
-
       .conteudo {
-
         width:
           calc(100% - 22px);
-
         margin:
           15px auto 18px;
-
       }
-
-
       /* INSTALAÇÃO */
-
       .instalacao-card {
-
         margin-bottom: 16px;
-
         padding: 11px 13px;
-
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 7px;
-
       }
-
       .instalacao-texto strong {
         font-size: 19px;
         line-height: 1.15;
       }
-
       .instalacao-texto span {
         font-size: 14px;
         font-weight: 700;
       }
-
       .botao-instalar {
-
         width: 100%;
-
         padding: 12px;
-
         font-size: 15px;
-
       }
-
-
       /* RÁDIO */
-
       .linha-principal {
-
         grid-template-columns:
           1fr;
-
         gap: 16px;
-
       }
-
       .radio-card {
-
         min-height: auto;
-
         padding: 13px;
-
         gap: 12px;
-
       }
-
       .logo-radio {
-
         width: 92px;
-
         height: 92px;
-
       }
-
       .linha-no-ar {
-
         gap: 9px;
-
         margin-bottom: 5px;
-
       }
-
       .no-ar {
-
         font-size: 16px;
-
         gap: 6px;
-
       }
-
       .bolinha {
-
         width: 8px;
-
         height: 8px;
-
       }
-
       .radio-texto {
-
         font-size: 12px;
-
         margin-bottom: 6px;
-
       }
-
       .ondas {
-
         height: 18px;
-
         gap: 2px;
-
       }
-
       .onda {
         width: 3px;
       }
-
       .play-btn {
-
         width: 42px;
-
         height: 42px;
-
         font-size: 19px;
-
       }
-
       .controles {
         gap: 8px;
       }
-
       .volume-area {
-
         max-width: none;
-
         gap: 6px;
-
       }
-
       .volume-icon {
-
         width: 19px;
-
         height: 19px;
-
       }
-
       .status-radio {
-
         margin-top: 4px;
-
         min-height: 13px;
-
         font-size: 11px;
-
       }
-
-
       /* YOUTUBE */
-
       .youtube-card {
-
         padding:
           11px 13px 12px;
-
         border-top-width: 4px;
-
       }
-
       .titulo-servico {
-
         gap: 8px;
-
         margin-bottom: 1px;
-
       }
-
       .titulo-servico h2 {
         font-size: 18px;
       }
-
       .youtube-icon {
-
         width: 27px;
-
         height: 27px;
-
       }
-
       .youtube-card p {
-
         margin:
           3px 0 6px;
-
         font-size: 11px;
-
       }
-
       .agenda {
-
         margin-bottom: 7px;
-
         padding: 7px 9px;
-
         border-radius: 8px;
-
         font-size: 11px;
-
         line-height: 1.4;
-
       }
-
       .botao-youtube {
-
         padding: 8px;
-
         border-radius: 8px;
-
         font-size: 11px;
-
       }
-
-
+      /* RADIOSNET */
+      .radiosnet-card {
+        margin-top: 16px;
+        padding: 13px;
+        grid-template-columns:
+          58px 1fr;
+        gap:
+          8px 11px;
+        border-top-width: 4px;
+      }
+      .radiosnet-logo {
+        width: 58px;
+        height: 58px;
+        border-radius: 12px;
+      }
+      .radiosnet-selo {
+        margin-bottom: 4px;
+        padding: 4px 7px;
+        font-size: 8px;
+        letter-spacing: 0.35px;
+      }
+      .radiosnet-conteudo h2 {
+        margin:
+          0 0 3px;
+        font-size: 16px;
+        line-height: 1.15;
+      }
+      .radiosnet-conteudo p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+      .botao-radiosnet {
+        grid-column:
+          1 / -1;
+        width: 100%;
+        min-width: 0;
+        min-height: 47px;
+        margin-top: 2px;
+        padding:
+          0 14px;
+        border-radius: 9px;
+        font-size: 14px;
+      }
+      .radiosnet-banner {
+        display: none;
+      }
       /* ======================
          WHATSAPP ACESSÍVEL
       ======================= */
-
       .whatsapp-card {
-
         margin-top: 16px;
-
         padding:
           13px 13px;
-
         grid-template-columns:
           48px 1fr;
-
         gap:
           8px 11px;
-
       }
-
       .whatsapp-icon {
-
         width: 48px;
-
         height: 48px;
-
       }
-
       .whatsapp-texto h2 {
-
         margin:
           0 0 5px;
-
         font-size: 16px;
-
         line-height: 1.15;
-
       }
-
       .whatsapp-texto p {
         display: none;
       }
-
       .whatsapp-clique {
-
         display: block;
-
         color: #fff;
-
         font-size: 14px;
-
         font-weight: 900;
-
         line-height: 1.2;
-
       }
-
       .botao-whatsapp {
-
         grid-column:
           1 / -1;
-
         width: 100%;
-
         min-width: 0;
-
         height: 49px;
-
         padding:
           0 15px;
-
         border-radius: 10px;
-
         font-size: 15px;
-
         letter-spacing: 0.2px;
-
       }
-
       .icone-whatsapp-botao {
-
         width: 27px;
-
         height: 27px;
-
       }
-
-
       /* E-BOOK */
-
       .ebook-card { margin-top: 16px; padding: 20px 13px; border-top-width: 4px; }
       .ebook-selo { font-size: 10px; padding: 6px 10px; margin-bottom: 10px; }
       .ebook-card h2 { font-size: 23px; margin-bottom: 15px; }
@@ -1481,299 +1030,180 @@
       .ebook-contribuicao h3 { font-size: 18px; }
       .pix-chave { font-size: 15px; }
       .botao-copiar-pix { padding: 12px; font-size: 12px; }
-
-
       /* REDES */
-
       .redes-card {
-
         margin-top: 16px;
-
         padding:
           12px 13px 13px;
-
         display: block;
-
         border-top-width: 3px;
-
       }
-
       .redes-texto {
-
         text-align: center;
-
         margin-bottom: 9px;
-
       }
-
       .redes-texto h2 {
-
         margin:
           0 0 3px;
-
         font-size: 15px;
-
       }
-
       .redes-texto p {
-
         margin: 0;
-
         font-size: 12px;
-
       }
-
       .redes-botoes {
-
         width: 100%;
-
         display: grid;
-
         grid-template-columns:
           1fr 1fr;
-
         gap: 8px;
-
       }
-
       .botao-rede {
-
         width: 100%;
-
         min-width: 0;
-
         height: 46px;
-
         padding:
           0 8px;
-
         border-radius: 9px;
-
         gap: 6px;
-
         font-size: 12px;
-
       }
-
       .icone-rede {
-
         width: 22px;
-
         height: 22px;
-
       }
-
-
       .rodape {
-
         margin-top: 18px;
-
         padding:
           13px 10px;
-
         font-size: 11px;
-
       }
-
     }
-
-
     @media (max-width: 400px) {
-
       .hero {
         min-height: 130px;
       }
-
       .logo-principal {
         width: 125px;
       }
-
       .radio-card {
         gap: 10px;
       }
-
       .logo-radio {
-
         width: 82px;
-
         height: 82px;
-
       }
-
       .radio-texto {
         display: none;
       }
-
       .no-ar {
         font-size: 15px;
       }
-
       .play-btn {
-
         width: 40px;
-
         height: 40px;
-
       }
-
       .whatsapp-texto h2 {
         font-size: 15px;
       }
-
       .whatsapp-clique {
         font-size: 13px;
       }
-
       .botao-whatsapp {
-
         height: 48px;
-
         font-size: 14px;
-
       }
-
       .botao-rede {
         font-size: 11px;
       }
-
     }
-
   </style>
-
 </head>
-
-
 <body>
-
-
   <!-- CABEÇALHO -->
-
   <header class="hero">
-
     <img
       class="logo-principal"
       src="CLEITON%20NA%20BR%20LOGO%20PNG.png"
       alt="Cleiton na BR">
-
   </header>
-
-
   <main class="conteudo">
-
-
     <!-- INSTALAÇÃO -->
-
     <section
       id="instalacaoCard"
       class="card instalacao-card">
-
       <div class="instalacao-texto">
-
         <strong id="tituloInstalacao">
           Tenha o Cleiton na BR no seu aparelho
         </strong>
-
         <span id="textoInstalacao">
           Acesse mais rápido pela sua tela inicial.
         </span>
-
       </div>
-
       <button
         id="botaoInstalar"
         class="botao-instalar"
         type="button">
-
         INSTALAR CLEITON NA BR
-
       </button>
-
     </section>
-
-
     <div class="linha-principal">
-
-
       <!-- WEBRÁDIO -->
-
       <section class="card radio-card">
-
         <img
           class="logo-radio"
           src="logo-webradio.png"
           alt="WebRádio Cleiton na BR">
-
         <div class="radio-info">
-
           <div class="linha-no-ar">
-
             <div class="no-ar">
-
               <span class="bolinha"></span>
-
               <span>
                 NO AR
               </span>
-
             </div>
-
             <div
               id="ondas"
               class="ondas">
-
               <span class="onda"></span>
               <span class="onda"></span>
               <span class="onda"></span>
               <span class="onda"></span>
               <span class="onda"></span>
               <span class="onda"></span>
-
             </div>
-
           </div>
-
           <p class="radio-texto">
             A companhia de quem vive a estrada.
           </p>
-
           <div class="controles">
-
             <button
               id="playBtn"
               class="play-btn"
               type="button"
               aria-label="Ouvir WebRádio">
-
               ▶
-
             </button>
-
             <div class="volume-area">
-
               <svg
                 class="volume-icon"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg">
-
                 <path
                   d="M4 9V15H8L13 19V5L8 9H4Z"
                   fill="#ffffff"/>
-
                 <path
                   d="M16 8C17.5 9.3 18 10.5 18 12C18 13.5 17.5 14.7 16 16"
                   stroke="#ffffff"
                   stroke-width="2"
                   stroke-linecap="round"/>
-
                 <path
                   d="M19 5C21 7 22 9.2 22 12C22 14.8 21 17 19 19"
                   stroke="#ffffff"
                   stroke-width="2"
                   stroke-linecap="round"/>
-
               </svg>
-
               <input
                 id="volume"
                 class="volume"
@@ -1783,47 +1213,31 @@
                 step="0.05"
                 value="1"
                 aria-label="Volume">
-
             </div>
-
           </div>
-
           <div
             id="statusRadio"
             class="status-radio">
-
             Toque no Play para ouvir
-
           </div>
-
         </div>
-
-
         <!--
           STREAM ORIGINAL.
           O PRIMEIRO PLAY CONTINUA USANDO ESTA CONEXÃO DIRETAMENTE.
         -->
-
         <audio
           id="radioPlayer"
           preload="none"
           src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3">
         </audio>
-
       </section>
-
-
       <!-- YOUTUBE -->
-
       <section class="card youtube-card">
-
         <div class="titulo-servico">
-
           <svg
             class="youtube-icon"
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg">
-
             <rect
               x="2"
               y="8"
@@ -1831,179 +1245,155 @@
               height="32"
               rx="9"
               fill="#e11922"/>
-
             <path
               d="M20 17L33 24L20 31V17Z"
               fill="#ffffff"/>
-
           </svg>
-
           <h2>
             YouTube
           </h2>
-
         </div>
-
         <p>
           Acompanhe os novos vídeos do Cleiton na BR.
         </p>
-
         <div class="agenda">
-
           <strong>
             Terça a sexta:
           </strong>
-
           novos vídeos às 17h
-
           <br>
-
           <strong>
             Sábados e domingos:
           </strong>
-
           novos vídeos às 7h da manhã
-
         </div>
-
         <a
           class="botao-youtube"
           href="https://www.youtube.com/@cleitonnaBR"
           target="_blank"
           rel="noopener noreferrer">
-
           IR PARA O CANAL
-
         </a>
-
       </section>
-
     </div>
-
-
+    <!-- =========================
+         RADIOSNET
+    ========================== -->
+    <section class="card radiosnet-card">
+      <img
+        class="radiosnet-logo"
+        src="downloads/radiosnet-logo.jpg.jpg"
+        alt="RadiosNet">
+      <div class="radiosnet-conteudo">
+        <span class="radiosnet-selo">
+          OUÇA TAMBÉM
+        </span>
+        <h2>
+          Cleiton na BR no RadiosNet
+        </h2>
+        <p>
+          No celular, no carro ou onde você estiver.
+        </p>
+        <a
+          class="botao-radiosnet"
+          href="https://l.radios.com.br/r/293551"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Ouvir Cleiton na BR no RadiosNet">
+          ▶ OUVIR AGORA
+        </a>
+      </div>
+      <img
+        class="radiosnet-banner"
+        src="downloads/radiosnet-banner.png.png"
+        alt="Ouça suas estações favoritas no RadiosNet">
+    </section>
     <!-- =========================
          WHATSAPP
     ========================== -->
-
     <section class="card whatsapp-card">
-
-
       <!-- LOGO DO WHATSAPP -->
-
       <svg
         class="whatsapp-icon"
         viewBox="0 0 64 64"
         xmlns="http://www.w3.org/2000/svg">
-
         <circle
           cx="32"
           cy="32"
           r="30"
           fill="#25D366"/>
-
         <path
           d="M46.7 17.4C42.8 13.5 37.6 11.3 32.1 11.3C20.7 11.3 11.4 20.6 11.4 32C11.4 35.7 12.4 39.3 14.2 42.4L11.2 53.4L22.5 50.4C25.5 52 28.8 52.8 32.1 52.8H32.1C43.5 52.8 52.8 43.5 52.8 32.1C52.8 26.5 50.6 21.3 46.7 17.4Z"
           fill="#ffffff"/>
-
         <path
           d="M32.1 49.3C29.1 49.3 26.2 48.5 23.7 47L22.9 46.6L16.2 48.3L18 41.8L17.5 41C15.8 38.4 14.9 35.3 14.9 32.1C14.9 22.5 22.6 14.8 32.1 14.8C36.7 14.8 41 16.6 44.3 19.8C47.5 23.1 49.3 27.4 49.3 32C49.3 41.5 41.6 49.3 32.1 49.3Z"
           fill="#25D366"/>
-
         <path
           d="M41.5 36.4C41 36.1 38.5 34.9 38 34.7C37.5 34.5 37.2 34.4 36.8 34.9C36.5 35.4 35.5 36.6 35.2 36.9C34.9 37.2 34.6 37.3 34.1 37C31.2 35.6 29.3 34.5 27.4 31.2C26.9 30.3 27.9 30.4 28.8 28.4C29 28 28.9 27.6 28.7 27.3C28.6 27 27.5 24.5 27.1 23.5C26.7 22.5 26.2 22.6 25.9 22.6H24.9C24.5 22.6 23.9 22.7 23.4 23.3C22.9 23.8 21.4 25.2 21.4 28C21.4 30.8 23.4 33.5 23.7 33.9C24 34.3 27.7 40 33.5 42.5C37.1 44.1 38.5 44.2 40.3 43.9C41.4 43.7 43.3 42.7 43.7 41.5C44.1 40.3 44.1 39.3 44 39.1C43.8 38.9 43.5 38.7 43 38.5L41.5 36.4Z"
           fill="#ffffff"/>
-
       </svg>
-
-
       <div class="whatsapp-texto">
-
         <h2>
           FALE COM CLEITON NA BR
         </h2>
-
         <p>
           Participe da programação. Mande sua mensagem,
           sugestão, pedido de música ou seu alô.
         </p>
-
         <span class="whatsapp-clique">
           CLIQUE NO BOTÃO →
         </span>
-
       </div>
-
-
       <a
         class="botao-whatsapp"
         href="https://wa.me/5577981235466"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chamar Cleiton na BR no WhatsApp">
-
-
         <!-- LOGO NO BOTÃO -->
-
         <svg
           class="icone-whatsapp-botao"
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg">
-
           <path
             fill="#ffffff"
             d="M16 3C8.8 3 3 8.6 3 15.6C3 18 3.7 20.3 5 22.3L3.2 29L10.1 27.2C12 28.3 13.9 28.8 16 28.8C23.2 28.8 29 23.2 29 16.1C29 9 23.2 3 16 3ZM16 26.4C14.1 26.4 12.3 25.9 10.7 25L10.2 24.7L6.1 25.8L7.2 21.8L6.9 21.3C5.9 19.7 5.4 17.7 5.4 15.7C5.4 10 10.1 5.4 16 5.4C21.9 5.4 26.6 10.1 26.6 16C26.6 21.7 21.9 26.4 16 26.4ZM21.8 18.4C21.5 18.2 19.9 17.5 19.6 17.4C19.3 17.3 19.1 17.2 18.9 17.5C18.7 17.8 18.1 18.5 17.9 18.7C17.7 18.9 17.5 18.9 17.2 18.8C15.4 17.9 14.2 17.2 13 15.2C12.7 14.7 13.3 14.7 13.9 13.4C14 13.1 14 12.9 13.9 12.7C13.8 12.5 13.2 10.9 12.9 10.3C12.6 9.7 12.3 9.8 12.1 9.8H11.5C11.3 9.8 10.9 9.9 10.6 10.2C10.3 10.5 9.4 11.4 9.4 13.1C9.4 14.8 10.7 16.5 10.9 16.8C11.1 17.1 13.4 20.6 17 22.2C19.2 23.2 20.1 23.2 21.2 23C21.9 22.9 23.1 22.2 23.3 21.5C23.6 20.8 23.6 20.2 23.5 20C23.4 19.9 23.2 19.8 22.9 19.6L21.8 18.4Z"/>
-
         </svg>
-
         WHATSAPP
-
       </a>
-
     </section>
-
-
     <!-- =========================
          E-BOOK - BOTÃO DA CONFIANÇA
     ========================== -->
-
     <section class="card ebook-card">
       <span class="ebook-selo">BOTÃO DA CONFIANÇA</span>
-
       <h2>AQUI, A CONFIANÇA VEM PRIMEIRO.</h2>
-
       <img
         class="ebook-capa"
         src="downloads/capa-rumo-seguro-parte2.png"
         alt="Capa do e-book Guia Prático Rumo Seguro - Direção Defensiva na Rodovia - Parte 2">
-
       <div class="ebook-titulo-produto">
         GUIA PRÁTICO <strong>RUMO SEGURO</strong><br>
         DIREÇÃO DEFENSIVA NA RODOVIA — PARTE 2
       </div>
-
       <p>
         Um conteúdo prático preparado para compartilhar conhecimento que pode ajudar você
         a dirigir com mais atenção, segurança e responsabilidade nas estradas.
       </p>
-
       <div class="ebook-nao-paga">
         VOCÊ NÃO PRECISA PAGAR ANTES PARA RECEBER.
       </div>
-
       <p class="ebook-explicacao">
         Primeiro, baixe. Leia. Veja o valor que esse conteúdo tem para você.
       </p>
-
       <div class="ebook-contribua-chamada">
         SE O CONTEÚDO FOR ÚTIL PARA VOCÊ, VOCÊ PODE CONTRIBUIR COM
         <span class="ebook-valor">R$ 5,00</span>
         OU COM O VALOR QUE ACHAR JUSTO.
       </div>
-
       <div class="ebook-confio">
         <span>EU CONFIO EM VOCÊ PRIMEIRO.</span>
       </div>
-
       <a
         id="botaoEbook"
         class="botao-ebook"
@@ -2011,7 +1401,6 @@
         download>
         QUERO RECEBER O E-BOOK
       </a>
-
       <div id="ebookContribuicao" class="ebook-contribuicao" aria-live="polite">
         <h3>AGORA É COM VOCÊ.</h3>
         <p>
@@ -2030,44 +1419,30 @@
         <p id="statusPix" class="status-pix"></p>
       </div>
     </section>
-
-
     <!-- =========================
          REDES SOCIAIS
     ========================== -->
-
     <section class="card redes-card">
-
       <div class="redes-texto">
-
         <h2>
           SIGA-NOS EM NOSSAS REDES SOCIAIS
         </h2>
-
         <p>
           Clique em uma das opções abaixo:
         </p>
-
       </div>
-
-
       <div class="redes-botoes">
-
-
         <!-- INSTAGRAM -->
-
         <a
           class="botao-rede instagram"
           href="https://www.instagram.com/cleitonnabr/"
           target="_blank"
           rel="noopener noreferrer">
-
           <svg
             class="icone-rede"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
-
             <rect
               x="3"
               y="3"
@@ -2076,121 +1451,79 @@
               rx="5"
               stroke="#ffffff"
               stroke-width="2"/>
-
             <circle
               cx="12"
               cy="12"
               r="4"
               stroke="#ffffff"
               stroke-width="2"/>
-
             <circle
               cx="17.5"
               cy="6.5"
               r="1"
               fill="#ffffff"/>
-
           </svg>
-
           INSTAGRAM
-
         </a>
-
-
         <!-- FACEBOOK -->
-
         <a
           class="botao-rede facebook"
           href="https://www.facebook.com/cleitonnabr/"
           target="_blank"
           rel="noopener noreferrer">
-
           <svg
             class="icone-rede"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg">
-
             <path
               d="M14 8H17V4.5C16.5 4.4 15 4.2 13.5 4.2C10.5 4.2 8.5 6 8.5 9.4V12H5V16H8.5V24H13V16H16.5L17 12H13V9.8C13 8.6 13.3 8 14 8Z"
               fill="#ffffff"/>
-
           </svg>
-
           FACEBOOK
-
         </a>
-
       </div>
-
     </section>
-
-
   </main>
-
-
   <footer class="rodape">
     © 2026 Cleiton na BR
   </footer>
-
-
   <!-- MODAL IPHONE -->
-
   <div
     id="modalInstalacao"
     class="modal-instalacao">
-
     <div class="modal-conteudo">
-
       <h2>
         Adicionar ao iPhone
       </h2>
-
       <p>
         No Safari, você pode colocar o Cleiton na BR
         diretamente na Tela de Início.
       </p>
-
       <div class="passos-iphone">
-
         <strong>1.</strong>
         Toque no botão
         <strong>Compartilhar</strong>
         do Safari.
-
         <br>
-
         <strong>2.</strong>
         Procure por
         <strong>Adicionar à Tela de Início</strong>.
-
         <br>
-
         <strong>3.</strong>
         Toque em
         <strong>Adicionar</strong>.
-
       </div>
-
       <button
         id="fecharModal"
         class="botao-fechar"
         type="button">
-
         ENTENDI
-
       </button>
-
     </div>
-
   </div>
-
-
   <script>
-
-
     /* =====================================================
        PLAYER
-
        OBJETIVOS:
        1. PRIMEIRO PLAY CONTINUA SIMPLES E RÁPIDO.
        2. INTENÇÃO DO OUVINTE É SEPARADA DO ESTADO TÉCNICO.
@@ -2201,709 +1534,468 @@
        7. NÃO DISPUTA FOCO DE ÁUDIO COM OUTRO APP.
        8. PAUSE/STOP DA TELA BLOQUEADA SÃO RESPEITADOS.
     ===================================================== */
-
-
     let radio =
       document.getElementById(
         "radioPlayer"
       );
-
     const playBtn =
       document.getElementById(
         "playBtn"
       );
-
     const volume =
       document.getElementById(
         "volume"
       );
-
     const statusRadio =
       document.getElementById(
         "statusRadio"
       );
-
     const ondas =
       document.getElementById(
         "ondas"
       );
-
     const streamUrl =
       "https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3";
-
-
     /*
       ESTADO MAIS IMPORTANTE:
-
       true  = o ouvinte apertou Play e ainda quer ouvir.
       false = o próprio ouvinte mandou parar.
-
       UMA FALHA DE INTERNET OU DO PLAYER NUNCA MUDA
       usuarioQuerOuvir PARA false.
     */
-
     let usuarioQuerOuvir =
       false;
-
     let reconectando =
       false;
-
     let aguardandoGesto =
       false;
-
     let timerReconexao =
       null;
-
     let timerCarregamento =
       null;
-
     let timerSaude =
       null;
-
     let tentativaReconexao =
       0;
-
     /*
       QUANDO OUTRO APP / O PRÓPRIO ANDROID TOMA O FOCO DE ÁUDIO
       ENQUANTO A PÁGINA ESTÁ EM SEGUNDO PLANO, NÃO DEVEMOS
       DISPUTAR O ÁUDIO RELIGANDO A RÁDIO À FORÇA.
-
       A INTENÇÃO DO OUVINTE CONTINUA PRESERVADA, MAS A
       RECONEXÃO FICA SUSPENSA ATÉ A PÁGINA VOLTAR À TELA.
     */
     let pausaExternaSegundoPlano =
       false;
-
-
     const LIMITE_CARREGAMENTO =
       6500;
-
-
     radio.volume =
       Number(volume.value);
-
-
     function limparTimerReconexao() {
-
       if (
         timerReconexao
       ) {
-
         clearTimeout(
           timerReconexao
         );
-
         timerReconexao =
           null;
-
       }
-
     }
-
-
     function limparTimerCarregamento() {
-
       if (
         timerCarregamento
       ) {
-
         clearTimeout(
           timerCarregamento
         );
-
         timerCarregamento =
           null;
-
       }
-
     }
-
-
     function limparTimerSaude() {
-
       if (
         timerSaude
       ) {
-
         clearTimeout(
           timerSaude
         );
-
         timerSaude =
           null;
-
       }
-
     }
-
-
     function mostrarTocando() {
-
       playBtn.textContent =
         "❚❚";
-
       playBtn.setAttribute(
         "aria-label",
         "Parar WebRádio"
       );
-
       ondas.classList.add(
         "ativa"
       );
-
       statusRadio.textContent =
         "WebRádio Cleiton na BR";
-
     }
-
-
     function mostrarTentando(
       mensagem
     ) {
-
       playBtn.textContent =
         "❚❚";
-
       playBtn.setAttribute(
         "aria-label",
         "Parar WebRádio"
       );
-
       ondas.classList.remove(
         "ativa"
       );
-
       statusRadio.textContent =
         mensagem;
-
     }
-
-
     function mostrarParado() {
-
       playBtn.textContent =
         "▶";
-
       playBtn.setAttribute(
         "aria-label",
         "Ouvir WebRádio"
       );
-
       ondas.classList.remove(
         "ativa"
       );
-
       statusRadio.textContent =
         "Toque no Play para ouvir";
-
     }
-
-
     function mostrarAguardandoGesto() {
-
       playBtn.textContent =
         "▶";
-
       playBtn.setAttribute(
         "aria-label",
         "Reconectar WebRádio"
       );
-
       ondas.classList.remove(
         "ativa"
       );
-
       statusRadio.textContent =
         "Toque no Play para reconectar";
-
     }
-
-
     function estaTocando() {
-
       return (
         radio &&
         !radio.paused &&
         !radio.ended &&
         radio.readyState >= 2
       );
-
     }
-
-
     /*
       O TEMPO LIMITE É A PROTEÇÃO CONTRA
       "CARREGANDO ÁUDIO..." PARA SEMPRE.
-
       waiting CONTINUA SENDO TRATADO COMO BUFFERING NORMAL.
       SÓ DEPOIS DE 6,5 SEGUNDOS SEM RECUPERAÇÃO
       ELE SE TORNA UMA FALHA CONFIRMADA.
     */
-
     function armarLimiteCarregamento() {
-
       limparTimerCarregamento();
-
       timerCarregamento =
         setTimeout(
           () => {
-
             timerCarregamento =
               null;
-
             if (
               !usuarioQuerOuvir ||
               aguardandoGesto
             ) {
-
               return;
-
             }
-
             if (
               !estaTocando()
             ) {
-
               reconectarRadio();
-
             }
-
           },
           LIMITE_CARREGAMENTO
         );
-
     }
-
-
     /*
       TODOS OS EVENTOS DO AUDIO PASSAM POR ESTA FUNÇÃO.
-
       ISSO É NECESSÁRIO PORQUE, QUANDO UMA SESSÃO FICA
       TRAVADA, O ELEMENTO <audio> ANTIGO É REALMENTE
       DESCARTADO E SUBSTITUÍDO POR OUTRO.
     */
-
     function vincularEventosPlayer(
       player
     ) {
-
-
       /* COMEÇOU A TOCAR */
-
       player.addEventListener(
         "playing",
         (evento) => {
-
           if (
             evento.currentTarget !==
             radio
           ) {
-
             return;
-
           }
-
           reconectando =
             false;
-
           aguardandoGesto =
             false;
-
           pausaExternaSegundoPlano =
             false;
-
           tentativaReconexao =
             0;
-
           limparTimerReconexao();
           limparTimerCarregamento();
-
           if (
             usuarioQuerOuvir
           ) {
-
             mostrarTocando();
-
           }
-
         }
       );
-
-
       /*
         BUFFERING NORMAL.
-
         NÃO DERRUBAMOS O AUDIO IMEDIATAMENTE.
       */
-
       player.addEventListener(
         "waiting",
         (evento) => {
-
           if (
             evento.currentTarget !==
             radio
           ) {
-
             return;
-
           }
-
           if (
             usuarioQuerOuvir &&
             !aguardandoGesto
           ) {
-
             mostrarTentando(
               "Carregando áudio..."
             );
-
             armarLimiteCarregamento();
-
           }
-
         }
       );
-
-
       /*
         PAUSA PODE TER DUAS ORIGENS DIFERENTES:
-
         1. FALHA TÉCNICA COM A PÁGINA VISÍVEL -> RECONECTA.
         2. ANDROID / OUTRO APP TOMOU O FOCO DE ÁUDIO ENQUANTO
            A PÁGINA ESTAVA EM SEGUNDO PLANO -> NÃO DISPUTA
            O ÁUDIO E NÃO RELIGA A RÁDIO À FORÇA.
-
         ISSO É IMPORTANTE, POR EXEMPLO, QUANDO O WHATSAPP
         PRECISA USAR O MICROFONE PARA GRAVAR UM ÁUDIO.
       */
-
       player.addEventListener(
         "pause",
         (evento) => {
-
           if (
             evento.currentTarget !==
             radio
           ) {
-
             return;
-
           }
-
           if (
             !usuarioQuerOuvir
           ) {
-
             mostrarParado();
             return;
-
           }
-
           if (
             document.hidden
           ) {
-
             pausaExternaSegundoPlano =
               true;
-
             reconectando =
               false;
-
             limparTimerReconexao();
             limparTimerCarregamento();
             limparTimerSaude();
-
             mostrarTentando(
               "Áudio pausado pelo sistema"
             );
-
             return;
-
           }
-
           if (
             reconectando ||
             aguardandoGesto
           ) {
-
             return;
-
           }
-
           mostrarTentando(
             "Reconectando..."
           );
-
           agendarReconexao(
             500
           );
-
         }
       );
-
-
       /* STREAM TERMINOU INESPERADAMENTE */
-
       player.addEventListener(
         "ended",
         (evento) => {
-
           if (
             evento.currentTarget !==
             radio
           ) {
-
             return;
-
           }
-
           if (
             usuarioQuerOuvir
           ) {
-
             mostrarTentando(
               "Reconectando..."
             );
-
             agendarReconexao(
               300
             );
-
           }
-
         }
       );
-
-
       /* ERRO REAL */
-
       player.addEventListener(
         "error",
         (evento) => {
-
           if (
             evento.currentTarget !==
             radio
           ) {
-
             return;
-
           }
-
           if (
             usuarioQuerOuvir
           ) {
-
             mostrarTentando(
               "Reconectando..."
             );
-
             agendarReconexao(
               500
             );
-
           }
-
         }
       );
-
-
       /*
         STALLED PODE SER TEMPORÁRIO.
-
         DAMOS UMA PEQUENA CHANCE PARA O STREAM
         VOLTAR SOZINHO.
       */
-
       player.addEventListener(
         "stalled",
         (evento) => {
-
           if (
             evento.currentTarget !==
             radio
           ) {
-
             return;
-
           }
-
           if (
             usuarioQuerOuvir
           ) {
-
             mostrarTentando(
               "Carregando áudio..."
             );
-
             armarLimiteCarregamento();
-
           }
-
         }
       );
-
     }
-
-
     /*
       ATIVA OS EVENTOS NO PLAYER ORIGINAL.
-
       IMPORTANTE:
       NESTE MOMENTO NÃO EXISTE load(),
       TROCA DE URL OU CACHEBUSTER.
     */
-
     vincularEventosPlayer(
       radio
     );
-
-
     /*
       RECRIA COMPLETAMENTE A SESSÃO DE AUDIO.
-
       SÓ É USADO DEPOIS QUE UMA FALHA FOI
       CONFIRMADA.
-
       ISSO SIMULA AUTOMATICAMENTE O EFEITO QUE
       OBSERVAMOS QUANDO FECHAR E ABRIR A PÁGINA
       FAZ A RÁDIO VOLTAR.
     */
-
     function recriarPlayer() {
-
       const playerAntigo =
         radio;
-
       const playerNovo =
         document.createElement(
           "audio"
         );
-
       playerNovo.id =
         "radioPlayer";
-
       playerNovo.preload =
         "none";
-
       playerNovo.volume =
         Number(volume.value);
-
       playerNovo.src =
         streamUrl +
         "?r=" +
         Date.now();
-
-
       playerAntigo.replaceWith(
         playerNovo
       );
-
-
       /*
         PRIMEIRO TROCAMOS A REFERÊNCIA.
         DEPOIS DESCARTAMOS O ANTIGO.
-
         ASSIM EVENTOS ATRASADOS DO PLAYER VELHO
         SÃO IGNORADOS.
       */
-
       radio =
         playerNovo;
-
-
       vincularEventosPlayer(
         radio
       );
-
-
       try {
-
         playerAntigo.pause();
-
         playerAntigo.removeAttribute(
           "src"
         );
-
         playerAntigo.load();
-
       }
-
       catch (erro) {
-
         /*
           NÃO HÁ AÇÃO NECESSÁRIA.
           O PLAYER ANTIGO JÁ SAIU DO DOM.
         */
-
       }
-
-
       radio.load();
-
-
       return radio;
-
     }
-
-
     function tratarFalhaDePlay(
       erro
     ) {
-
       reconectando =
         false;
-
       limparTimerCarregamento();
-
-
       if (
         !usuarioQuerOuvir
       ) {
-
         return;
-
       }
-
-
       /*
         ALGUNS NAVEGADORES, ESPECIALMENTE EM
         CELULARES, PODEM EXIGIR UM NOVO TOQUE
         DEPOIS DE LONGA SUSPENSÃO.
-
         NESSE CASO NÃO MENTIMOS PARA A INTERFACE
         DIZENDO QUE O OUVINTE PAROU.
       */
-
       if (
         erro &&
         erro.name ===
           "NotAllowedError"
       ) {
-
         aguardandoGesto =
           true;
-
         mostrarAguardandoGesto();
-
         return;
-
       }
-
-
       tentativaReconexao +=
         1;
-
-
       /*
         PEQUENO BACKOFF:
         1,2s -> 1,9s -> 2,6s -> 3,3s -> máximo 4s.
-
         EVITA UM LOOP AGRESSIVO SEM DEIXAR A
         RECONEXÃO DEMORAR DEMAIS.
       */
-
       const espera =
         Math.min(
           1200 +
@@ -2914,24 +2006,16 @@
           700,
           4000
         );
-
-
       mostrarTentando(
         "Tentando reconectar..."
       );
-
-
       agendarReconexao(
         espera
       );
-
     }
-
-
     function agendarReconexao(
       tempo
     ) {
-
       if (
         !usuarioQuerOuvir ||
         aguardandoGesto ||
@@ -2940,23 +2024,14 @@
           document.hidden
         )
       ) {
-
         return;
-
       }
-
-
       limparTimerReconexao();
-
-
       timerReconexao =
         setTimeout(
           () => {
-
             timerReconexao =
               null;
-
-
             if (
               !usuarioQuerOuvir ||
               aguardandoGesto ||
@@ -2965,37 +2040,23 @@
                 document.hidden
               )
             ) {
-
               return;
-
             }
-
-
             if (
               navigator.onLine ===
               false
             ) {
-
               mostrarTentando(
                 "Sem conexão..."
               );
-
               return;
-
             }
-
-
             reconectarRadio();
-
           },
           tempo
         );
-
     }
-
-
     async function reconectarRadio() {
-
       if (
         !usuarioQuerOuvir ||
         reconectando ||
@@ -3005,476 +2066,300 @@
           document.hidden
         )
       ) {
-
         return;
-
       }
-
-
       if (
         navigator.onLine ===
         false
       ) {
-
         mostrarTentando(
           "Sem conexão..."
         );
-
         return;
-
       }
-
-
       reconectando =
         true;
-
-
       limparTimerReconexao();
       limparTimerCarregamento();
-
-
       mostrarTentando(
         "Reconectando..."
       );
-
-
       /*
         AQUI SIM EXISTE FALHA CONFIRMADA.
-
         DESCARTAMOS A SESSÃO QUE PODE TER FICADO
         PRESA E CRIAMOS UMA CONEXÃO NOVA.
       */
-
       const player =
         recriarPlayer();
-
-
       armarLimiteCarregamento();
-
-
       try {
-
         await player.play();
-
         /*
           O EVENTO "playing" FARÁ A CONFIRMAÇÃO
           FINAL E LIMPARÁ OS TIMERS.
         */
-
       }
-
       catch (erro) {
-
         if (
           player !== radio
         ) {
-
           return;
-
         }
-
         tratarFalhaDePlay(
           erro
         );
-
       }
-
     }
-
-
     /*
       PRIMEIRO PLAY.
-
       ESTE É O PONTO QUE NÃO QUERÍAMOS ESTRAGAR.
-
       NÃO HÁ:
       - cachebuster
       - load()
       - recriação
       - troca de src
-
       APENAS radio.play().
     */
-
     async function iniciarRadio() {
-
       usuarioQuerOuvir =
         true;
-
       aguardandoGesto =
         false;
-
       reconectando =
         false;
-
       tentativaReconexao =
         0;
-
-
       limparTimerReconexao();
       limparTimerCarregamento();
-
-
       mostrarTentando(
         "Conectando..."
       );
-
-
       armarLimiteCarregamento();
-
-
       try {
-
         await radio.play();
-
       }
-
       catch (erro) {
-
         tratarFalhaDePlay(
           erro
         );
-
       }
-
     }
-
-
     /*
       PARADA DELIBERADA PELO OUVINTE.
-
       ESTE É O ÚNICO MOMENTO EM QUE
       usuarioQuerOuvir VOLTA PARA false.
     */
-
     function pararRadio() {
-
       usuarioQuerOuvir =
         false;
-
       aguardandoGesto =
         false;
-
       reconectando =
         false;
-
       pausaExternaSegundoPlano =
         false;
-
       tentativaReconexao =
         0;
-
-
       limparTimerReconexao();
       limparTimerCarregamento();
       limparTimerSaude();
-
-
       try {
-
         radio.pause();
-
       }
-
       catch (erro) {
-
         /*
           NADA A FAZER.
         */
-
       }
-
-
       mostrarParado();
-
     }
-
-
     /*
       NOVO TOQUE APÓS O NAVEGADOR TER EXIGIDO
       INTERAÇÃO HUMANA PARA LIBERAR O AUDIO.
-
       NÃO É UMA NOVA INTENÇÃO DE ESCUTA:
       usuarioQuerOuvir JÁ CONTINUA true.
     */
-
     async function retomarComGesto() {
-
       aguardandoGesto =
         false;
-
       mostrarTentando(
         "Conectando..."
       );
-
       armarLimiteCarregamento();
-
-
       try {
-
         await radio.play();
-
       }
-
       catch (erro) {
-
         tratarFalhaDePlay(
           erro
         );
-
       }
-
     }
-
-
     /* CLIQUE NO BOTÃO */
-
     playBtn.addEventListener(
       "click",
       () => {
-
-
         /*
           CASO ESPECIAL:
           O NAVEGADOR PEDIU UM NOVO TOQUE
           PARA LIBERAR O AUDIO.
         */
-
         if (
           usuarioQuerOuvir &&
           aguardandoGesto
         ) {
-
           retomarComGesto();
-
           return;
-
         }
-
-
         /*
           A INTENÇÃO DO OUVINTE É QUE MANDA.
-
           SE ELE JÁ QUER OUVIR, O BOTÃO SERVE
           PARA PARAR, MESMO QUE A REDE ESTEJA
           MOMENTANEAMENTE RECONECTANDO.
         */
-
         if (
           usuarioQuerOuvir
         ) {
-
           pararRadio();
-
           return;
-
         }
-
-
         iniciarRadio();
-
       }
     );
-
-
     /* =====================================================
        CONTROLES DE MÍDIA DO CELULAR / TELA BLOQUEADA
-
        SEM ESTES HANDLERS, O ANDROID PODE PAUSAR O <audio>,
        MAS O SITE INTERPRETA A PAUSA COMO FALHA E RECONECTA.
-
        PAUSE / STOP DO SISTEMA PASSAM A SER UMA DECISÃO REAL
        DO OUVINTE, EXATAMENTE COMO O BOTÃO STOP DO SITE.
     ===================================================== */
-
     if (
       "mediaSession" in navigator
     ) {
-
       try {
-
         navigator.mediaSession.setActionHandler(
           "pause",
           () => {
             pararRadio();
           }
         );
-
         navigator.mediaSession.setActionHandler(
           "stop",
           () => {
             pararRadio();
           }
         );
-
         navigator.mediaSession.setActionHandler(
           "play",
           () => {
-
             pausaExternaSegundoPlano =
               false;
-
             if (
               usuarioQuerOuvir &&
               aguardandoGesto
             ) {
-
               retomarComGesto();
               return;
-
             }
-
             if (
               !usuarioQuerOuvir
             ) {
-
               iniciarRadio();
               return;
-
             }
-
             radio.play()
               .catch(
                 tratarFalhaDePlay
               );
-
           }
         );
-
       }
-
       catch (erro) {
-
         /*
           ALGUNS NAVEGADORES POSSUEM MEDIA SESSION, MAS NÃO
           IMPLEMENTAM TODAS AS AÇÕES. O PLAYER NORMAL SEGUE
           FUNCIONANDO MESMO NESSE CASO.
         */
-
       }
-
     }
-
-
     /* VOLUME */
-
     volume.addEventListener(
       "input",
       () => {
-
         if (
           radio
         ) {
-
           radio.volume =
             Number(volume.value);
-
         }
-
       }
     );
-
-
     /*
       VERIFICAÇÃO DE SAÚDE.
-
       USADA QUANDO:
       - VOLTAMOS DO SEGUNDO PLANO;
       - A TELA É REABERTA;
       - HÁ MUDANÇA DE REDE.
-
       NÃO INTERROMPE UM STREAM QUE ESTEJA
       EFETIVAMENTE AVANÇANDO.
     */
-
     function verificarSaudeEmBreve(
       espera = 1600
     ) {
-
       if (
         !usuarioQuerOuvir ||
         aguardandoGesto ||
         document.hidden
       ) {
-
         return;
-
       }
-
-
       limparTimerSaude();
-
-
       const playerObservado =
         radio;
-
       const tempoInicial =
         playerObservado.currentTime;
-
-
       /*
         SE JÁ ESTÁ PAUSADO QUANDO NÃO DEVERIA,
         NÃO PRECISAMOS ESPERAR.
       */
-
       if (
         playerObservado.paused ||
         playerObservado.ended
       ) {
-
         agendarReconexao(
           250
         );
-
         return;
-
       }
-
-
       timerSaude =
         setTimeout(
           () => {
-
             timerSaude =
               null;
-
-
             if (
               !usuarioQuerOuvir ||
               aguardandoGesto ||
               document.hidden ||
               playerObservado !== radio
             ) {
-
               return;
-
             }
-
-
             if (
               radio.paused ||
               radio.ended
             ) {
-
               reconectarRadio();
               return;
-
             }
-
-
             const tempoAtual =
               radio.currentTime;
-
-
             /*
               EM STREAMS ONDE currentTime É FINITO,
               ELE DEVE ESTAR AVANÇANDO.
-
               SE NÃO ANDOU NADA, A CONEXÃO PODE TER
               FICADO "VIVA" NO NAVEGADOR MAS MORTA
               NA PRÁTICA.
             */
-
             if (
               Number.isFinite(
                 tempoInicial
@@ -3485,124 +2370,85 @@
               tempoAtual <=
                 tempoInicial + 0.15
             ) {
-
               reconectarRadio();
-
             }
-
           },
           espera
         );
-
     }
-
-
     /* INTERNET CAIU */
-
     window.addEventListener(
       "offline",
       () => {
-
         if (
           usuarioQuerOuvir
         ) {
-
           limparTimerReconexao();
           limparTimerCarregamento();
-
           mostrarTentando(
             "Sem conexão..."
           );
-
         }
-
       }
     );
-
-
     /* INTERNET VOLTOU */
-
     window.addEventListener(
       "online",
       () => {
-
         if (
           usuarioQuerOuvir
         ) {
-
           mostrarTentando(
             "Reconectando..."
           );
-
           agendarReconexao(
             250
           );
-
         }
-
       }
     );
-
-
     /*
       TROCA DE WI-FI / DADOS MÓVEIS.
-
       A API NÃO EXISTE EM TODOS OS NAVEGADORES,
       POR ISSO ELA É APENAS UMA CAMADA EXTRA.
-
       NÃO FORÇAMOS A TROCA SE O AUDIO CONTINUAR
       SAUDÁVEL.
     */
-
     const conexaoRede =
       navigator.connection ||
       navigator.mozConnection ||
       navigator.webkitConnection;
-
-
     if (
       conexaoRede &&
       typeof conexaoRede.addEventListener ===
         "function"
     ) {
-
       conexaoRede.addEventListener(
         "change",
         () => {
-
           if (
             usuarioQuerOuvir
           ) {
-
             verificarSaudeEmBreve(
               1000
             );
-
           }
-
         }
       );
-
     }
-
-
     /*
       VOLTA DO SEGUNDO PLANO / PWA / TELA BLOQUEADA.
-
       SE O ANDROID SUSPENDEU O AUDIO, A INTENÇÃO
       DE ESCUTA CONTINUA E O PLAYER TENTA RECUPERAR.
     */
-
     document.addEventListener(
       "visibilitychange",
       () => {
-
         if (
           document.visibilityState ===
             "visible" &&
           usuarioQuerOuvir
         ) {
-
           /*
             SE OUTRO APP HAVIA TOMADO O FOCO DE ÁUDIO,
             AGORA A PÁGINA VOLTOU AO PRIMEIRO PLANO E PODE
@@ -3610,61 +2456,43 @@
           */
           pausaExternaSegundoPlano =
             false;
-
           verificarSaudeEmBreve(
             900
           );
-
         }
-
       }
     );
-
-
     window.addEventListener(
       "pageshow",
       () => {
-
         if (
           usuarioQuerOuvir
         ) {
-
           verificarSaudeEmBreve(
             900
           );
-
         }
-
       }
     );
-
-
-
     /* =====================================================
        INSTALAÇÃO
     ===================================================== */
-
-
     /* =====================================================
        E-BOOK - BOTÃO DA CONFIANÇA
     ===================================================== */
-
     const botaoEbook = document.getElementById("botaoEbook");
     const ebookContribuicao = document.getElementById("ebookContribuicao");
     const botaoCopiarPix = document.getElementById("botaoCopiarPix");
     const statusPix = document.getElementById("statusPix");
     const chavePix = "cleitonrochanabr@gmail.com";
-
     botaoEbook.addEventListener("click", () => {
       setTimeout(() => {
         ebookContribuicao.classList.add("visivel");
         ebookContribuicao.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }, 350);
     });
-
     botaoCopiarPix.addEventListener("click", async () => {
       let copiado = false;
-
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(chavePix);
@@ -3673,7 +2501,6 @@
       } catch (erro) {
         copiado = false;
       }
-
       if (!copiado) {
         const campo = document.createElement("textarea");
         campo.value = chavePix;
@@ -3682,16 +2509,13 @@
         campo.style.opacity = "0";
         document.body.appendChild(campo);
         campo.select();
-
         try {
           copiado = document.execCommand("copy");
         } catch (erro) {
           copiado = false;
         }
-
         campo.remove();
       }
-
       if (copiado) {
         botaoCopiarPix.textContent = "✓ CHAVE PIX COPIADA!";
         statusPix.textContent = "Agora é só abrir o aplicativo do seu banco e colar a chave.";
@@ -3699,326 +2523,205 @@
         statusPix.textContent = "Chave PIX: " + chavePix;
       }
     });
-
-
     const instalacaoCard =
       document.getElementById(
         "instalacaoCard"
       );
-
     const botaoInstalar =
       document.getElementById(
         "botaoInstalar"
       );
-
     const tituloInstalacao =
       document.getElementById(
         "tituloInstalacao"
       );
-
     const textoInstalacao =
       document.getElementById(
         "textoInstalacao"
       );
-
     const modalInstalacao =
       document.getElementById(
         "modalInstalacao"
       );
-
     const fecharModal =
       document.getElementById(
         "fecharModal"
       );
-
-
     let eventoInstalacao =
       null;
-
-
     const userAgent =
       navigator.userAgent ||
       navigator.vendor ||
       window.opera;
-
-
     const ehIOS =
-
       /iPad|iPhone|iPod/.test(
         userAgent
       )
-
       ||
-
       (
         navigator.platform ===
           "MacIntel"
-
         &&
-
         navigator.maxTouchPoints >
           1
       );
-
-
     const ehAndroid =
       /Android/i.test(
         userAgent
       );
-
-
     const estaInstalado =
-
       window.matchMedia(
         "(display-mode: standalone)"
       ).matches
-
       ||
-
       window.navigator.standalone ===
         true;
-
-
     /*
       ANDROID
-
       ENQUANTO O DOWNLOAD DIRETO DO APK ESTÁ DESABILITADO,
       O CARD DIRECIONA O OUVINTE PARA A CLEITON NA BR
       NO RADIOSNET.
     */
-
     if (
       ehAndroid
     ) {
-
-      tituloInstalacao.textContent =
-        "OUÇA TAMBÉM PELO RADIOSNET";
-
-      textoInstalacao.textContent =
-        "CLEITON NA BR NO RADIOSNET";
-
-      botaoInstalar.textContent =
-        "ABRIR NO RADIOSNET";
-
-      instalacaoCard.classList.add(
-        "visivel"
-      );
-
-      botaoInstalar.addEventListener(
-        "click",
-        () => {
-
-          window.location.href =
-            "https://l.radios.com.br/r/293551";
-
-        }
-      );
-
+      /*
+        O BLOCO ANTIGO DE INSTALAÇÃO NÃO É EXIBIDO NO ANDROID.
+        O RADIOSNET AGORA POSSUI UM CARD PRÓPRIO, VISUAL E
+        RESPONSIVO, LOGO ABAIXO DA ÁREA PRINCIPAL DO SITE.
+      */
     }
-
-
     /* IPHONE */
-
     else if (
       ehIOS &&
       !estaInstalado
     ) {
-
       tituloInstalacao.textContent =
         "Tenha o Cleiton na BR no seu iPhone";
-
       textoInstalacao.textContent =
         "Adicione à Tela de Início para acessar como aplicativo.";
-
       botaoInstalar.textContent =
         "ADICIONAR AO IPHONE";
-
       instalacaoCard.classList.add(
         "visivel"
       );
-
       botaoInstalar.addEventListener(
         "click",
         () => {
-
           modalInstalacao.classList.add(
             "visivel"
           );
-
         }
       );
-
     }
-
-
     /*
       COMPUTADOR
-
       MANTÉM A INSTALAÇÃO DO SITE COMO PWA NOS NAVEGADORES
       QUE OFERECEREM O EVENTO beforeinstallprompt.
     */
-
     else {
-
       window.addEventListener(
         "beforeinstallprompt",
         (evento) => {
-
           evento.preventDefault();
-
           eventoInstalacao =
             evento;
-
-
           if (
             estaInstalado
           ) {
-
             return;
-
           }
-
-
           tituloInstalacao.textContent =
             "Tenha o Cleiton na BR no seu computador";
-
           textoInstalacao.textContent =
             "Instale para acessar diretamente como aplicativo.";
-
           botaoInstalar.textContent =
             "INSTALAR NO COMPUTADOR";
-
-
           instalacaoCard.classList.add(
             "visivel"
           );
-
         }
       );
-
-
       botaoInstalar.addEventListener(
         "click",
         async () => {
-
           if (
             !eventoInstalacao
           ) {
-
             return;
-
           }
-
-
           eventoInstalacao.prompt();
-
-
           try {
-
             await eventoInstalacao
               .userChoice;
-
           }
-
           catch (erro) {
-
             console.error(
               "Erro durante instalação:",
               erro
             );
-
           }
-
-
           eventoInstalacao =
             null;
-
-
           instalacaoCard
             .classList
             .remove(
               "visivel"
             );
-
         }
       );
-
     }
-
-
     /* MODAL IPHONE */
-
     fecharModal.addEventListener(
       "click",
       () => {
-
         modalInstalacao
           .classList
           .remove(
             "visivel"
           );
-
       }
     );
-
-
     modalInstalacao.addEventListener(
       "click",
       (evento) => {
-
         if (
           evento.target ===
           modalInstalacao
         ) {
-
           modalInstalacao
             .classList
             .remove(
               "visivel"
             );
-
         }
-
       }
     );
-
-
     window.addEventListener(
       "appinstalled",
       () => {
-
         eventoInstalacao =
           null;
-
         if (
           !ehAndroid
         ) {
-
           instalacaoCard
             .classList
             .remove(
               "visivel"
             );
-
         }
-
       }
     );
-
-
-
     /* =====================================================
        SERVICE WORKER
     ===================================================== */
-
     if (
       "serviceWorker" in navigator
     ) {
-
       window.addEventListener(
         "load",
         () => {
-
           navigator
             .serviceWorker
             .register(
@@ -4026,22 +2729,15 @@
             )
             .catch(
               (erro) => {
-
                 console.error(
                   "Erro ao registrar Service Worker:",
                   erro
                 );
-
               }
             );
-
         }
       );
-
     }
-
   </script>
-
 </body>
-
 </html>
