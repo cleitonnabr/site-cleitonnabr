@@ -90,7 +90,7 @@
     }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       background: #f3f3f3;
       color: #171717;
     }
@@ -98,7 +98,7 @@
        CABEÇALHO
     ========================== */
     .hero {
-      min-height: 260px;
+      min-height: 220px;
       padding: 25px 20px;
       display: flex;
       align-items: center;
@@ -131,45 +131,208 @@
     }
     .linha-principal {
       display: grid;
-      grid-template-columns:
-        1.25fr 0.9fr;
+      grid-template-columns: 1fr;
       gap: 26px;
       align-items: stretch;
     }
     .card {
-      border-radius: 18px;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow:
-        0 7px 22px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+    }
+
+    h1, h2, h3,
+    .no-ar,
+    .botao-youtube,
+    .botao-radiosnet,
+    .botao-whatsapp,
+    .botao-instalar,
+    .botao-ebook,
+    .botao-rede {
+      letter-spacing: 0.25px;
+    }
+
+    h1, h2, h3 {
+      font-weight: 850;
     }
 
     /* =========================
        APRESENTAÇÃO / SEO
     ========================== */
     .apresentacao-card {
-      margin-bottom: 30px;
-      padding: 24px 28px;
-      background: #ffffff;
-      border-left: 6px solid #ffd000;
+      margin-bottom: 28px;
+      padding: 8px 4px 24px;
+      background: transparent;
+      border: 0;
+      border-bottom: 3px solid #ffd000;
+      box-shadow: none;
+      border-radius: 0;
     }
 
     .apresentacao-card h1 {
-      margin: 0 0 10px;
-      color: #171717;
-      font-size: 30px;
-      line-height: 1.18;
+      margin: 0 0 12px;
+      color: #111;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.45px;
     }
 
     .apresentacao-card p {
       margin: 0;
-      color: #4e4e4e;
+      max-width: 980px;
+      color: #414141;
       font-size: 16px;
-      line-height: 1.55;
+      line-height: 1.58;
     }
 
     .apresentacao-card p + p {
       margin-top: 8px;
     }
+    /* =========================
+       PLAYER FIXO NO CABEÇALHO
+    ========================== */
+    .player-fixo {
+      position: sticky;
+      top: 0;
+      z-index: 9000;
+      width: 100%;
+      background: rgba(12,12,12,0.97);
+      border-bottom: 4px solid #ffd000;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+      backdrop-filter: blur(8px);
+    }
+
+    .player-fixo-inner {
+      width: min(1180px, calc(100% - 28px));
+      min-height: 92px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto minmax(180px, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 0;
+    }
+
+    .player-marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .player-logo {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .player-identidade {
+      min-width: 0;
+    }
+
+    .player-identidade strong {
+      display: block;
+      color: #fff;
+      font-size: 19px;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .player-identidade span {
+      display: block;
+      margin-top: 4px;
+      color: #ffd000;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .player-controle-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      min-width: 0;
+    }
+
+    .player-fixo .linha-no-ar {
+      margin: 0;
+      gap: 10px;
+    }
+
+    .player-fixo .no-ar {
+      font-size: 14px;
+    }
+
+    .player-fixo .ondas {
+      height: 24px;
+    }
+
+    .player-fixo .play-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .player-fixo .volume-area {
+      max-width: 190px;
+      min-width: 105px;
+    }
+
+    .player-fixo .status-radio {
+      margin: 0;
+      min-height: 16px;
+      color: #d4d4d4;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .player-radiosnet {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 210px;
+      padding: 10px 14px;
+      color: #fff;
+      text-decoration: none;
+      border-left: 1px solid #3f3f3f;
+    }
+
+    .player-radiosnet img {
+      width: 46px;
+      height: 46px;
+      border-radius: 9px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .player-radiosnet-texto {
+      min-width: 0;
+    }
+
+    .player-radiosnet-texto small {
+      display: block;
+      color: #b8dff3;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .player-radiosnet-texto strong {
+      display: block;
+      margin-top: 2px;
+      color: #ffd000;
+      font-size: 14px;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .player-radiosnet:hover strong {
+      color: #ffe770;
+    }
+
     /* =========================
        INSTALAÇÃO
     ========================== */
@@ -906,6 +1069,51 @@
         line-height: 1.5;
       }
 
+      /* PLAYER FIXO */
+      .player-fixo-inner {
+        width: calc(100% - 16px);
+        min-height: 74px;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 7px 0;
+      }
+      .player-marca {
+        display: none;
+      }
+      .player-controle-area {
+        gap: 9px;
+      }
+      .player-fixo .linha-no-ar {
+        display: none;
+      }
+      .player-fixo .play-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 19px;
+      }
+      .player-fixo .volume-area {
+        min-width: 72px;
+        max-width: 120px;
+      }
+      .player-fixo .status-radio {
+        display: none;
+      }
+      .player-radiosnet {
+        min-width: 0;
+        padding: 6px 0 6px 10px;
+        gap: 7px;
+      }
+      .player-radiosnet img {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+      }
+      .player-radiosnet-texto small {
+        font-size: 8px;
+      }
+      .player-radiosnet-texto strong {
+        font-size: 11px;
+      }
       /* INSTALAÇÃO */
       .instalacao-card {
         margin-bottom: 16px;
@@ -1230,6 +1438,54 @@
       src="CLEITON%20NA%20BR%20LOGO%20PNG.png"
       alt="Cleiton na BR - rádio, direção defensiva e informação de estrada">
   </header>
+
+  <!-- PLAYER FIXO: permanece visível durante a navegação da página -->
+  <section class="player-fixo" aria-label="Player da Rádio Cleiton na BR">
+    <div class="player-fixo-inner">
+      <div class="player-marca">
+        <img class="player-logo" src="logo-webradio.png" alt="WebRádio Cleiton na BR">
+        <div class="player-identidade">
+          <strong>RÁDIO CLEITON NA BR</strong>
+          <span>A SUA COMPANHIA DE ESTRADA</span>
+        </div>
+      </div>
+
+      <div class="player-controle-area">
+        <div class="linha-no-ar" aria-hidden="true">
+          <div class="no-ar"><span class="bolinha"></span><span>NO AR</span></div>
+          <div id="ondas" class="ondas">
+            <span class="onda"></span><span class="onda"></span><span class="onda"></span>
+            <span class="onda"></span><span class="onda"></span><span class="onda"></span>
+          </div>
+        </div>
+        <button id="playBtn" class="play-btn" type="button" aria-label="Ouvir WebRádio">▶</button>
+        <div class="volume-area">
+          <svg class="volume-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 9V15H8L13 19V5L8 9H4Z" fill="#ffffff"/>
+            <path d="M16 8C17.5 9.3 18 10.5 18 12C18 13.5 17.5 14.7 16 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M19 5C21 7 22 9.2 22 12C22 14.8 21 17 19 19" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input id="volume" class="volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+        </div>
+        <div id="statusRadio" class="status-radio">Toque no Play para ouvir</div>
+      </div>
+
+      <a class="player-radiosnet" href="https://l.radios.com.br/r/293551" target="_blank" rel="noopener noreferrer" aria-label="Ouvir Rádio Cleiton na BR pela RadiosNet">
+        <img src="downloads/radiosnet-logo.jpg.jpg" alt="RadiosNet">
+        <span class="player-radiosnet-texto">
+          <small>OUÇA TAMBÉM PELA</small>
+          <strong>RADIOSNET</strong>
+        </span>
+      </a>
+
+      <audio id="radioPlayer" preload="none" src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3"></audio>
+    </div>
+  </section>
+
+  <!--
+    O player fica fora do conteúdo principal. Quando as páginas internas forem criadas,
+    a navegação poderá trocar somente o conteúdo abaixo sem reiniciar este player.
+  -->
   <main class="conteudo">
     <!-- INSTALAÇÃO -->
     <section
@@ -1253,7 +1509,7 @@
 
     <!-- APRESENTAÇÃO PARA VISITANTES E MECANISMOS DE BUSCA -->
     <section class="card apresentacao-card" aria-labelledby="tituloPrincipal">
-      <h1 id="tituloPrincipal">Rádio Cleiton na BR — música, direção defensiva e informação de estrada</h1>
+      <h1 id="tituloPrincipal">Rádio Cleiton na BR — Música, Direção Defensiva e Informação de Estrada</h1>
       <p>
         A WebRádio Cleiton na BR reúne música de várias épocas, dicas de direção defensiva,
         segurança no trânsito e informações de rodovias para motoristas, caminhoneiros,
@@ -1264,91 +1520,7 @@
         notícias das estradas e programação musical ao longo do dia.
       </p>
     </section>
-
-    <div class="linha-principal">
-      <!-- WEBRÁDIO -->
-      <section class="card radio-card">
-        <img
-          class="logo-radio"
-          src="logo-webradio.png"
-          alt="WebRádio Cleiton na BR">
-        <div class="radio-info">
-          <div class="linha-no-ar">
-            <div class="no-ar">
-              <span class="bolinha"></span>
-              <span>
-                NO AR
-              </span>
-            </div>
-            <div
-              id="ondas"
-              class="ondas">
-              <span class="onda"></span>
-              <span class="onda"></span>
-              <span class="onda"></span>
-              <span class="onda"></span>
-              <span class="onda"></span>
-              <span class="onda"></span>
-            </div>
-          </div>
-          <p class="radio-texto">
-            A companhia de quem vive a estrada.
-          </p>
-          <div class="controles">
-            <button
-              id="playBtn"
-              class="play-btn"
-              type="button"
-              aria-label="Ouvir WebRádio">
-              ▶
-            </button>
-            <div class="volume-area">
-              <svg
-                class="volume-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M4 9V15H8L13 19V5L8 9H4Z"
-                  fill="#ffffff"/>
-                <path
-                  d="M16 8C17.5 9.3 18 10.5 18 12C18 13.5 17.5 14.7 16 16"
-                  stroke="#ffffff"
-                  stroke-width="2"
-                  stroke-linecap="round"/>
-                <path
-                  d="M19 5C21 7 22 9.2 22 12C22 14.8 21 17 19 19"
-                  stroke="#ffffff"
-                  stroke-width="2"
-                  stroke-linecap="round"/>
-              </svg>
-              <input
-                id="volume"
-                class="volume"
-                type="range"
-                min="0"
-                max="1"
-                step="0.05"
-                value="1"
-                aria-label="Volume">
-            </div>
-          </div>
-          <div
-            id="statusRadio"
-            class="status-radio">
-            Toque no Play para ouvir
-          </div>
-        </div>
-        <!--
-          STREAM ORIGINAL.
-          O PRIMEIRO PLAY CONTINUA USANDO ESTA CONEXÃO DIRETAMENTE.
-        -->
-        <audio
-          id="radioPlayer"
-          preload="none"
-          src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3">
-        </audio>
-      </section>
+    <div class="linha-principal linha-principal-sem-radio">
       <!-- YOUTUBE -->
       <section class="card youtube-card">
         <div class="titulo-servico">
@@ -1368,7 +1540,7 @@
               fill="#ffffff"/>
           </svg>
           <h2>
-            YouTube
+            YOUTUBE
           </h2>
         </div>
         <p>
@@ -1407,7 +1579,7 @@
           OUÇA TAMBÉM
         </span>
         <h2>
-          Cleiton na BR no RadiosNet
+          CLEITON NA BR NA RADIOSNET
         </h2>
         <p>
           No celular, no carro ou onde você estiver.
