@@ -1314,6 +1314,304 @@
         font-size: 11px;
       }
     }
+  
+
+    /* =====================================================
+       ESTRUTURA EDITORIAL 2026-10
+       Clareza, botões grandes e leitura confortável.
+    ===================================================== */
+    .view-site { display: none; }
+    .view-site.ativa { display: block; }
+
+    .apresentacao-card {
+      margin: 0 0 26px;
+      padding: 8px 4px 24px;
+      background: transparent;
+      border: 0;
+      border-bottom: 3px solid #ffd000;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .apresentacao-card h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.02;
+      font-weight: 950;
+      letter-spacing: -0.6px;
+      text-transform: uppercase;
+    }
+    .apresentacao-card p {
+      max-width: 980px;
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.58;
+      color: #414141;
+    }
+    .apresentacao-card p + p { margin-top: 8px; }
+
+    /* YOUTUBE + WHATSAPP: lado a lado no desktop */
+    .acoes-principais {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 26px 0 30px;
+    }
+    .acao-grande {
+      min-height: 210px;
+      padding: 26px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 22px rgba(0,0,0,.12);
+      overflow: hidden;
+    }
+    .acao-topo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .acao-topo svg { width: 52px; height: 52px; flex-shrink: 0; }
+    .acao-grande h2 {
+      margin: 0;
+      font-size: clamp(25px, 2.4vw, 32px);
+      line-height: 1;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+    .acao-grande p {
+      margin: 0 0 18px;
+      font-size: 16px;
+      line-height: 1.42;
+    }
+    .acao-youtube {
+      background: #fff;
+      border-top: 6px solid #e11922;
+      color: #151515;
+    }
+    .acao-youtube p { color: #4e4e4e; }
+    .acao-whatsapp {
+      background: linear-gradient(135deg,#102017,#17291d);
+      border-top: 6px solid #25d366;
+      color: #fff;
+    }
+    .acao-whatsapp p { color: #e5efe8; }
+    .botao-acao {
+      width: 100%;
+      min-height: 58px;
+      padding: 15px 18px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 950;
+      text-transform: uppercase;
+      transition: transform .15s, filter .15s;
+    }
+    .botao-acao:hover { transform: translateY(-1px); filter: brightness(.96); }
+    .botao-acao.youtube { background: #e11922; color: #fff; }
+    .botao-acao.whatsapp { background: #25d366; color: #fff; }
+
+    /* DIRETO DA REDAÇÃO */
+    .dr-home {
+      margin: 30px 0;
+      padding: 28px 30px;
+      background: linear-gradient(135deg,#fff,#f5f5f5);
+      border-left: 7px solid #e11922;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.10);
+    }
+    .dr-selo {
+      display: inline-block;
+      margin-bottom: 9px;
+      color: #e11922;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+    .dr-home h2,
+    .dr-pagina h1,
+    .dr-pagina h2,
+    .arquivo-dr h2 {
+      margin: 0;
+      color: #111;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+    .dr-home h2 { font-size: clamp(28px,3.2vw,38px); }
+    .dr-home p {
+      max-width: 900px;
+      margin: 11px 0 18px;
+      color: #444;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .botao-dr,
+    .botao-voltar,
+    .atalho-final {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+    .botao-dr { background:#111; color:#fff; }
+    .botao-voltar { background:#ffd000; color:#111; margin-bottom: 22px; }
+
+    .dr-pagina {
+      padding: 12px 0 10px;
+    }
+    .dr-pagina > h1 {
+      font-size: clamp(31px,4vw,46px);
+      line-height: 1.03;
+      margin-bottom: 8px;
+    }
+    .dr-subtitulo {
+      margin: 0 0 26px;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .dr-edicao-atual {
+      padding: 28px 30px;
+      background: #fff;
+      border-top: 6px solid #e11922;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.10);
+    }
+    .dr-edicao-atual h2 { font-size: 28px; margin-bottom: 8px; }
+    .dr-meta { margin: 0 0 20px; color:#777; font-weight: 800; }
+    .dr-edicao-atual h3 {
+      margin: 24px 0 8px;
+      font-size: 19px;
+      color: #111;
+      text-transform: uppercase;
+    }
+    .dr-edicao-atual p { color:#333; font-size:16px; line-height:1.65; }
+    .dr-placeholder {
+      padding: 18px;
+      background: #fff8d2;
+      border-radius: 10px;
+      color: #4d4300;
+      line-height: 1.55;
+    }
+    .arquivo-dr {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 3px solid #ffd000;
+    }
+    .arquivo-dr h2 { font-size: 26px; }
+    .arquivo-dr p { color:#555; line-height:1.55; }
+
+    .atalhos-finais {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin: 30px 0 6px;
+    }
+    .atalho-final.inicio { background:#ffd000; color:#111; }
+    .atalho-final.youtube { background:#e11922; color:#fff; }
+    .atalho-final.whatsapp { background:#25d366; color:#fff; }
+
+    /* E-BOOK RESUMIDO */
+    .ebook-card-compacto {
+      margin-top: 30px;
+      padding: 28px;
+      background: linear-gradient(145deg,#111,#1d1d1d);
+      border-top: 6px solid #ffd000;
+      border-radius: 18px;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    }
+    .ebook-grid {
+      display: grid;
+      grid-template-columns: minmax(180px,240px) 1fr;
+      align-items: center;
+      gap: 30px;
+    }
+    .ebook-card-compacto .ebook-capa {
+      width: 100%;
+      max-width: 230px;
+      margin: 0 auto;
+    }
+    .ebook-conteudo-compacto { text-align: left; }
+    .ebook-conteudo-compacto .ebook-selo { margin-bottom: 10px; }
+    .ebook-conteudo-compacto h2 {
+      margin: 0 0 12px;
+      color:#fff;
+      font-size: clamp(27px,3vw,38px);
+      line-height:1.05;
+      font-weight:950;
+      text-transform:uppercase;
+    }
+    .ebook-conteudo-compacto h2 span { color:#ffd000; }
+    .ebook-conteudo-compacto p {
+      margin: 0 0 15px;
+      color:#e4e4e4;
+      font-size:16px;
+      line-height:1.55;
+    }
+    .ebook-frase {
+      margin: 16px 0 10px;
+      color:#ffd000;
+      font-size:20px;
+      line-height:1.2;
+      font-weight:950;
+      text-transform:uppercase;
+    }
+    .ebook-card-compacto .botao-ebook {
+      width: 100%;
+      max-width: 520px;
+      margin-top: 6px;
+      min-height: 56px;
+      font-size: 16px;
+    }
+    .ebook-card-compacto .ebook-contribuicao {
+      max-width: none;
+      margin-top: 24px;
+      text-align:center;
+    }
+    .ebook-card-compacto .ebook-contribuicao h3 {
+      font-size:24px;
+      text-transform:uppercase;
+    }
+
+    /* Redes ficam secundárias */
+    .redes-card { margin-top: 26px; }
+
+    @media (max-width: 760px) {
+      .acoes-principais { grid-template-columns: 1fr; gap: 14px; margin: 18px 0 20px; }
+      .acao-grande { min-height: auto; padding: 18px 16px; border-radius: 14px; }
+      .acao-topo svg { width: 44px; height: 44px; }
+      .acao-grande h2 { font-size: 24px; }
+      .acao-grande p { font-size: 15px; margin-bottom: 14px; }
+      .botao-acao { min-height: 56px; font-size: 16px; }
+      .dr-home { margin: 20px 0; padding: 21px 18px; }
+      .dr-home h2 { font-size: 29px; }
+      .dr-edicao-atual { padding: 22px 17px; }
+      .dr-edicao-atual h2 { font-size: 24px; }
+      .atalhos-finais { grid-template-columns: 1fr; }
+      .atalho-final { min-height: 56px; font-size: 16px; }
+      .ebook-card-compacto { padding: 20px 16px; }
+      .ebook-grid { grid-template-columns: 1fr; gap: 18px; }
+      .ebook-card-compacto .ebook-capa { max-width: 190px; }
+      .ebook-conteudo-compacto { text-align:center; }
+      .ebook-frase { font-size:18px; }
+      .apresentacao-card { padding-bottom: 18px; }
+      .apresentacao-card h1 { font-size: 31px; }
+      .apresentacao-card p { font-size:15px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1373,262 +1671,153 @@
     O player fica fora do conteúdo principal. Quando as páginas internas forem criadas,
     a navegação poderá trocar somente o conteúdo abaixo sem reiniciar este player.
   -->
+
   <main class="conteudo">
-    <!-- INSTALAÇÃO -->
-    <section
-      id="instalacaoCard"
-      class="card instalacao-card">
+    <!-- INSTALAÇÃO / PWA -->
+    <section id="instalacaoCard" class="card instalacao-card">
       <div class="instalacao-texto">
-        <strong id="tituloInstalacao">
-          Tenha o Cleiton na BR no seu aparelho
-        </strong>
-        <span id="textoInstalacao">
-          Acesse mais rápido pela sua tela inicial.
-        </span>
+        <strong id="tituloInstalacao">Tenha o Cleiton na BR no seu aparelho</strong>
+        <span id="textoInstalacao">Acesse mais rápido pela sua tela inicial.</span>
       </div>
-      <button
-        id="botaoInstalar"
-        class="botao-instalar"
-        type="button">
-        INSTALAR CLEITON NA BR
-      </button>
+      <button id="botaoInstalar" class="botao-instalar" type="button">INSTALAR CLEITON NA BR</button>
     </section>
 
-    <!-- APRESENTAÇÃO PARA VISITANTES E MECANISMOS DE BUSCA -->
-    <section class="card apresentacao-card" aria-labelledby="tituloPrincipal">
-      <h1 id="tituloPrincipal">Rádio Cleiton na BR — Música, Direção Defensiva e Informação de Estrada</h1>
-      <p>
-        A WebRádio Cleiton na BR reúne música de várias épocas, dicas de direção defensiva,
-        segurança no trânsito e informações de rodovias para motoristas, caminhoneiros,
-        viajantes e todos que vivem a estrada.
-      </p>
-      <p>
-        Ouça a rádio ao vivo e acompanhe conteúdos de serviço, educação para o trânsito,
-        notícias das estradas e programação musical ao longo do dia.
-      </p>
-    </section>
-    <div class="linha-principal linha-principal-sem-radio">
-      <!-- YOUTUBE -->
-      <section class="card youtube-card">
-        <div class="titulo-servico">
-          <svg
-            class="youtube-icon"
-            viewBox="0 0 48 48"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect
-              x="2"
-              y="8"
-              width="44"
-              height="32"
-              rx="9"
-              fill="#e11922"/>
-            <path
-              d="M20 17L33 24L20 31V17Z"
-              fill="#ffffff"/>
-          </svg>
-          <h2>
-            YOUTUBE
-          </h2>
-        </div>
+    <!-- ========================= HOME ========================= -->
+    <section id="viewInicio" class="view-site ativa" data-view="inicio">
+      <section class="apresentacao-card" aria-labelledby="tituloPrincipal">
+        <h1 id="tituloPrincipal">RÁDIO CLEITON NA BR — MÚSICA, DIREÇÃO DEFENSIVA E INFORMAÇÃO DE ESTRADA</h1>
         <p>
-          Acompanhe os novos vídeos do Cleiton na BR.
+          A WebRádio Cleiton na BR reúne música de várias épocas, direção defensiva,
+          segurança no trânsito e informação de estrada para motoristas, caminhoneiros,
+          viajantes e todos que vivem a rodovia.
         </p>
-        <div class="agenda">
-          <strong>
-            Terça a sexta:
-          </strong>
-          novos vídeos às 17h
-          <br>
-          <strong>
-            Sábados e domingos:
-          </strong>
-          novos vídeos às 7h da manhã
-        </div>
-        <a
-          class="botao-youtube"
-          href="https://www.youtube.com/@cleitonnaBR"
-          target="_blank"
-          rel="noopener noreferrer">
-          IR PARA O CANAL
+        <p>
+          Ouça a rádio ao vivo e acompanhe conteúdos de serviço, educação para o trânsito,
+          notícias das estradas e programação musical ao longo do dia.
+        </p>
+      </section>
+
+      <!-- ACESSOS PRINCIPAIS -->
+      <section class="acoes-principais" aria-label="Acessos principais">
+        <article class="acao-grande acao-youtube">
+          <div>
+            <div class="acao-topo">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="8" width="44" height="32" rx="9" fill="#e11922"/>
+                <path d="M20 17L33 24L20 31V17Z" fill="#ffffff"/>
+              </svg>
+              <h2>YOUTUBE</h2>
+            </div>
+            <p>Vídeos, estrada, direção defensiva e informação no canal Cleiton na BR.</p>
+          </div>
+          <a class="botao-acao youtube" href="https://www.youtube.com/@cleitonnaBR" target="_blank" rel="noopener noreferrer">
+            CLIQUE AQUI — ACESSE O YOUTUBE
+          </a>
+        </article>
+
+        <article class="acao-grande acao-whatsapp">
+          <div>
+            <div class="acao-topo">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="32" cy="32" r="30" fill="#25D366"/>
+                <path d="M46.7 17.4C42.8 13.5 37.6 11.3 32.1 11.3C20.7 11.3 11.4 20.6 11.4 32C11.4 35.7 12.4 39.3 14.2 42.4L11.2 53.4L22.5 50.4C25.5 52 28.8 52.8 32.1 52.8H32.1C43.5 52.8 52.8 43.5 52.8 32.1C52.8 26.5 50.6 21.3 46.7 17.4Z" fill="#fff"/>
+                <path d="M32.1 49.3C29.1 49.3 26.2 48.5 23.7 47L22.9 46.6L16.2 48.3L18 41.8L17.5 41C15.8 38.4 14.9 35.3 14.9 32.1C14.9 22.5 22.6 14.8 32.1 14.8C36.7 14.8 41 16.6 44.3 19.8C47.5 23.1 49.3 27.4 49.3 32C49.3 41.5 41.6 49.3 32.1 49.3Z" fill="#25D366"/>
+                <path d="M41.5 36.4C41 36.1 38.5 34.9 38 34.7C37.5 34.5 37.2 34.4 36.8 34.9C36.5 35.4 35.5 36.6 35.2 36.9C34.9 37.2 34.6 37.3 34.1 37C31.2 35.6 29.3 34.5 27.4 31.2C26.9 30.3 27.9 30.4 28.8 28.4C29 28 28.9 27.6 28.7 27.3C28.6 27 27.5 24.5 27.1 23.5C26.7 22.5 26.2 22.6 25.9 22.6H24.9C24.5 22.6 23.9 22.7 23.4 23.3C22.9 23.8 21.4 25.2 21.4 28C21.4 30.8 23.4 33.5 23.7 33.9C24 34.3 27.7 40 33.5 42.5C37.1 44.1 38.5 44.2 40.3 43.9C41.4 43.7 43.3 42.7 43.7 41.5C44.1 40.3 44.1 39.3 44 39.1C43.8 38.9 43.5 38.7 43 38.5L41.5 36.4Z" fill="#fff"/>
+              </svg>
+              <h2>WHATSAPP</h2>
+            </div>
+            <p>Fale com Cleiton na BR, participe da programação e mande seu alô.</p>
+          </div>
+          <a class="botao-acao whatsapp" href="https://wa.me/5577981235466" target="_blank" rel="noopener noreferrer">
+            CLIQUE AQUI — FALE NO WHATSAPP
+          </a>
+        </article>
+      </section>
+
+      <!-- DIRETO DA REDAÇÃO -->
+      <section class="dr-home" aria-labelledby="tituloDRHome">
+        <span class="dr-selo">INFORMAÇÃO DE ESTRADA</span>
+        <h2 id="tituloDRHome">DIRETO DA REDAÇÃO</h2>
+        <p>
+          Acompanhe a edição mais recente do boletim rodoviário da Rádio Cleiton na BR,
+          com acidentes, bloqueios, obras, condições de tráfego, previsão do tempo e alertas para quem está na estrada.
+        </p>
+        <a class="botao-dr link-interno" href="?pagina=direto-da-redacao" data-pagina="direto-da-redacao">
+          LER A ÚLTIMA EDIÇÃO
         </a>
       </section>
-    </div>
-    <!-- =========================
-         WHATSAPP
-    ========================== -->
-    <section class="card whatsapp-card">
-      <!-- LOGO DO WHATSAPP -->
-      <svg
-        class="whatsapp-icon"
-        viewBox="0 0 64 64"
-        xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="32"
-          cy="32"
-          r="30"
-          fill="#25D366"/>
-        <path
-          d="M46.7 17.4C42.8 13.5 37.6 11.3 32.1 11.3C20.7 11.3 11.4 20.6 11.4 32C11.4 35.7 12.4 39.3 14.2 42.4L11.2 53.4L22.5 50.4C25.5 52 28.8 52.8 32.1 52.8H32.1C43.5 52.8 52.8 43.5 52.8 32.1C52.8 26.5 50.6 21.3 46.7 17.4Z"
-          fill="#ffffff"/>
-        <path
-          d="M32.1 49.3C29.1 49.3 26.2 48.5 23.7 47L22.9 46.6L16.2 48.3L18 41.8L17.5 41C15.8 38.4 14.9 35.3 14.9 32.1C14.9 22.5 22.6 14.8 32.1 14.8C36.7 14.8 41 16.6 44.3 19.8C47.5 23.1 49.3 27.4 49.3 32C49.3 41.5 41.6 49.3 32.1 49.3Z"
-          fill="#25D366"/>
-        <path
-          d="M41.5 36.4C41 36.1 38.5 34.9 38 34.7C37.5 34.5 37.2 34.4 36.8 34.9C36.5 35.4 35.5 36.6 35.2 36.9C34.9 37.2 34.6 37.3 34.1 37C31.2 35.6 29.3 34.5 27.4 31.2C26.9 30.3 27.9 30.4 28.8 28.4C29 28 28.9 27.6 28.7 27.3C28.6 27 27.5 24.5 27.1 23.5C26.7 22.5 26.2 22.6 25.9 22.6H24.9C24.5 22.6 23.9 22.7 23.4 23.3C22.9 23.8 21.4 25.2 21.4 28C21.4 30.8 23.4 33.5 23.7 33.9C24 34.3 27.7 40 33.5 42.5C37.1 44.1 38.5 44.2 40.3 43.9C41.4 43.7 43.3 42.7 43.7 41.5C44.1 40.3 44.1 39.3 44 39.1C43.8 38.9 43.5 38.7 43 38.5L41.5 36.4Z"
-          fill="#ffffff"/>
-      </svg>
-      <div class="whatsapp-texto">
-        <h2>
-          FALE COM CLEITON NA BR
-        </h2>
-        <p>
-          Participe da programação. Mande sua mensagem,
-          sugestão, pedido de música ou seu alô.
-        </p>
-        <span class="whatsapp-clique">
-          CLIQUE NO BOTÃO →
-        </span>
-      </div>
-      <a
-        class="botao-whatsapp"
-        href="https://wa.me/5577981235466"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chamar Cleiton na BR no WhatsApp">
-        <!-- LOGO NO BOTÃO -->
-        <svg
-          class="icone-whatsapp-botao"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill="#ffffff"
-            d="M16 3C8.8 3 3 8.6 3 15.6C3 18 3.7 20.3 5 22.3L3.2 29L10.1 27.2C12 28.3 13.9 28.8 16 28.8C23.2 28.8 29 23.2 29 16.1C29 9 23.2 3 16 3ZM16 26.4C14.1 26.4 12.3 25.9 10.7 25L10.2 24.7L6.1 25.8L7.2 21.8L6.9 21.3C5.9 19.7 5.4 17.7 5.4 15.7C5.4 10 10.1 5.4 16 5.4C21.9 5.4 26.6 10.1 26.6 16C26.6 21.7 21.9 26.4 16 26.4ZM21.8 18.4C21.5 18.2 19.9 17.5 19.6 17.4C19.3 17.3 19.1 17.2 18.9 17.5C18.7 17.8 18.1 18.5 17.9 18.7C17.7 18.9 17.5 18.9 17.2 18.8C15.4 17.9 14.2 17.2 13 15.2C12.7 14.7 13.3 14.7 13.9 13.4C14 13.1 14 12.9 13.9 12.7C13.8 12.5 13.2 10.9 12.9 10.3C12.6 9.7 12.3 9.8 12.1 9.8H11.5C11.3 9.8 10.9 9.9 10.6 10.2C10.3 10.5 9.4 11.4 9.4 13.1C9.4 14.8 10.7 16.5 10.9 16.8C11.1 17.1 13.4 20.6 17 22.2C19.2 23.2 20.1 23.2 21.2 23C21.9 22.9 23.1 22.2 23.3 21.5C23.6 20.8 23.6 20.2 23.5 20C23.4 19.9 23.2 19.8 22.9 19.6L21.8 18.4Z"/>
-        </svg>
-        WHATSAPP
-      </a>
-    </section>
-    <!-- =========================
-         E-BOOK - BOTÃO DA CONFIANÇA
-    ========================== -->
-    <section class="card ebook-card">
-      <span class="ebook-selo">BOTÃO DA CONFIANÇA</span>
-      <h2>AQUI, A CONFIANÇA VEM PRIMEIRO.</h2>
-      <img
-        class="ebook-capa"
-        src="downloads/capa-rumo-seguro-parte2.png"
-        alt="Capa do e-book Guia Prático Rumo Seguro - Direção Defensiva na Rodovia - Parte 2">
-      <div class="ebook-titulo-produto">
-        GUIA PRÁTICO <strong>RUMO SEGURO</strong><br>
-        DIREÇÃO DEFENSIVA NA RODOVIA — PARTE 2
-      </div>
-      <p>
-        Um conteúdo prático preparado para compartilhar conhecimento que pode ajudar você
-        a dirigir com mais atenção, segurança e responsabilidade nas estradas.
-      </p>
-      <div class="ebook-nao-paga">
-        VOCÊ NÃO PRECISA PAGAR ANTES PARA RECEBER.
-      </div>
-      <p class="ebook-explicacao">
-        Primeiro, baixe. Leia. Veja o valor que esse conteúdo tem para você.
-      </p>
-      <div class="ebook-contribua-chamada">
-        SE O CONTEÚDO FOR ÚTIL PARA VOCÊ, VOCÊ PODE CONTRIBUIR COM
-        <span class="ebook-valor">R$ 5,00</span>
-        OU COM O VALOR QUE ACHAR JUSTO.
-      </div>
-      <div class="ebook-confio">
-        <span>EU CONFIO EM VOCÊ PRIMEIRO.</span>
-      </div>
-      <a
-        id="botaoEbook"
-        class="botao-ebook"
-        href="downloads/rumo-seguro-ebook-parte2.pdf"
-        download>
-        QUERO RECEBER O E-BOOK
-      </a>
-      <div id="ebookContribuicao" class="ebook-contribuicao" aria-live="polite">
-        <h3>AGORA É COM VOCÊ.</h3>
-        <p>
-          O e-book já é seu. Se o material foi útil e você quiser apoiar este trabalho,
-          sua contribuição ajuda o Cleiton na BR a continuar produzindo conteúdo.
-        </p>
-        <div class="ebook-contribua-chamada">
-          VOCÊ PODE CONTRIBUIR COM
-          <span class="ebook-valor">R$ 5,00</span>
-          OU COM O VALOR QUE ACHAR JUSTO.
+
+      <!-- E-BOOK RESUMIDO -->
+      <section class="ebook-card-compacto">
+        <div class="ebook-grid">
+          <img class="ebook-capa" src="downloads/capa-rumo-seguro-parte2.png" alt="Capa do e-book Guia Prático Rumo Seguro - Direção Defensiva na Rodovia - Parte 2">
+          <div class="ebook-conteudo-compacto">
+            <span class="ebook-selo">BOTÃO DA CONFIANÇA</span>
+            <h2>GUIA PRÁTICO <span>RUMO SEGURO</span></h2>
+            <p>
+              Conteúdo prático para ajudar você a dirigir com mais segurança, atenção e responsabilidade nas estradas.
+            </p>
+            <div class="ebook-frase">BAIXE PRIMEIRO. CONTRIBUA DEPOIS, SE QUISER.</div>
+            <p>Se o material for útil, você pode contribuir com <strong>R$ 5,00</strong> ou qualquer valor que achar justo.</p>
+            <a id="botaoEbook" class="botao-ebook" href="downloads/rumo-seguro-ebook-parte2.pdf" download>BAIXAR O E-BOOK</a>
+          </div>
         </div>
-        <div class="pix-label">CHAVE PIX (E-MAIL)</div>
-        <div class="pix-chave">cleitonrochanabr@gmail.com</div>
-        <p>Cleiton de Oliveira Rocha — Caixa Econômica Federal</p>
-        <button id="botaoCopiarPix" class="botao-copiar-pix" type="button">COPIAR CHAVE PIX</button>
-        <p id="statusPix" class="status-pix"></p>
-      </div>
+        <div id="ebookContribuicao" class="ebook-contribuicao" aria-live="polite">
+          <h3>GOSTOU DO MATERIAL?</h3>
+          <p>Se quiser apoiar este trabalho, sua contribuição ajuda o Cleiton na BR a continuar produzindo conteúdo.</p>
+          <div class="ebook-contribua-chamada">
+            CONTRIBUA COM <span class="ebook-valor">R$ 5,00</span> OU COM O VALOR QUE ACHAR JUSTO.
+          </div>
+          <div class="pix-label">CHAVE PIX (E-MAIL)</div>
+          <div class="pix-chave">cleitonrochanabr@gmail.com</div>
+          <p>Cleiton de Oliveira Rocha — Caixa Econômica Federal</p>
+          <button id="botaoCopiarPix" class="botao-copiar-pix" type="button">COPIAR CHAVE PIX</button>
+          <p id="statusPix" class="status-pix"></p>
+        </div>
+      </section>
+
+      <!-- REDES SOCIAIS -->
+      <section class="card redes-card">
+        <div class="redes-texto">
+          <h2>SIGA O CLEITON NA BR</h2>
+          <p>Outros canais para acompanhar o projeto.</p>
+        </div>
+        <div class="redes-botoes">
+          <a class="botao-rede instagram" href="https://www.instagram.com/cleitonnabr/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+          <a class="botao-rede facebook" href="https://www.facebook.com/cleitonnabr/" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+        </div>
+      </section>
     </section>
-    <!-- =========================
-         REDES SOCIAIS
-    ========================== -->
-    <section class="card redes-card">
-      <div class="redes-texto">
-        <h2>
-          SIGA-NOS EM NOSSAS REDES SOCIAIS
-        </h2>
-        <p>
-          Clique em uma das opções abaixo:
-        </p>
-      </div>
-      <div class="redes-botoes">
-        <!-- INSTAGRAM -->
-        <a
-          class="botao-rede instagram"
-          href="https://www.instagram.com/cleitonnabr/"
-          target="_blank"
-          rel="noopener noreferrer">
-          <svg
-            class="icone-rede"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect
-              x="3"
-              y="3"
-              width="18"
-              height="18"
-              rx="5"
-              stroke="#ffffff"
-              stroke-width="2"/>
-            <circle
-              cx="12"
-              cy="12"
-              r="4"
-              stroke="#ffffff"
-              stroke-width="2"/>
-            <circle
-              cx="17.5"
-              cy="6.5"
-              r="1"
-              fill="#ffffff"/>
-          </svg>
-          INSTAGRAM
-        </a>
-        <!-- FACEBOOK -->
-        <a
-          class="botao-rede facebook"
-          href="https://www.facebook.com/cleitonnabr/"
-          target="_blank"
-          rel="noopener noreferrer">
-          <svg
-            class="icone-rede"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M14 8H17V4.5C16.5 4.4 15 4.2 13.5 4.2C10.5 4.2 8.5 6 8.5 9.4V12H5V16H8.5V24H13V16H16.5L17 12H13V9.8C13 8.6 13.3 8 14 8Z"
-              fill="#ffffff"/>
-          </svg>
-          FACEBOOK
-        </a>
-      </div>
+
+    <!-- ========================= DIRETO DA REDAÇÃO ========================= -->
+    <section id="viewDiretoRedacao" class="view-site dr-pagina" data-view="direto-da-redacao">
+      <a class="botao-voltar link-interno" href="?pagina=inicio" data-pagina="inicio">← VOLTAR AO INÍCIO</a>
+      <h1>DIRETO DA REDAÇÃO</h1>
+      <p class="dr-subtitulo">Informação rodoviária nacional da Rádio Cleiton na BR.</p>
+
+      <article class="dr-edicao-atual" id="drEdicaoAtual">
+        <span class="dr-selo">ÚLTIMA EDIÇÃO</span>
+        <h2 id="drTituloEdicao">DIRETO DA REDAÇÃO — ÚLTIMA EDIÇÃO</h2>
+        <p class="dr-meta" id="drMetaEdicao">Atualização mais recente</p>
+        <div id="drConteudoEdicao" class="dr-placeholder">
+          O texto da edição mais recente será publicado neste espaço. Quando uma nova edição entrar,
+          ela assume o destaque e a anterior permanece disponível no arquivo abaixo.
+        </div>
+      </article>
+
+      <section class="arquivo-dr" id="arquivoDR">
+        <h2>EDIÇÕES ANTERIORES</h2>
+        <p>As edições anteriores do Direto da Redação ficarão organizadas aqui por data e horário.</p>
+      </section>
+
+      <nav class="atalhos-finais" aria-label="Atalhos no fim da página">
+        <a class="atalho-final inicio link-interno" href="?pagina=inicio" data-pagina="inicio">INÍCIO</a>
+        <a class="atalho-final youtube" href="https://www.youtube.com/@cleitonnaBR" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
+        <a class="atalho-final whatsapp" href="https://wa.me/5577981235466" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      </nav>
     </section>
   </main>
+
   <footer class="rodape">
     © 2026 Cleiton na BR
   </footer>
@@ -2884,5 +3073,60 @@
       );
     }
   </script>
+
+  <script>
+    /* =====================================================
+       NAVEGAÇÃO INTERNA SEM RECARREGAR A PÁGINA
+       Mantém o player tocando enquanto o visitante troca
+       entre INÍCIO e DIRETO DA REDAÇÃO.
+    ===================================================== */
+    (function () {
+      const views = {
+        inicio: document.getElementById('viewInicio'),
+        'direto-da-redacao': document.getElementById('viewDiretoRedacao')
+      };
+
+      function paginaDaURL() {
+        const params = new URLSearchParams(window.location.search);
+        const pagina = params.get('pagina') || 'inicio';
+        return views[pagina] ? pagina : 'inicio';
+      }
+
+      function mostrarPagina(pagina, alterarURL = true) {
+        if (!views[pagina]) pagina = 'inicio';
+        Object.values(views).forEach(view => view.classList.remove('ativa'));
+        views[pagina].classList.add('ativa');
+
+        if (alterarURL) {
+          const url = pagina === 'inicio'
+            ? window.location.pathname
+            : window.location.pathname + '?pagina=' + encodeURIComponent(pagina);
+          history.pushState({ pagina }, '', url);
+        }
+
+        if (pagina === 'direto-da-redacao') {
+          document.title = 'Direto da Redação | Rádio Cleiton na BR';
+        } else {
+          document.title = 'Rádio Cleiton na BR | Direção Defensiva e Informação de Estrada';
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.addEventListener('click', function (evento) {
+        const link = evento.target.closest('.link-interno');
+        if (!link) return;
+        evento.preventDefault();
+        mostrarPagina(link.dataset.pagina || 'inicio', true);
+      });
+
+      window.addEventListener('popstate', function () {
+        mostrarPagina(paginaDaURL(), false);
+      });
+
+      mostrarPagina(paginaDaURL(), false);
+    })();
+  </script>
+
 </body>
 </html>
