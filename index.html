@@ -1544,6 +1544,50 @@
     }
     .arquivo-dr h2 { font-size: 26px; }
     .arquivo-dr p { color:#555; line-height:1.55; }
+    .arquivo-dr-intro { margin-bottom: 16px; }
+    .dr-arquivo-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-left: 5px solid #ffd000;
+      border-radius: 12px;
+      margin-top: 14px;
+      box-shadow: 0 5px 14px rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    .dr-arquivo-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      color: #111;
+    }
+    .dr-arquivo-item summary::-webkit-details-marker { display: none; }
+    .dr-arquivo-item summary strong { display:block; font-size:17px; }
+    .dr-arquivo-item summary small { display:block; margin-top:4px; color:#666; font-weight:700; }
+    .dr-arquivo-abrir {
+      flex: 0 0 auto;
+      font-size: 12px;
+      font-weight: 900;
+      color: #111;
+      background: #ffd000;
+      border-radius: 999px;
+      padding: 8px 11px;
+      text-transform: uppercase;
+    }
+    .dr-arquivo-item[open] .dr-arquivo-abrir::after { content: " — FECHAR"; }
+    .dr-arquivo-conteudo {
+      padding: 0 20px 20px;
+      border-top: 1px solid #eee;
+    }
+    .dr-arquivo-conteudo h3 {
+      margin: 22px 0 7px;
+      font-size: 17px;
+      text-transform: uppercase;
+    }
+    .dr-arquivo-conteudo p { color:#333; font-size:15px; line-height:1.62; }
 
     .atalhos-finais {
       display: grid;
@@ -1632,6 +1676,9 @@
       .dr-home h2 { font-size: 29px; }
       .dr-edicao-atual { padding: 22px 17px; }
       .dr-edicao-atual h2 { font-size: 24px; }
+      .dr-arquivo-item summary { align-items:flex-start; padding:16px; }
+      .dr-arquivo-abrir { font-size:11px; }
+      .dr-arquivo-conteudo { padding:0 16px 16px; }
       .atalhos-finais { grid-template-columns: 1fr; }
       .atalho-final { min-height: 56px; font-size: 16px; }
       .atalhos-topo-dr {
@@ -1780,11 +1827,11 @@
       <!-- DIRETO DA REDAÇÃO -->
       <section class="dr-home" aria-labelledby="tituloDRHome">
         <span class="dr-selo">ÚLTIMA EDIÇÃO</span>
-        <h2 id="tituloDRHome">DIRETO DA REDAÇÃO — MANHÃ</h2>
+        <h2 id="tituloDRHome">DIRETO DA REDAÇÃO — TARDE</h2>
         <p class="dr-meta"><strong>06 DE OUTUBRO DE 2026</strong></p>
         <p>
-          Atualização de acidente na BR-324, interdições e obras na BR-101, Fernão Dias e BR-116,
-          transporte de carga especial na Tamoios e alertas de tempo para quem viaja pelo país.
+          Acidentes na BR-116, BR-251, BR-101 e BR-163; interdições na Via Dutra e BR-101,
+          operação de carga especial na Tamoios e alertas de tempestades e baixa umidade pelo país.
         </p>
         <a class="botao-dr link-interno" href="?pagina=direto-da-redacao" data-pagina="direto-da-redacao">
           LER A ÚLTIMA EDIÇÃO
@@ -1847,35 +1894,66 @@
       <!-- DR_ULTIMA_EDICAO_INICIO: mover a edição anterior para o arquivo antes de substituir -->
       <article class="dr-edicao-atual" id="drEdicaoAtual">
         <span class="dr-selo">ÚLTIMA EDIÇÃO</span>
-        <h2 id="drTituloEdicao">DIRETO DA REDAÇÃO — 06 DE OUTUBRO DE 2026 — EDIÇÃO DA MANHÃ</h2>
-        <p class="dr-meta" id="drMetaEdicao"><time datetime="2026-10-06T07:20:00-03:00">06 de outubro de 2026 — edição da manhã</time></p>
+        <h2 id="drTituloEdicao">DIRETO DA REDAÇÃO — 06 DE OUTUBRO DE 2026 — EDIÇÃO DA TARDE</h2>
+        <p class="dr-meta" id="drMetaEdicao"><time datetime="2026-10-06">06 de outubro de 2026 — edição da tarde</time></p>
 
         <div id="drConteudoEdicao">
-          <p><strong>RESUMO DA EDIÇÃO.</strong> A manhã começa com atualização do acidente envolvendo um micro-ônibus de pacientes na BR-324, na Bahia, além de interdições, obras e operações especiais em rodovias do Espírito Santo, São Paulo e Rio Grande do Sul. O tempo exige atenção para tempestades no Centro-Oeste e Sudeste e para calor e baixa umidade em áreas do interior do país.</p>
+          <p><strong>RESUMO DA EDIÇÃO.</strong> A edição da tarde destaca acidentes em Minas Gerais, Santa Catarina e Paraná; interdições e operações programadas na Via Dutra, BR-101 e Rodovia dos Tamoios; aumento da presença de romeiros em direção a Aparecida; além de alertas de tempestades no Centro-Oeste e Sudeste e de baixa umidade no interior do Nordeste e no Matopiba.</p>
 
           <h3>ACIDENTES E OCORRÊNCIAS</h3>
-          <p><strong>BR-324 — Riachão do Jacuípe (BA):</strong> o acidente envolvendo um micro-ônibus de pacientes, uma carreta e um carro deixou dez pessoas feridas no km 443. O veículo levava 27 ocupantes de Curaçá para Salvador. O motorista ficou preso às ferragens e sofreu ferimento grave na cabeça. A rodovia, que chegou a ficar parcialmente interditada, foi liberada ainda na manhã anterior.</p>
+          <p><strong>BR-116 — Santa Rita de Minas (MG):</strong> um carro bateu de frente com uma carreta entre os km 535 e 536. O motorista do automóvel, de 20 anos, morreu no local. Durante o atendimento, o trânsito funcionou em Pare e Siga. As circunstâncias continuam sendo apuradas.</p>
+          <p><strong>BR-251 — entre Montes Claros e Francisco Sá (MG):</strong> o acidente ocorrido no dia anterior envolvendo um micro-ônibus de pacientes e uma carreta deixou dez feridos, dois deles em estado grave. A colisão aconteceu em uma fila formada por causa do Pare e Siga de obras no km 481,5. Motoristas devem reduzir a velocidade e aumentar a distância dos veículos à frente nas frentes de serviço.</p>
+          <p><strong>BR-101 — Balneário Piçarras (SC):</strong> acidente com dois caminhões e uma caminhonete provocou retenção no km 103, sentido Joinville. A faixa da direita chegou a ficar interditada e a fila passou de três quilômetros. A pista foi liberada, mas o fluxo permaneceu intenso.</p>
+          <p><strong>BR-163 — Cascavel (PR):</strong> um caminhão saiu da pista nas proximidades de Sede Alvorada. Não houve feridos, mas a retirada do veículo exige atenção e pode provocar bloqueio parcial do trecho.</p>
 
           <h3>INTERDIÇÕES, OBRAS E OPERAÇÕES NAS RODOVIAS</h3>
-          <p><strong>BR-101 — Fundão (ES):</strong> após bloqueio na madrugada para içamento de vigas na duplicação da ponte sobre o Rio Timbuí, está prevista nova interdição total nos dois sentidos hoje, das 21h15 às 23h15.</p>
-          <p><strong>Fernão Dias — Vargem (SP):</strong> começam as intervenções para instalação de nova passarela no km 5. Durante o dia há bloqueio temporário de acesso à cidade no sentido São Paulo. Entre 21h e 2h, a faixa da esquerda será interditada nos dois sentidos no km 5,9. O bloqueio total da rodovia está previsto para a madrugada de quinta-feira durante o içamento da viga principal.</p>
-          <p><strong>BR-116 — Pelotas (RS):</strong> o DNIT inicia desvio entre os km 509,6 e 509,9, próximo ao posto da Polícia Rodoviária Federal. O tráfego será transferido para a pista nova nos dois sentidos por cerca de 30 dias. O limite é de 40 km/h e a ultrapassagem está proibida.</p>
-          <p><strong>BR-116 — Serra Gaúcha:</strong> há Pare e Siga entre os km 37 e 41,5, em Vacaria, e entre os km 102 e 106, em São Marcos. A ponte sobre o Rio das Antas, no km 95,7, permanece interditada; no km 96,2, o tráfego funciona parcialmente com controle por semáforo durante as 24 horas.</p>
-          <p><strong>Rodovia dos Tamoios (SP):</strong> um estator de 517 toneladas e 90 metros de comprimento segue de Taubaté para o Porto de São Sebastião. A próxima etapa começa às 21h, a partir do km 54. Durante a operação, os túneis da Serra Nova serão fechados e o trânsito entre o Vale do Paraíba e o Litoral Norte será mantido pela Serra Antiga, em mão dupla.</p>
-          <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> com o aumento da presença de romeiros, motoristas devem reduzir a velocidade e redobrar a atenção em ultrapassagens, acessos urbanos e postos de serviço. A recomendação é não utilizar o acostamento para paradas que não sejam de emergência.</p>
+          <p><strong>Via Dutra — Serra das Araras, Paracambi (RJ):</strong> está programado desmonte de rochas na pista sentido São Paulo, no km 224,5, com bloqueio das 13h às 15h. O sentido Rio de Janeiro permanece funcionando normalmente.</p>
+          <p><strong>BR-101 — Fundão (ES):</strong> a rodovia terá interdição total no km 239, nos dois sentidos, das 21h15 às 23h15, para o içamento de vigas da nova ponte sobre o Rio Timbuí.</p>
+          <p><strong>Rodovia dos Tamoios (SP):</strong> o transporte de um estator de 517 toneladas e 90 metros de comprimento será retomado às 21h, a partir do km 54. Os túneis da Serra Nova serão fechados e a Serra Antiga funcionará em mão dupla durante a operação.</p>
+          <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> aumenta a presença de romeiros em direção a Aparecida. A concessionária estima mais de 40 mil peregrinos até o dia 12. Motoristas devem reduzir a velocidade, ter atenção especial nos acessos e não utilizar o acostamento para paradas que não sejam de emergência.</p>
 
           <h3>TEMPO E ALERTAS NAS RODOVIAS</h3>
-          <p><strong>Centro-Oeste:</strong> há risco de tempestades em grande parte de Mato Grosso do Sul, sul de Mato Grosso e sul de Goiás, com possibilidade de chuva forte, trovoadas, vento e redução de visibilidade em corredores como BR-163, BR-060 e BR-153.</p>
-          <p><strong>Sudeste:</strong> a atenção maior é para São Paulo, Triângulo e Sul de Minas e Rio de Janeiro, com aviso de tempestades atingindo corredores como Fernão Dias, Via Dutra, BR-050 e BR-365.</p>
-          <p><strong>Sul:</strong> a manhã tem chuva e possibilidade de trovoadas principalmente no norte, centro e leste do Paraná e no centro e leste de Santa Catarina, com atenção para BR-376, BR-277, BR-116 e BR-101. Na maior parte do Rio Grande do Sul, o tempo permanece mais estável.</p>
-          <p><strong>Bahia e Matopiba:</strong> pode chover de forma isolada no litoral baiano, enquanto o interior permanece mais seco. Nas regiões de Barreiras e Luís Eduardo Magalhães e em áreas do Matopiba, a atenção é para calor, baixa umidade e possibilidade de focos de incêndio em vegetação. No Tocantins, inclusive na região de Palmas e em parte da BR-153, predomina o tempo quente e sem chuva significativa.</p>
+          <p><strong>Centro-Oeste:</strong> há risco de tempestades em Mato Grosso do Sul, sul de Mato Grosso e sul de Goiás, com possibilidade de chuva forte, trovoadas, rajadas de vento e redução de visibilidade em corredores como BR-163, BR-060 e BR-153.</p>
+          <p><strong>Sudeste:</strong> a maior atenção é para São Paulo, Triângulo Mineiro, sul de Minas Gerais e áreas do Rio de Janeiro. Via Dutra, Fernão Dias, BR-050 e BR-365 podem ter mudanças rápidas nas condições de pista por causa das tempestades.</p>
+          <p><strong>Paraná e Santa Catarina:</strong> as instabilidades ficam mais concentradas no norte e leste do Paraná e no leste catarinense, principalmente nas BRs 376, 277, 116 e 101.</p>
+          <p><strong>Nordeste e Matopiba:</strong> pode chover de forma isolada no litoral da Bahia e em pontos do litoral até o Rio Grande do Norte, enquanto o interior permanece quente e seco. Há alerta para baixa umidade em áreas da Bahia, Piauí, Maranhão e interior de Pernambuco. Nos corredores BR-020, BR-135, BR-153 e BR-242, o cuidado principal é com calor, ar seco e possibilidade de focos de incêndio em vegetação.</p>
         </div>
       </article>
       <!-- DR_ULTIMA_EDICAO_FIM -->
 
       <section class="arquivo-dr" id="arquivoDR">
         <h2>EDIÇÕES ANTERIORES</h2>
-        <p>As próximas edições serão arquivadas aqui por data e horário. A edição mais recente permanece sempre em destaque acima.</p>
+        <p class="arquivo-dr-intro">A edição mais recente permanece sempre em destaque acima. As anteriores ficam disponíveis aqui para consulta.</p>
+
+        <details class="dr-arquivo-item">
+          <summary>
+            <span>
+              <strong>DIRETO DA REDAÇÃO — EDIÇÃO DA MANHÃ</strong>
+              <small>06 de outubro de 2026 — DR1</small>
+            </span>
+            <span class="dr-arquivo-abrir">VER EDIÇÃO</span>
+          </summary>
+          <div class="dr-arquivo-conteudo">
+            <p><strong>RESUMO DA EDIÇÃO.</strong> A manhã começou com atualização do acidente envolvendo um micro-ônibus de pacientes na BR-324, na Bahia, além de interdições, obras e operações especiais em rodovias do Espírito Santo, São Paulo e Rio Grande do Sul. O tempo exigiu atenção para tempestades no Centro-Oeste e Sudeste e para calor e baixa umidade em áreas do interior do país.</p>
+
+            <h3>ACIDENTES E OCORRÊNCIAS</h3>
+            <p><strong>BR-324 — Riachão do Jacuípe (BA):</strong> o acidente envolvendo um micro-ônibus de pacientes, uma carreta e um carro deixou dez pessoas feridas no km 443. O veículo levava 27 ocupantes de Curaçá para Salvador. O motorista ficou preso às ferragens e sofreu ferimento grave na cabeça. A rodovia, que chegou a ficar parcialmente interditada, foi liberada ainda na manhã anterior.</p>
+
+            <h3>INTERDIÇÕES, OBRAS E OPERAÇÕES NAS RODOVIAS</h3>
+            <p><strong>BR-101 — Fundão (ES):</strong> após bloqueio na madrugada para içamento de vigas na duplicação da ponte sobre o Rio Timbuí, foi prevista nova interdição total nos dois sentidos das 21h15 às 23h15.</p>
+            <p><strong>Fernão Dias — Vargem (SP):</strong> começaram as intervenções para instalação de nova passarela no km 5, com bloqueios de acesso e interdição noturna da faixa da esquerda nos dois sentidos no km 5,9. O bloqueio total ficou previsto para a madrugada de quinta-feira durante o içamento da viga principal.</p>
+            <p><strong>BR-116 — Pelotas (RS):</strong> o DNIT iniciou desvio entre os km 509,6 e 509,9, próximo ao posto da Polícia Rodoviária Federal. O tráfego foi transferido para a pista nova nos dois sentidos por cerca de 30 dias, com limite de 40 km/h e ultrapassagem proibida.</p>
+            <p><strong>BR-116 — Serra Gaúcha:</strong> havia Pare e Siga em trechos de Vacaria e São Marcos. A ponte sobre o Rio das Antas, no km 95,7, permanecia interditada, enquanto o tráfego no km 96,2 funcionava parcialmente com controle por semáforo.</p>
+            <p><strong>Rodovia dos Tamoios (SP):</strong> um estator de 517 toneladas e 90 metros de comprimento seguia de Taubaté para o Porto de São Sebastião, com etapa prevista para as 21h e fechamento dos túneis da Serra Nova.</p>
+            <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> o aumento da presença de romeiros exigia redução de velocidade e atenção redobrada em ultrapassagens, acessos urbanos e postos de serviço.</p>
+
+            <h3>TEMPO E ALERTAS NAS RODOVIAS</h3>
+            <p><strong>Centro-Oeste:</strong> havia risco de tempestades em grande parte de Mato Grosso do Sul, sul de Mato Grosso e sul de Goiás, atingindo corredores como BR-163, BR-060 e BR-153.</p>
+            <p><strong>Sudeste:</strong> São Paulo, Triângulo e Sul de Minas e Rio de Janeiro estavam sob atenção para tempestades em corredores como Fernão Dias, Via Dutra, BR-050 e BR-365.</p>
+            <p><strong>Sul:</strong> chuva e possibilidade de trovoadas atingiam principalmente áreas do Paraná e de Santa Catarina, com atenção para BR-376, BR-277, BR-116 e BR-101.</p>
+            <p><strong>Bahia e Matopiba:</strong> o interior permanecia mais seco, com calor, baixa umidade e possibilidade de focos de incêndio em vegetação. No litoral baiano havia possibilidade de chuva isolada.</p>
+          </div>
+        </details>
       </section>
 
       <nav class="atalhos-finais" aria-label="Atalhos no fim da página">
