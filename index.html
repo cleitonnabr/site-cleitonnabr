@@ -144,7 +144,6 @@
     h1, h2, h3,
     .no-ar,
     .botao-youtube,
-    .botao-radiosnet,
     .botao-whatsapp,
     .botao-instalar,
     .botao-ebook,
@@ -292,45 +291,66 @@
     .player-radiosnet {
       display: flex;
       align-items: center;
-      gap: 10px;
-      min-width: 210px;
-      padding: 10px 14px;
+      justify-content: center;
+      gap: 11px;
+      min-width: 270px;
+      padding: 10px 16px;
       color: #fff;
       text-decoration: none;
-      border-left: 1px solid #3f3f3f;
+      background: linear-gradient(135deg, #07598b, #0b86c5);
+      border: 1px solid #35aee7;
+      border-radius: 12px;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.25);
+      transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .player-radiosnet:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      box-shadow: 0 7px 17px rgba(0,0,0,0.32);
     }
 
     .player-radiosnet img {
-      width: 46px;
-      height: 46px;
-      border-radius: 9px;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
       object-fit: cover;
       flex-shrink: 0;
+      background: #fff;
     }
 
     .player-radiosnet-texto {
       min-width: 0;
+      text-align: left;
     }
 
     .player-radiosnet-texto small {
       display: block;
-      color: #b8dff3;
-      font-size: 10px;
-      font-weight: 800;
+      color: #fff;
+      font-size: 11px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: .25px;
       text-transform: uppercase;
     }
 
     .player-radiosnet-texto strong {
       display: block;
-      margin-top: 2px;
+      margin-top: 3px;
       color: #ffd000;
-      font-size: 14px;
-      line-height: 1.15;
+      font-size: 17px;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: .35px;
       text-transform: uppercase;
     }
 
-    .player-radiosnet:hover strong {
-      color: #ffe770;
+    .player-radiosnet-seta {
+      color: #fff;
+      font-size: 25px;
+      font-weight: 900;
+      line-height: 1;
+      flex-shrink: 0;
     }
 
     /* =========================
@@ -649,99 +669,6 @@
     }
     .botao-youtube:hover {
       background: #bc1017;
-    }
-    /* =========================
-       RADIOSNET
-    ========================== */
-    .radiosnet-card {
-      margin-top: 30px;
-      padding: 22px 24px;
-      background:
-        linear-gradient(
-          135deg,
-          #071c2c,
-          #0b4468
-        );
-      border:
-        1px solid #167eb7;
-      border-top:
-        5px solid #1ca5e8;
-      color: #fff;
-      display: grid;
-      grid-template-columns:
-        auto 1fr auto;
-      align-items: center;
-      gap: 22px;
-    }
-    .radiosnet-logo {
-      width: 92px;
-      height: 92px;
-      object-fit: cover;
-      border-radius: 18px;
-      flex-shrink: 0;
-      box-shadow:
-        0 7px 18px rgba(0,0,0,0.30);
-    }
-    .radiosnet-conteudo {
-      min-width: 0;
-    }
-    .radiosnet-selo {
-      display: inline-block;
-      margin-bottom: 7px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background:
-        rgba(255,255,255,0.12);
-      border:
-        1px solid rgba(255,255,255,0.18);
-      color: #d8f3ff;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.55px;
-    }
-    .radiosnet-conteudo h2 {
-      margin:
-        0 0 6px;
-      font-size: 25px;
-      line-height: 1.15;
-      color: #fff;
-    }
-    .radiosnet-conteudo p {
-      margin:
-        0 0 14px;
-      color: #dcecf4;
-      font-size: 15px;
-      line-height: 1.45;
-    }
-    .botao-radiosnet {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 210px;
-      padding: 14px 20px;
-      border-radius: 10px;
-      background: #ffd000;
-      color: #111;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 900;
-      transition:
-        transform 0.15s,
-        background 0.15s;
-    }
-    .botao-radiosnet:hover {
-      transform:
-        translateY(-1px);
-      background: #ffe04b;
-    }
-    .radiosnet-banner {
-      display: block;
-      width: 300px;
-      max-width: 28vw;
-      height: auto;
-      border-radius: 8px;
-      box-shadow:
-        0 6px 16px rgba(0,0,0,0.25);
     }
     /* =========================
        WHATSAPP
@@ -1100,19 +1027,25 @@
       }
       .player-radiosnet {
         min-width: 0;
-        padding: 6px 0 6px 10px;
+        padding: 7px 9px;
         gap: 7px;
+        border-radius: 10px;
       }
       .player-radiosnet img {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         border-radius: 8px;
       }
       .player-radiosnet-texto small {
         font-size: 8px;
+        line-height: 1.05;
       }
       .player-radiosnet-texto strong {
-        font-size: 11px;
+        margin-top: 2px;
+        font-size: 12px;
+      }
+      .player-radiosnet-seta {
+        display: none;
       }
       /* INSTALAÇÃO */
       .instalacao-card {
@@ -1227,53 +1160,6 @@
         padding: 8px;
         border-radius: 8px;
         font-size: 11px;
-      }
-      /* RADIOSNET */
-      .radiosnet-card {
-        margin-top: 16px;
-        padding: 13px;
-        grid-template-columns:
-          58px 1fr;
-        gap:
-          8px 11px;
-        border-top-width: 4px;
-      }
-      .radiosnet-logo {
-        width: 58px;
-        height: 58px;
-        border-radius: 12px;
-      }
-      .radiosnet-selo {
-        margin-bottom: 4px;
-        padding: 4px 7px;
-        font-size: 8px;
-        letter-spacing: 0.35px;
-      }
-      .radiosnet-conteudo h2 {
-        margin:
-          0 0 3px;
-        font-size: 16px;
-        line-height: 1.15;
-      }
-      .radiosnet-conteudo p {
-        margin: 0;
-        font-size: 11px;
-        line-height: 1.35;
-      }
-      .botao-radiosnet {
-        grid-column:
-          1 / -1;
-        width: 100%;
-        min-width: 0;
-        min-height: 47px;
-        margin-top: 2px;
-        padding:
-          0 14px;
-        border-radius: 9px;
-        font-size: 14px;
-      }
-      .radiosnet-banner {
-        display: none;
       }
       /* ======================
          WHATSAPP ACESSÍVEL
@@ -1470,12 +1356,13 @@
         <div id="statusRadio" class="status-radio">Toque no Play para ouvir</div>
       </div>
 
-      <a class="player-radiosnet" href="https://l.radios.com.br/r/293551" target="_blank" rel="noopener noreferrer" aria-label="Ouvir Rádio Cleiton na BR pela RadiosNet">
+      <a class="player-radiosnet" href="https://l.radios.com.br/r/293551" target="_blank" rel="noopener noreferrer" aria-label="Clique aqui e ouça Rádio Cleiton na BR pela RadiosNet">
         <img src="downloads/radiosnet-logo.jpg.jpg" alt="RadiosNet">
         <span class="player-radiosnet-texto">
-          <small>OUÇA TAMBÉM PELA</small>
+          <small>CLIQUE AQUI E OUÇA PELA</small>
           <strong>RADIOSNET</strong>
         </span>
+        <span class="player-radiosnet-seta" aria-hidden="true">›</span>
       </a>
 
       <audio id="radioPlayer" preload="none" src="https://azuracast-germany.myautodj.com/listen/cleitonnabr/radio.mp3"></audio>
@@ -1566,38 +1453,6 @@
         </a>
       </section>
     </div>
-    <!-- =========================
-         RADIOSNET
-    ========================== -->
-    <section class="card radiosnet-card">
-      <img
-        class="radiosnet-logo"
-        src="downloads/radiosnet-logo.jpg.jpg"
-        alt="RadiosNet">
-      <div class="radiosnet-conteudo">
-        <span class="radiosnet-selo">
-          OUÇA TAMBÉM
-        </span>
-        <h2>
-          CLEITON NA BR NA RADIOSNET
-        </h2>
-        <p>
-          No celular, no carro ou onde você estiver.
-        </p>
-        <a
-          class="botao-radiosnet"
-          href="https://l.radios.com.br/r/293551"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Ouvir Cleiton na BR no RadiosNet">
-          ▶ OUVIR AGORA
-        </a>
-      </div>
-      <img
-        class="radiosnet-banner"
-        src="downloads/radiosnet-banner.png.png"
-        alt="Ouça suas estações favoritas no RadiosNet">
-    </section>
     <!-- =========================
          WHATSAPP
     ========================== -->
