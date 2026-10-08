@@ -1589,6 +1589,37 @@
     }
     .dr-arquivo-conteudo p { color:#333; font-size:15px; line-height:1.62; }
 
+    .dr-audio-box {
+      margin: 18px 0 24px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg,#111,#242424);
+      border-left: 5px solid #ffd000;
+      border-radius: 12px;
+      color: #fff;
+    }
+    .dr-audio-titulo {
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .dr-audio-player {
+      display: block;
+      width: 100%;
+      max-width: 760px;
+    }
+    .dr-audio-aviso {
+      margin: 8px 0 0 !important;
+      color: #ddd !important;
+      font-size: 13px !important;
+      line-height: 1.4 !important;
+    }
+    .dr-audio-arquivo {
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
     .atalhos-finais {
       display: grid;
       grid-template-columns: repeat(3,1fr);
@@ -1827,14 +1858,14 @@
       <!-- DIRETO DA REDAÇÃO -->
       <section class="dr-home" aria-labelledby="tituloDRHome">
         <span class="dr-selo">ÚLTIMA EDIÇÃO</span>
-        <h2 id="tituloDRHome">DIRETO DA REDAÇÃO — TARDE</h2>
-        <p class="dr-meta"><strong>07 DE OUTUBRO DE 2026</strong></p>
+        <h2 id="tituloDRHome">DIRETO DA REDAÇÃO — MANHÃ</h2>
+        <p class="dr-meta"><strong>08 DE OUTUBRO DE 2026</strong></p>
         <p>
-          Engavetamento com 25 veículos na BR-040 em Nova Lima, obras e restrições em Minas Gerais,
-          Bahia, Mato Grosso e Paraná, carga especial na Rodovia dos Tamoios e alertas de chuva, calor e baixa umidade pelo país.
+          Acidentes na BR-153 em Goiânia e na BR-101 em Angra dos Reis, obras e restrições em importantes corredores do país
+          e alertas de tempestades no Sul, além de calor e baixa umidade em áreas do interior.
         </p>
         <a class="botao-dr link-interno" href="?pagina=direto-da-redacao" data-pagina="direto-da-redacao">
-          LER A ÚLTIMA EDIÇÃO
+          LER E OUVIR A ÚLTIMA EDIÇÃO
         </a>
       </section>
       <!-- DR_HOME_FIM -->
@@ -1894,31 +1925,42 @@
       <!-- DR_ULTIMA_EDICAO_INICIO: mover a edição anterior para o arquivo antes de substituir -->
       <article class="dr-edicao-atual" id="drEdicaoAtual">
         <span class="dr-selo">ÚLTIMA EDIÇÃO</span>
-        <h2 id="drTituloEdicao">DIRETO DA REDAÇÃO — 07 DE OUTUBRO DE 2026 — EDIÇÃO DA TARDE</h2>
-        <p class="dr-meta" id="drMetaEdicao"><time datetime="2026-10-07">07 de outubro de 2026 — edição da tarde</time></p>
+        <h2 id="drTituloEdicao">DIRETO DA REDAÇÃO — 08 DE OUTUBRO DE 2026 — EDIÇÃO DA MANHÃ</h2>
+        <p class="dr-meta" id="drMetaEdicao"><time datetime="2026-10-08">08 de outubro de 2026 — edição da manhã</time></p>
+
+        <div class="dr-audio-box">
+          <div class="dr-audio-titulo">🔊 OUVIR ESTA EDIÇÃO</div>
+          <audio class="dr-audio-player" controls preload="metadata">
+            <source src="assets/audio/dr/2026/10/08-10-26_-_direto_da_reda%C3%A7%C3%A3o_-_manh%C3%A3.mp3" type="audio/mpeg">
+            Seu navegador não suporta reprodução de áudio.
+          </audio>
+          <p class="dr-audio-aviso">Ao iniciar este áudio, a rádio ao vivo será pausada.</p>
+        </div>
 
         <div id="drConteudoEdicao">
-          <p><strong>RESUMO DA EDIÇÃO.</strong> A edição da tarde destaca um engavetamento envolvendo 25 veículos na BR-040, em Nova Lima, na Região Metropolitana de Belo Horizonte, além de obras, restrições e operações em importantes corredores de Minas Gerais, Bahia, Mato Grosso, Paraná e São Paulo. A previsão aponta calor e baixa umidade em áreas do interior e possibilidade de chuva em partes do Sudeste, Centro-Oeste e Sul.</p>
+          <p><strong>RESUMO DA EDIÇÃO.</strong> A edição da manhã destaca acidentes fatais na BR-153, em Goiânia, e na BR-101, em Angra dos Reis, além de obras e restrições em corredores de Goiás, Tocantins, Minas Gerais, Bahia, Mato Grosso, São Paulo e Espírito Santo. A previsão indica calor e baixa umidade em grande parte do interior do país e risco de tempestades no Sul.</p>
 
           <h3>ACIDENTES E OCORRÊNCIAS</h3>
-          <p><strong>BR-040 — Nova Lima (MG):</strong> um engavetamento envolvendo 25 veículos, entre carros e caminhões, interditou o sentido Belo Horizonte no km 548, na região do Viaduto da Mutuca. Uma pessoa ficou presa às ferragens e, na última atualização disponível, ainda não havia balanço oficial completo de feridos. O sentido Belo Horizonte seguia totalmente interditado, enquanto o sentido Juiz de Fora permanecia sem bloqueio, mas com congestionamento.</p>
+          <p><strong>BR-153 — Goiânia (GO):</strong> um motociclista morreu após bater na traseira de um trator que estava parado próximo ao viaduto da Avenida Anhanguera, na região do Jardim Novo Mundo. A faixa da direita chegou a ser interditada para atendimento da ocorrência. O motorista do trator não ficou ferido.</p>
+          <p><strong>BR-101 — Angra dos Reis (RJ):</strong> um homem morreu e outra pessoa ficou ferida no km 473, na região de Jacuecanga. O carro saiu da pista e bateu contra uma árvore. O ferido foi encaminhado ao Hospital Municipal da Japuíba.</p>
 
           <h3>INTERDIÇÕES, OBRAS E OPERAÇÕES NAS RODOVIAS</h3>
-          <p><strong>Fernão Dias — Camanducaia (MG):</strong> no km 919 da BR-381 ocorre fragmentação controlada de rochas para estabilização de um talude. A faixa da direita permanece interditada no sentido Belo Horizonte e podem ocorrer bloqueios dos dois sentidos por até uma hora, principalmente entre 12h e 13h.</p>
-          <p><strong>BR-251 — Serra de Francisco Sá (MG):</strong> continuam as obras entre os km 445 e 471, com intervenções no pavimento e na sinalização e possibilidade de controle temporário do tráfego. Motoristas devem reduzir a velocidade antes das frentes de serviço e manter distância segura, principalmente na aproximação de filas de Pare e Siga.</p>
-          <p><strong>BR-101 — Itapebi (BA):</strong> permanece a restrição no km 661, na ponte sobre o Rio Jequitinhonha. Caminhões e carretas continuam proibidos de atravessar a estrutura. Para veículos de carga, o DNIT indica como alternativas a BR-116 ou o desvio por rodovias estaduais da região.</p>
-          <p><strong>BR-163 e BR-364 — Mato Grosso:</strong> há Pare e Siga até as 17h no km 696 da BR-163, em Sorriso, e no km 839, em Sinop. Também há interdições parciais na região de Rondonópolis, tanto na BR-163 quanto na BR-364, além de serviços em Juscimeira, Jaciara e Campo Verde.</p>
-          <p><strong>BR-272 — entre Francisco Alves e Terra Roxa (PR):</strong> a ponte sobre o Rio Piquiri já foi reaberta ao tráfego. A passagem está liberada nos dois sentidos para veículos leves e caminhões de até 57 toneladas. Motoristas devem respeitar a sinalização e o limite de peso desta primeira fase de operação.</p>
-          <p><strong>Rodovia dos Tamoios (SP):</strong> a carga especial de 517 toneladas e 90 metros de comprimento continua o deslocamento em direção ao Porto de São Sebastião. Nesta noite, a partir das 22h, o conjunto sai do km 11 do Contorno Sul. Durante a operação, o Contorno Sul será fechado e o tráfego deverá utilizar a Rodovia Rio-Santos, a SP-055.</p>
-          <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> até o dia 12 aumenta a presença de romeiros no corredor, principalmente entre Arujá, Jacareí, Taubaté, Pindamonhangaba e Aparecida. Ao encontrar pedestres ou ciclistas, motoristas devem reduzir a velocidade e ter atenção especial em acostamentos, acessos, postos de serviço e perímetros urbanos.</p>
+          <p><strong>BR-020 — Formosa (GO):</strong> continuam as obras da travessia urbana entre os km 0 e 12. O acesso Sul já foi liberado, mas ainda há frentes de duplicação, drenagem e construção de viadutos. Atenção para quem segue de Brasília por Formosa, Alvorada do Norte e Posse em direção à Bahia.</p>
+          <p><strong>BR-153 — Goiás e Tocantins:</strong> permanecem intervenções próximas a Campinorte, Uruaçu, Rialma e Rianápolis, em Goiás, e também entre Figueirópolis, Alvorada e Talismã, no sul do Tocantins.</p>
+          <p><strong>BR-251 — Serra de Francisco Sá (MG):</strong> continuam as intervenções entre os km 445 e 471, com serviços no pavimento e na sinalização. Há atenção especial para aproximação de filas e eventuais operações de Pare e Siga.</p>
+          <p><strong>BR-116 — de Governador Valadares até a divisa com a Bahia (MG):</strong> seguem frentes de recuperação ao longo do corredor de Teófilo Otoni, Itaobim, Cachoeira de Pajeú e Divisa Alegre. Os pontos de trabalho são móveis e exigem atenção à sinalização, principalmente à noite e sob chuva.</p>
+          <p><strong>BR-101 — Itapebi (BA):</strong> continua a restrição no km 661, sobre o Rio Jequitinhonha. Veículos leves, vans, micro-ônibus e ônibus podem passar, mas caminhões e carretas permanecem proibidos. Para o transporte de carga, as alternativas são a BR-116 ou os desvios estaduais indicados pelo DNIT.</p>
+          <p><strong>Fernão Dias — Camanducaia (MG) e Vargem (SP):</strong> no km 919 continuam as obras de estabilização de talude. Já no km 5,9, em Vargem, começa a etapa reprogramada de implantação da nova passarela, com restrição de faixa nos dois sentidos das 21h às 2h.</p>
+          <p><strong>BR-163 e BR-364 — Mato Grosso:</strong> há Pare e Siga durante o dia no km 696 da BR-163, em Sorriso, e no km 839, em Sinop. Na BR-364 também há Pare e Siga em Várzea Grande e Jangada, além de intervenções entre Rondonópolis, Juscimeira, Jaciara e Campo Verde. Na Serra de São Vicente, está previsto bloqueio de cerca de 30 minutos no km 4, sentido Cuiabá–Rondonópolis, para detonação de rochas.</p>
+          <p><strong>BR-101 — Ibiraçu e Fundão (ES):</strong> a partir das 20h começam bloqueios totais em etapas entre os km 231 e 239 para transporte e içamento de vigas da nova ponte sobre o Rio Timbuí. A última etapa, no km 239, em Fundão, está prevista entre 1h e 3h da madrugada.</p>
+          <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> até domingo, dia 12, segue reforçado o alerta para a presença de romeiros. Motoristas devem reduzir a velocidade e redobrar a atenção com pedestres e ciclistas, especialmente em acostamentos, postos, acessos e perímetros urbanos.</p>
 
           <h3>TEMPO E ALERTAS NAS RODOVIAS</h3>
-          <p><strong>Bahia e Norte de Minas:</strong> predomina tempo quente e seco. No oeste da Bahia, especialmente nas regiões de Barreiras e Luís Eduardo Magalhães, o cuidado nas BRs 020 e 242 é com calor e baixa umidade. Em Montes Claros, Francisco Sá e Salinas, nos corredores das BRs 135 e 251, também predomina tempo mais quente e seco.</p>
-          <p><strong>Centro e Sul de Minas:</strong> há possibilidade de chuva isolada na Região Metropolitana de Belo Horizonte, no corredor da BR-040, e também no Sul de Minas pela Fernão Dias.</p>
-          <p><strong>Centro-Oeste:</strong> em Mato Grosso do Sul, principalmente na região de Campo Grande e no corredor da BR-163, permanecem condições para pancadas e trovoadas. A instabilidade também alcança áreas do sul de Goiás e do oeste e sul de Mato Grosso.</p>
-          <p><strong>São Paulo e Rio de Janeiro:</strong> há possibilidade de chuva e pista molhada, inclusive nos corredores da Via Dutra e Régis Bittencourt.</p>
-          <p><strong>Sul:</strong> permanecem áreas de instabilidade em Paraná, Santa Catarina e Rio Grande do Sul.</p>
-          <p><strong>Tocantins e Matopiba:</strong> predomina calor e tempo seco em grande parte da região formada por áreas do Maranhão, Tocantins, Piauí e Bahia.</p>
+          <p><strong>Rio Grande do Sul:</strong> há risco de tempestades e granizo, principalmente nas regiões de Uruguaiana, São Borja e Santa Maria. BR-290, BR-158, BR-287 e BR-392 podem ter chuva forte, vento e redução de visibilidade.</p>
+          <p><strong>Santa Catarina:</strong> o oeste do estado, incluindo a região de Chapecó e a BR-282, também tem risco de temporais.</p>
+          <p><strong>Bahia e Norte de Minas:</strong> predomina calor e baixa umidade. No oeste baiano, o cuidado é maior nos corredores das BRs 020 e 242, entre Barreiras e Luís Eduardo Magalhães. No Norte de Minas, o tempo também permanece quente e seco nas regiões de Montes Claros, Francisco Sá e Salinas, pelas BRs 135 e 251.</p>
+          <p><strong>Goiás e Tocantins:</strong> calor e baixa umidade predominam durante boa parte do dia, inclusive nos corredores das BRs 020 e 153.</p>
+          <p><strong>Oeste da Região Norte:</strong> podem ocorrer pancadas de chuva em áreas do Acre, Amazonas e Rondônia. Na BR-364, entre as regiões de Rio Branco e Porto Velho, há atenção para mudanças localizadas nas condições da pista.</p>
         </div>
       </article>
       <!-- DR_ULTIMA_EDICAO_FIM -->
@@ -1926,6 +1968,78 @@
       <section class="arquivo-dr" id="arquivoDR">
         <h2>EDIÇÕES ANTERIORES</h2>
         <p class="arquivo-dr-intro">A edição mais recente permanece sempre em destaque acima. As anteriores ficam disponíveis aqui para consulta.</p>
+        <details class="dr-arquivo-item">
+          <summary>
+            <span>
+              <strong>DIRETO DA REDAÇÃO — EDIÇÃO DA NOITE</strong>
+              <small>07 de outubro de 2026 — DR3</small>
+            </span>
+            <span class="dr-arquivo-abrir">VER EDIÇÃO</span>
+          </summary>
+          <div class="dr-arquivo-conteudo">
+            <div class="dr-audio-box dr-audio-arquivo">
+              <div class="dr-audio-titulo">🔊 OUVIR ESTA EDIÇÃO</div>
+              <audio class="dr-audio-player" controls preload="metadata">
+                <source src="assets/audio/dr/2026/10/07-10-26_-_direto_da_reda%C3%A7%C3%A3o_-_noite.mp3" type="audio/mpeg">
+                Seu navegador não suporta reprodução de áudio.
+              </audio>
+              <p class="dr-audio-aviso">Ao iniciar este áudio, a rádio ao vivo será pausada.</p>
+            </div>
+
+            <p><strong>RESUMO DA EDIÇÃO.</strong> A edição da noite atualiza o grande engavetamento da BR-040, em Nova Lima, e registra uma colisão com feridos na BR-163, no Oeste do Paraná. Também reúne bloqueios noturnos e obras em corredores do Espírito Santo, São Paulo, Mato Grosso, Minas Gerais e Bahia, além de alertas meteorológicos para a quinta-feira.</p>
+
+            <h3>ACIDENTES E OCORRÊNCIAS</h3>
+            <p><strong>BR-040 — Nova Lima (MG):</strong> mais de vinte veículos, entre carros e caminhões, se envolveram no engavetamento do km 548. Houve feridos, mas não foram registradas mortes. Na última atualização operacional disponível, duas faixas no sentido Belo Horizonte já haviam sido liberadas, enquanto equipes ainda trabalhavam na retirada dos veículos.</p>
+            <p><strong>BR-163 — entre Marechal Cândido Rondon e Mercedes (PR):</strong> três pessoas ficaram feridas em uma colisão entre um carro e um caminhão próximo ao viaduto do Contorno Oeste. Um casal de idosos e um ocupante do caminhão foram encaminhados para atendimento; uma criança saiu ilesa.</p>
+
+            <h3>INTERDIÇÕES, OBRAS E OPERAÇÕES NAS RODOVIAS</h3>
+            <p><strong>BR-101 — entre Ibiraçu e Fundão (ES):</strong> a operação de transporte e içamento de vigas provoca bloqueios totais em etapas durante a noite. Os fechamentos avançam por diferentes trechos entre os km 219 e 231, com previsão de liberação total por volta das 2h30 da madrugada.</p>
+            <p><strong>Rodovia dos Tamoios (SP):</strong> a carga especial de 517 toneladas e 90 metros de comprimento entra na última etapa do deslocamento em direção ao Porto de São Sebastião. A partir das 22h, o Contorno Sul será fechado e o trânsito deverá utilizar a Rodovia Rio-Santos, a SP-055.</p>
+            <p><strong>BR-070 e BR-364 — Mato Grosso:</strong> das 19h às 4h há Pare e Siga no km 515 da BR-070, em Várzea Grande, e no km 474 da BR-364, em Acorizal. Motoristas devem considerar possibilidade de filas e redução de velocidade.</p>
+            <p><strong>Fernão Dias — Vargem (SP):</strong> a operação de içamento da nova passarela no km 5,9 foi reprogramada por causa das condições do tempo. Não houve naquela noite a interdição total que estava prevista anteriormente.</p>
+            <p><strong>BR-251 — Serra de Francisco Sá (MG):</strong> continuam as intervenções entre os km 445 e 471, com sinalização provisória e frentes de recuperação do pavimento. À noite, a orientação é reduzir a velocidade na aproximação das equipes e de eventuais filas.</p>
+            <p><strong>BR-116 — de Governador Valadares até a divisa com a Bahia (MG):</strong> seguem trabalhos de recuperação no corredor que passa por Teófilo Otoni, Itaobim, Cachoeira de Pajeú e Divisa Alegre. Para quem puder programar a viagem, a recomendação é priorizar a passagem durante o dia e redobrar a atenção à noite e sob chuva.</p>
+            <p><strong>BR-101 — Itapebi (BA):</strong> permanece a restrição para veículos pesados no km 661, sobre o Rio Jequitinhonha. Caminhões e carretas devem utilizar a BR-116 ou os desvios estaduais indicados pelo DNIT.</p>
+            <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> segue reforçado o alerta para a presença de romeiros. Motoristas devem reduzir a velocidade e ter cuidado redobrado em ultrapassagens, acessos, postos, perímetros urbanos e acostamentos.</p>
+
+            <h3>TEMPO E ALERTAS NAS RODOVIAS</h3>
+            <p><strong>Rio Grande do Sul:</strong> a quinta-feira tem risco de tempestades e possibilidade de granizo, inclusive na área de Porto Alegre e Região Metropolitana. Atenção nas BRs 116 e 290.</p>
+            <p><strong>Santa Catarina e Paraná:</strong> há risco de tempestades no Oeste catarinense, incluindo o corredor de Chapecó pela BR-282, e possibilidade de chuva forte no oeste e sudoeste do Paraná, incluindo o eixo de Cascavel pela BR-277.</p>
+            <p><strong>Bahia, Norte de Minas e Tocantins:</strong> predomina tempo quente e seco. No oeste da Bahia, especialmente entre Barreiras e Luís Eduardo Magalhães, o cuidado é com calor e baixa umidade nas BRs 020 e 242. No Norte de Minas e no Tocantins também prevalecem calor e pouca chuva.</p>
+            <p><strong>Oeste da Região Norte:</strong> podem ocorrer pancadas em áreas do Acre, Amazonas e Rondônia. Na BR-364, entre as regiões de Rio Branco e Porto Velho, há atenção para mudanças localizadas nas condições da pista.</p>
+          </div>
+        </details>
+
+        <details class="dr-arquivo-item">
+          <summary>
+            <span>
+              <strong>DIRETO DA REDAÇÃO — EDIÇÃO DA TARDE</strong>
+              <small>07 de outubro de 2026 — DR2</small>
+            </span>
+            <span class="dr-arquivo-abrir">VER EDIÇÃO</span>
+          </summary>
+          <div class="dr-arquivo-conteudo">
+            <p><strong>RESUMO DA EDIÇÃO.</strong> A edição da tarde destaca um engavetamento envolvendo 25 veículos na BR-040, em Nova Lima, na Região Metropolitana de Belo Horizonte, além de obras, restrições e operações em importantes corredores de Minas Gerais, Bahia, Mato Grosso, Paraná e São Paulo. A previsão aponta calor e baixa umidade em áreas do interior e possibilidade de chuva em partes do Sudeste, Centro-Oeste e Sul.</p>
+            <h3>ACIDENTES E OCORRÊNCIAS</h3>
+            <p><strong>BR-040 — Nova Lima (MG):</strong> um engavetamento envolvendo 25 veículos, entre carros e caminhões, interditou o sentido Belo Horizonte no km 548, na região do Viaduto da Mutuca. Uma pessoa ficou presa às ferragens e, na última atualização disponível, ainda não havia balanço oficial completo de feridos. O sentido Belo Horizonte seguia totalmente interditado, enquanto o sentido Juiz de Fora permanecia sem bloqueio, mas com congestionamento.</p>
+            <h3>INTERDIÇÕES, OBRAS E OPERAÇÕES NAS RODOVIAS</h3>
+            <p><strong>Fernão Dias — Camanducaia (MG):</strong> no km 919 da BR-381 ocorre fragmentação controlada de rochas para estabilização de um talude. A faixa da direita permanece interditada no sentido Belo Horizonte e podem ocorrer bloqueios dos dois sentidos por até uma hora, principalmente entre 12h e 13h.</p>
+            <p><strong>BR-251 — Serra de Francisco Sá (MG):</strong> continuam as obras entre os km 445 e 471, com intervenções no pavimento e na sinalização e possibilidade de controle temporário do tráfego. Motoristas devem reduzir a velocidade antes das frentes de serviço e manter distância segura, principalmente na aproximação de filas de Pare e Siga.</p>
+            <p><strong>BR-101 — Itapebi (BA):</strong> permanece a restrição no km 661, na ponte sobre o Rio Jequitinhonha. Caminhões e carretas continuam proibidos de atravessar a estrutura. Para veículos de carga, o DNIT indica como alternativas a BR-116 ou o desvio por rodovias estaduais da região.</p>
+            <p><strong>BR-163 e BR-364 — Mato Grosso:</strong> há Pare e Siga até as 17h no km 696 da BR-163, em Sorriso, e no km 839, em Sinop. Também há interdições parciais na região de Rondonópolis, tanto na BR-163 quanto na BR-364, além de serviços em Juscimeira, Jaciara e Campo Verde.</p>
+            <p><strong>BR-272 — entre Francisco Alves e Terra Roxa (PR):</strong> a ponte sobre o Rio Piquiri já foi reaberta ao tráfego. A passagem está liberada nos dois sentidos para veículos leves e caminhões de até 57 toneladas. Motoristas devem respeitar a sinalização e o limite de peso desta primeira fase de operação.</p>
+            <p><strong>Rodovia dos Tamoios (SP):</strong> a carga especial de 517 toneladas e 90 metros de comprimento continua o deslocamento em direção ao Porto de São Sebastião. Nesta noite, a partir das 22h, o conjunto sai do km 11 do Contorno Sul. Durante a operação, o Contorno Sul será fechado e o tráfego deverá utilizar a Rodovia Rio-Santos, a SP-055.</p>
+            <p><strong>Via Dutra — Arujá a Aparecida (SP):</strong> até o dia 12 aumenta a presença de romeiros no corredor, principalmente entre Arujá, Jacareí, Taubaté, Pindamonhangaba e Aparecida. Ao encontrar pedestres ou ciclistas, motoristas devem reduzir a velocidade e ter atenção especial em acostamentos, acessos, postos de serviço e perímetros urbanos.</p>
+            <h3>TEMPO E ALERTAS NAS RODOVIAS</h3>
+            <p><strong>Bahia e Norte de Minas:</strong> predomina tempo quente e seco. No oeste da Bahia, especialmente nas regiões de Barreiras e Luís Eduardo Magalhães, o cuidado nas BRs 020 e 242 é com calor e baixa umidade. Em Montes Claros, Francisco Sá e Salinas, nos corredores das BRs 135 e 251, também predomina tempo mais quente e seco.</p>
+            <p><strong>Centro e Sul de Minas:</strong> há possibilidade de chuva isolada na Região Metropolitana de Belo Horizonte, no corredor da BR-040, e também no Sul de Minas pela Fernão Dias.</p>
+            <p><strong>Centro-Oeste:</strong> em Mato Grosso do Sul, principalmente na região de Campo Grande e no corredor da BR-163, permanecem condições para pancadas e trovoadas. A instabilidade também alcança áreas do sul de Goiás e do oeste e sul de Mato Grosso.</p>
+            <p><strong>São Paulo e Rio de Janeiro:</strong> há possibilidade de chuva e pista molhada, inclusive nos corredores da Via Dutra e Régis Bittencourt.</p>
+            <p><strong>Sul:</strong> permanecem áreas de instabilidade em Paraná, Santa Catarina e Rio Grande do Sul.</p>
+            <p><strong>Tocantins e Matopiba:</strong> predomina calor e tempo seco em grande parte da região formada por áreas do Maranhão, Tocantins, Piauí e Bahia.</p>
+          </div>
+        </details>
+
         <details class="dr-arquivo-item">
           <summary>
             <span>
@@ -3319,6 +3433,44 @@
         }
       );
     }
+  </script>
+
+
+  <script>
+    /* =====================================================
+       ÁUDIOS DO DIRETO DA REDAÇÃO
+       - Nunca deixa dois boletins tocarem ao mesmo tempo.
+       - Ao iniciar um DR gravado, encerra a rádio ao vivo
+         de forma deliberada para impedir a reconexão automática.
+       - Ao clicar novamente no player fixo da rádio, pausa
+         qualquer edição gravada que esteja em reprodução.
+    ===================================================== */
+    (function () {
+      const audiosDR = Array.from(document.querySelectorAll('.dr-audio-player'));
+
+      function pausarOutrosAudiosDR(excecao) {
+        audiosDR.forEach((audio) => {
+          if (audio !== excecao && !audio.paused) {
+            audio.pause();
+          }
+        });
+      }
+
+      audiosDR.forEach((audio) => {
+        audio.addEventListener('play', () => {
+          pausarOutrosAudiosDR(audio);
+          if (typeof pararRadio === 'function') {
+            pararRadio();
+          }
+        });
+      });
+
+      if (typeof playBtn !== 'undefined' && playBtn) {
+        playBtn.addEventListener('click', () => {
+          pausarOutrosAudiosDR(null);
+        });
+      }
+    })();
   </script>
 
   <script>
